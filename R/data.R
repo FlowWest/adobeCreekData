@@ -8,7 +8,12 @@
 #'   \item{gs_elevation}{groun surface elevation}
 #'   \item{ws_reading}{water surface reading}
 #'   \item{rp_reading}{reference point reading}
+#'   \item{wse}{water surface elevation, (defined as rp_elevation - ws_reading - rp_reading)}
 #' }
+#' @details
+#' This data was obtained using the CASGEM data portal. A search for Big Valley
+#' water basin yielded a list of over 80 wells, this dataset contains all data
+#' measured from those 80 wells that were reported to CASGEM.
 "groundwater_levels"
 
 #' @title Groundwater Stations
@@ -24,3 +29,13 @@
 #'   \item{total_measures}{number of measurements taken in date range}
 #' }
 "groundwater_stations"
+
+#' @title Pressure Transducer Data
+#' @description blah
+#' \describe{
+#'   \item{transducer}{name of the transducer}
+#'   \item{dateTime}{date-time for the measurements}
+#'   \item{depth_ft}{the depth (in feet) reported by the pressure transducer}
+#'   \item{temp_c}{the temperature (in C) reported by the pressure transducer}
+#' }
+"pressure_transducer"
