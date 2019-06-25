@@ -10,3 +10,17 @@
 #'   \item{rp_reading}{reference point reading}
 #' }
 "groundwater_levels"
+
+#' @title Groundwater Stations
+#' @description These are the wells for which data is reported/
+#' \describe{
+#'   \item{site_code}{a unique CASGEM code for the well}
+#'   \item{local_well_designation}{well designation for local use}
+#'   \item{lat}{latitude for the well}
+#'   \item{lng}{longitude for the well}
+#'   \item{total_depth_ft}{total depth for the well (if not confidential)}
+#'   \item{start_date}{first date measured (with CASGEM data)}
+#'   \item{end_date}{most recent data with measured data}
+#'   \item{total_measures}{number of measurements taken in date range}
+#' }
+"groundwater_stations"

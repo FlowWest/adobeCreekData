@@ -21,7 +21,8 @@ gwl2 <- read_csv("data-raw/GWL_20190613134316.csv") %>%
 
 groundwater_levels <- bind_rows(
   gwl1, gwl2
-)
+) %>%
+  mutate(wse = rp_elevation - ws_reading - rp_reading)
 
 usethis::use_data(groundwater_levels, overwrite = TRUE)
 
@@ -40,13 +41,14 @@ groundwater_stations <- bind_rows(
 
 usethis::use_data(groundwater_stations, overwrite = TRUE)
 
+
 # PRESSURE TRANSDUCER DATA =====================================================
 
 bell_hill <- read_csv("data-raw/Bell Hill_Append_2019-03-24_10-53-07-322-BaroMerge.csv",
                       skip = 75,
                       col_types = "ccccccc",
-                      col_names = c("dateTime", "pressure_psi", "temp_c", "depth_ft",
-                                    "baro_pressure_psi", "unknown", "dummy")) %>%
+                      col_names = c("dateTime","seconds", "pressure_psi", "temp_c", "depth_ft",
+                                    "baro_pressure_psi", "dummy")) %>%
   transmute(
     transducer = "bell_hill",
     dateTime = mdy_hms(dateTime),
@@ -56,8 +58,8 @@ bell_hill <- read_csv("data-raw/Bell Hill_Append_2019-03-24_10-53-07-322-BaroMer
 argonaut <- read_csv("data-raw/Argonaut_Append_2019-03-24_10-34-19-544-BaroMerge.csv",
                      skip = 75,
                      col_types = "ccccccc",
-                     col_names = c("dateTime", "pressure_psi", "temp_c", "depth_ft",
-                                   "baro_pressure_psi", "unknown", "dummy")) %>%
+                     col_names = c("dateTime","seconds", "pressure_psi", "temp_c", "depth_ft",
+                                   "baro_pressure_psi", "dummy")) %>%
   transmute(
     transducer = "argonaut",
     dateTime = mdy_hms(dateTime),
@@ -67,8 +69,8 @@ argonaut <- read_csv("data-raw/Argonaut_Append_2019-03-24_10-34-19-544-BaroMerge
 soda_bay <- read_csv("data-raw/Soda Bay_Append_2019-03-24_11-36-13-985-BaroMerge.csv",
                      skip = 75,
                      col_types = "ccccccc",
-                     col_names = c("dateTime", "pressure_psi", "temp_c", "depth_ft",
-                                   "baro_pressure_psi", "unknown", "dummy")) %>%
+                     col_names = c("dateTime","seconds", "pressure_psi", "temp_c", "depth_ft",
+                                   "baro_pressure_psi", "dummy")) %>%
   transmute(
     transducer = "soda_bay",
     dateTime = mdy_hms(dateTime),
@@ -80,3 +82,5 @@ pressure_transducer <- bind_rows(
   argonaut,
   soda_bay
 )
+
+usethis::use_data(pressure_transducer, overwrite = TRUE)

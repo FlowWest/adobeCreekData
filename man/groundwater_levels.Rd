@@ -4,7 +4,7 @@
 \name{groundwater_levels}
 \alias{groundwater_levels}
 \title{Groundwater Elevations}
-\format{An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 7154 rows and 6 columns.}
+\format{An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 7154 rows and 7 columns.}
 \usage{
 groundwater_levels
 }

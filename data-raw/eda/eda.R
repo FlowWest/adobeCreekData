@@ -9,9 +9,9 @@ groundwater_levels %>%
   ) %>%
   group_by(year) %>%
   summarise(
-    year_avg = mean(ws_reading, na.rm = TRUE),
-    year_max = max(ws_reading, na.rm = TRUE),
-    year_min = min(ws_reading, na.rm = TRUE)
+    year_avg = mean(wse, na.rm = TRUE),
+    year_max = max(wse, na.rm = TRUE),
+    year_min = min(wse, na.rm = TRUE)
   ) %>%
   gather(metric, value, -year) %>%
   ggplot(aes(year, value, color=metric)) + geom_line() + geom_point() +
@@ -32,5 +32,16 @@ groundwater_levels %>%
   ggplot(aes(month, value, color=metric)) + geom_line() + geom_point()
 
 
+groundwater_levels %>%
+  filter(site_code %in% good_sites) %>%
+  ggplot(aes(measurement_date, ws_reading, color=site_code)) + geom_line()
+
+
+
+range_for_transducer <- range(pressure_transducer$dateTime)
+
+groundwater_levels %>%
+  filter(measurement_date >= range_for_transducer[1]) %>%
+  ggplot(aes(y=ws_reading)) + geom_boxplot()
 
 
