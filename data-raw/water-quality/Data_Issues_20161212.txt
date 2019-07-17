@@ -1,0 +1,27 @@
+DO
+BVR data
+9/25/2012 97.2 mg/L
+8/29/2012 31 mg/L
+3/15/2002 90.53 mg/L
+12/17/1999 73.6 mg/L
+CDFA data
+10/28/2013 60 mg/L
+
+TDS
+BVR data
+1. Assuming corrections provided in mg/L
+2. Suspsect data was entered as mg/L rather than g/L, in some cases
+2/19/1999 5.312 g/L = 5312 mg/L
+7/6/2006 16.39 g/L = 16390 mg/L
+8/16/2000 4127 g/L = 4127000 mg/L
+
+Conductance (EC)
+BVR data
+1. 9/29/2014 units are listed as "deg C". Assumed these are in mS/cm, so multiplied by 1000 to get uS/cm.
+2. Suspect sometimes confusing mS/cm with uS/cm when entering data?
+2/16/2000 2000 mS/cm = 2000000 uS/cm
+SBMM data
+7/21/2015 3669 uS/cm
+5/16/2011 6928 uS/cm
+12/21/2006 4900 uS/cm
+2/22/2009 3240 uS/cm

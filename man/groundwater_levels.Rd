@@ -18,6 +18,12 @@ Big Valley Water Basin. The data was obtained from CASGEM.
   \item{gs_elevation}{groun surface elevation}
   \item{ws_reading}{water surface reading}
   \item{rp_reading}{reference point reading}
+  \item{wse}{water surface elevation, (defined as rp_elevation - ws_reading - rp_reading)}
 }
+}
+\details{
+This data was obtained using the CASGEM data portal. A search for Big Valley
+water basin yielded a list of over 80 wells, this dataset contains all data
+measured from those 80 wells that were reported to CASGEM.
 }
 \keyword{datasets}

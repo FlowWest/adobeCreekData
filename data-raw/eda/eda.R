@@ -1,7 +1,14 @@
 library(adobeCreekData)
 library(lubridate)
+library(magrittr)
+library(tidyverse)
 
 # GROUNDWATER ==================================================================
+
+# what data do we actually have?
+groundwater_levels %>%
+  ggplot(aes(measurement_date, wse, color=groundwater_levels)) + geom_line()
+
 # Groundwater levels by year
 groundwater_levels %>%
   mutate(
@@ -17,31 +24,13 @@ groundwater_levels %>%
   ggplot(aes(year, value, color=metric)) + geom_line() + geom_point() +
   scale_x_continuous(breaks = seq(1950, 2019, by=5))
 
-# Groundwater Levels by Month
-groundwater_levels %>%
-  mutate(
-    month = factor(month.abb[month(measurement_date)], levels = month.abb)
-  ) %>%
-  group_by(month) %>%
-  summarise(
-    month_avg = mean(ws_reading, na.rm = TRUE),
-    month_max = max(ws_reading, na.rm = TRUE),
-    month_min = min(ws_reading, na.rm = TRUE)
-  ) %>%
-  gather(metric, value, -month) %>%
-  ggplot(aes(month, value, color=metric)) + geom_line() + geom_point()
-
+# the top wells with data
+top_5 <- groundwater_stations %>%
+  filter(year(end_date) == 2019) %>%
+  arrange(desc(total_measures)) %>%
+  head(5) %>% pull(site_code)
 
 groundwater_levels %>%
-  filter(site_code %in% good_sites) %>%
-  ggplot(aes(measurement_date, ws_reading, color=site_code)) + geom_line()
-
-
-
-range_for_transducer <- range(pressure_transducer$dateTime)
-
-groundwater_levels %>%
-  filter(measurement_date >= range_for_transducer[1]) %>%
-  ggplot(aes(y=ws_reading)) + geom_boxplot()
-
-
+  filter(site_code %in% top_5,
+         year(measurement_date) >= 2000) %>%
+  ggplot(aes(site_code, wse, fill=site_code)) + geom_boxplot()
