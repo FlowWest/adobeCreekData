@@ -1,0 +1,361 @@
+creek,location,date,fish,observer,comments
+Thompson,Argonaut,2009-01-14,0,Leonardis,no water
+Thompson,Argonaut,2009-01-16,0,Leonardis,no water
+Thompson,Argonaut,2009-01-18,0,Leonardis,no water
+Kelsey,detention,2009-02-09,0,Smythe,"cool, drizzle"
+Kelsey,Quercus,2009-02-09,0,Smythe,"cool, drizzle"
+Kelsey,detention,2009-02-11,0,Smythe,"cool, rain"
+Kelsey,Quercus,2009-02-11,0,Smythe,"cool, rain"
+Kelsey,detention,2009-02-12,0,Smythe,"cool, rain; clear debris and begin closing structure"
+Thompson,Argonaut,2009-02-13,0,Leonardis,no water
+Kelsey,detention,2009-02-15,0,Smythe,rain; open center gate 2
+Hendricks,Scotts Valley Rd.,2009-02-16,0,Dills,
+Kelsey,detention,2009-02-16,0,Smythe,rain; open center gate additional 1
+Hendricks,Scotts Valley Rd.,2009-02-17,0,Dills,
+Hendricks,Scotts Valley Rd.,2009-02-18,0,Dills,
+Kelsey,detention,2009-02-18,0,Smythe,cloudy; closed center gate to 2
+Adobe,Finley East,2009-02-19,0,Smythe,"cloudy, cool"
+Hendricks,Scotts Valley Rd.,2009-02-19,0,Dills,
+Kelsey,detention,2009-02-19,0,Smythe,"cloudy, cool"
+Kelsey,Quercus,2009-02-19,0,Smythe,cloudy
+McGaugh,Finley East,2009-02-19,0,Smythe,flow has stopped
+Thompson,Argonaut,2009-02-19,0,Leonardis,water flowing
+Adobe,Finley East,2009-02-20,0,Smythe,"clear, cool"
+Hendricks,Scotts Valley Rd.,2009-02-20,0,Dills,Partly cloudy
+Kelsey,detention,2009-02-20,0,Smythe,"clear, cool; closed center gate"
+Kelsey,Quercus,2009-02-20,0,Smythe,cloudy
+McGaugh,Finley East,2009-02-20,0,Smythe,"cloudy, cool"
+Adobe,SBR,2009-02-21,0,Windrem,
+Hendricks,Scotts Valley Rd.,2009-02-21,0,Dills,Partly cloudy
+Kelsey,SBR,2009-02-21,0,Windrem,
+Hendricks,Scotts Valley Rd.,2009-02-22,0,Dills,Rain
+Kelsey,detention,2009-02-22,0,Smythe,rain; opened east and center gates
+Kelsey,detention,2009-02-22,0,Smythe,rain; opened all three gates
+Adobe,Finley East,2009-02-23,0,Smythe,"cloudy, cool"
+Hendricks,Scotts Valley Rd.,2009-02-23,0,Dills,Partly cloudy
+Hendricks,Scotts Valley Rd.,2009-02-23,0,Dills,Partly cloudy
+Kelsey,detention,2009-02-23,0,Smythe,cloudy; closed east gate
+Kelsey,detention,2009-02-23,0,Smythe,"cloudy; remove debris from west gate; fish observed jumping       upstream"
+Kelsey,Quercus,2009-02-23,0,Smythe,light rain
+McGaugh,Finley East,2009-02-23,0,Smythe,"cloudy, cool; minimal flow"
+Hendricks,Scotts Valley Rd.,2009-02-24,0,Dills,Partly cloudy
+Kelsey,detention,2009-02-24,0,Smythe,"clear, cool; closed center gate to 4; fish observed       jumping upstream"
+Thompson,Argonaut,2009-02-24,0,Leonardis,water flowing
+Adobe,Finley East,2009-02-25,0,Smythe,"cloudy, cool"
+Hendricks,Scotts Valley Rd.,2009-02-25,0,Dills,Partly cloudy
+Kelsey,detention,2009-02-25,0,Smythe,"cloudy, cool; closed center gate"
+Kelsey,Quercus,2009-02-25,0,Smythe,light rain
+McGaugh,Finley East,2009-02-25,0,Smythe,cloudy; no flow
+Hendricks,Scotts Valley Rd.,2009-02-26,0,Dills,Sunny
+Adobe,Finley East,2009-02-27,0,Smythe,light rain
+Adobe,Merritt,2009-02-27,0,Moorhead,confirmed Sacramento suckers
+Hendricks,Scotts Valley Rd.,2009-02-27,0,Dills,Sunny
+Kelsey,detention,2009-02-27,0,Smythe,light rain
+Kelsey,Quercus,2009-02-27,0,Smythe,light rain
+McGaugh,Finley East,2009-02-27,0,Smythe,light rain
+Adobe,Merritt,2009-02-28,0,Windrem,about 12 Sacramento suckers
+Adobe,SBR,2009-02-28,0,Windrem,suckers
+Hendricks,Scotts Valley Rd.,2009-02-28,0,Dills,Partly cloudy
+Kelsey,SBR,2009-02-28,0,Windrem,
+Kelsey,Veterans,2009-02-28,0,Windrem,no birds
+Hendricks,Scotts Valley Rd.,2009-03-01,0,Dills,Rain
+Kelsey,detention,2009-03-01,0,Smythe,rain; opened center gate
+Adobe,Bell Hill,2009-03-02,0,Windrem,high flood water
+Hendricks,Scotts Valley Rd.,2009-03-02,0,Dills,Rain
+Schindler,Hwy 20,2009-03-03,0,Barnes/Rett,muddy & turbulent
+Kelsey,detention,2009-03-04,0,Smythe,"partly cloudy, closed structure"
+Adobe,Finley East,2009-03-05,0,Smythe,"clear, cold"
+Kelsey,detention,2009-03-05,0,Smythe,"clear, cold"
+Kelsey,Quercus,2009-03-05,0,Smythe,"clear, cold"
+McGaugh,Finley East,2009-03-05,0,Smythe,"clear, cold, minimal flow"
+Schindler,4th St,2009-03-05,0,Barnes/Rett,water moving swiftly
+Schindler,Hwy 20,2009-03-05,0,Barnes/Rett,water moving swiftly
+Seigler,Lake St,2009-03-05,0,Barnes/Rett,water moving swiftly
+Adobe,Finley East,2009-03-06,?,Smythe,"streams are starting to clear ; saw a fish jump near       the bank (unidentified, might be sucker)"
+Adobe,Finley East,2009-03-06,0,Smythe,"clear, cold; One fish observed jumping near bank. Species       unknown"
+Hendricks,Scotts Valley Rd.,2009-03-06,0,Dills,Sunny
+Kelsey,detention ,2009-03-06,0,Murphy,first day water clear enough to see fish; detention dam closed
+Kelsey,detention,2009-03-06,0,Smythe,"clear, cold"
+Kelsey,Quercus,2009-03-06,0,Smythe,"clear, cold"
+McGaugh,Finley East,2009-03-06,0,Smythe,"clear, cold, no flow"
+Seigler,Lake St,2009-03-06,0,Brandon,"water flowing freely, too murky to see if fish present"
+Adobe,SBR,2009-03-07,?,Windrem,"1 osprey, 4 herons, & 1 merganser, which caught       and swallowed a good sized fish, the size of a male hitch -- too murky       for a positive ID"
+Clover,below diversion,2009-03-07,0,Smythe,installed hobo; clear & warm
+Clover,diversion above Middle,2009-03-07,0,Smythe,installed hobo; clear & warm
+Cole,SBR,2009-03-07,0,Smythe,installed hobo; clear & warm
+Hendricks,Scotts Valley Rd.,2009-03-07,0,Dills,Sunny
+Kelsey,detention,2009-03-07,0,Smythe,clear; installed hobo
+Kelsey,SBR,2009-03-07,0,Windrem,no birds
+Manning,SBR,2009-03-07,0,Windrem,"no fish, no birds"
+Middle,above diversion,2009-03-07,0,Smythe,installed hobo; clear & warm
+Middle,aobve Scotts,2009-03-07,0,Smythe,installed hobo; clear & warm
+Middle,Hwy 29,2009-03-07,0,Windrem,no birds
+Scotts,below Tule Lake,2009-03-07,0,Smythe,installed hobo; clear & warm
+Scotts,Eickhoff,2009-03-07,0,Smythe,installed hobo; clear & warm
+Hendricks,Scotts Valley Rd.,2009-03-08,0,Dills,Sunny
+Seigler,Lake St,2009-03-08,0,Barnes/Rett,"water somewhat silty, deep and swift"
+Adobe,Bell Hill,2009-03-09,0,Vidich,
+Adobe,Finley East,2009-03-09,0,Smythe,"clear, cold; One fish observed upstream, surfaced several       times. Species unknown."
+Hendricks,Scotts Valley Rd.,2009-03-09,0,Dills,Sunny
+Kelsey,detention,2009-03-09,0,Smythe,"clear, cold; 2 great blue herons"
+Kelsey,Main St,2009-03-09,0,Moura,
+Kelsey,Quercus,2009-03-09,0,Smythe,"clear, cold; one great blue heron"
+Kelsey,SBR,2009-03-09,0,Moura,
+McGaugh,Finley East,2009-03-09,0,Smythe,"clear, cold, no flow"
+Schindler,Hwy 20,2009-03-09,0,Barnes/Rett,water getting noticeably lower
+Adobe,Bell Hill,2009-03-10,0,Vidich,
+Adobe,Finley East,2009-03-10,0,Smythe,"clear, cold"
+Adobe,Merritt Rd,2009-03-10,7,Moorhead,bald eagle
+Adobe,SBR,2009-03-10,0,Windrem,"7 suckers spawning, no hitch"
+Hendricks,Scotts Valley Rd.,2009-03-10,0,Dills,Sunny
+Kelsey,detention,2009-03-10,0,Smythe,"clear, cold"
+Kelsey,Quercus,2009-03-10,0,Smythe,"clear, cold"
+Kelsey,SBR,2009-03-10,0,Windrem,
+Adobe,Bell Hill,2009-03-11,0,Vidich,
+Adobe,Finley East,2009-03-11,0,Smythe,"clear, cold"
+Adobe,Thomas,2009-03-11,?,Leonardis,"10 fish, probably suckers really large and very defined       sucker mouths heron sighted"
+Cole,SBR,2009-03-11,0,Moura,
+Forbes,Main St,2009-03-11,0,Holden,"water has cleared since rains, garbage!"
+Hendricks,Scotts Valley Rd.,2009-03-11,0,Dills,Sunny
+Kelsey,detention,2009-03-11,0,Murphy,
+Kelsey,detention,2009-03-11,0,Smythe,"clear, cold"
+Kelsey,Main St,2009-03-11,0,Moura,
+Kelsey,Quercus,2009-03-11,0,Smythe,"clear, cold"
+Schindler,4th st,2009-03-11,0,Barnes/Rett,"lots of trash and debris possibly obstructing possible       fish migration--water weeds not yet growing at the Konocti bridge yet (last       year they totally clogged the channel)"""
+Schindler,Konocti Rd,2009-03-11,0,Barnes/Rett,
+Adobe,Finley East,2009-03-12,0,Smythe,"clear, warm"
+Adobe,Finley East,2009-03-12,0,Windrem,2 mallards
+Adobe,SBR,2009-03-12,50,Combs,maybe a sucker mixed in with the hitch
+Adobe,SBR,2009-03-12,0,Windrem,no birds
+Forbes,Main St,2009-03-12,0,Holden,
+Kelsey,detention,2009-03-12,0,Murphy,15 ft orchard ladder in creek
+Kelsey,detention,2009-03-12,0,Smythe,"clear, warm"
+Kelsey,Quercus,2009-03-12,0,Smythe,"clear, warm"
+Seigler,Lake St,2009-03-12,0,Brandon,
+Adobe,Bell Hill,2009-03-13,0,Vidich,
+Adobe,Finley East,2009-03-13,0,Smythe,"clear, cold"
+Cole,CLSP,2009-03-13,0,Moura,
+Hendricks,Scotts Valley Rd.,2009-03-13,0,Dills,Sunny
+Kelsey,detention,2009-03-13,0,Smythe,"clear, cold"
+Kelsey,Main St,2009-03-13,0,Moura,
+Kelsey,Quercus,2009-03-13,0,Smythe,"clear, cold"
+Kelsey,SBR,2009-03-13,0,Moura,
+Schindler,Hwy 20,2009-03-13,0,Barnes/Rett,water getting quite low
+Seigler,Cache Creek,2009-03-13,0,Barnes/Rett,"unable to see anything, very deep water"
+Seigler,Lake St,2009-03-13,0,Barnes/Rett,water running well
+Adobe,Finley East,2009-03-14,0,Smythe,cool
+Adobe,Merritt Rd,2009-03-14,100,Moorhead,
+Hendricks,Scotts Valley Rd.,2009-03-14,0,Dills,Partly Cloudy
+Kelsey,detention,2009-03-14,0,Murphy,"at least 100 suckers 100 meters downstream from the       dam"
+Kelsey,detention,2009-03-14,0,Smythe,cool
+Manning,SBR,2009-03-14,0,Smythe,cool
+Adobe,Finley East,2009-03-15,35,Windrem,lethargic
+Adobe,SBR,2009-03-15,200,Windrem,"moving slowly, no spawning"
+Cole,Clark Dr.,2009-03-15,0,Windrem,very low flow
+Hendricks,Scotts Valley Rd.,2009-03-15,0,Dills,Cloudy/Rain
+Kelsey,detentiion,2009-03-15,0,Windrem,
+Kelsey,SBR,2009-03-15,0,Windrem,
+Adobe,SBR,2009-03-16,300,Smythe,"cool, drizzle"
+Kelsey,Quercus,2009-03-16,0,Smythe,"cool, drizzle"
+Manning,SBR,2009-03-16,0,Smythe,"cool, drizzle"
+Adobe,Argonaut,2009-03-17,0,Moura,
+Adobe,Big Valley Rd,2009-03-17,45,Moura,
+Adobe,Finley East,2009-03-17,150,Smythe,cool
+Adobe,Finley East,2009-03-17,0,Moura,
+Adobe,Merritt Rd,2009-03-17,400,Moorhead,really pushing upstream
+Clover,Elk Mt Rd,2009-03-17,0,Windrem,
+Forbes,Main St,2009-03-17,0,Holden,slow flow; strange concrete passage under the bridge
+Hendricks,Scotts Valley Rd.,2009-03-17,0,Dills,Sunny
+Kelsey,detention,2009-03-17,0,Murphy,
+Kelsey,detention,2009-03-17,0,Smythe,cool; opened center gate 4 to begin draining for hitch
+Kelsey,Quercus,2009-03-17,50,Smythe,cool
+Kelsey,SBR,2009-03-17,0,Moura,
+Middle,Hwy 20,2009-03-17,0,Windrem,"large water flow, deep, hard to see"
+Middle,Rancheria Rd,2009-03-17,0,Windrem,
+Schindler,Hwy 20,2009-03-17,0,Barnes/Rett,"water running well, sunny"
+Adobe,Merritt Rd,2009-03-18,25,Moorhead,
+Adobe,Merritt Rd,2009-03-18,500,Moorhead,really pushing upstream
+Cole,SBR,2009-03-18,0,Moura,
+Cooper,First bridge west of Witter Springs/East Rd. intersection,2009-03-18,3,Lundquist,
+Hendricks,Scotts Valley Rd.,2009-03-18,0,Lundquist,
+Kelsey,detention,2009-03-18,500,Murphy,"small school of suckers swimming ahead of the much larger       school of hitch"
+Kelsey,detention,2009-03-18,200,Smythe,school 150 downstream
+Kelsey,Quercus,2009-03-18,0,Smythe,cool
+Scotts,Bridge near Highway 20,2009-03-18,0,Lundquist,
+Seigler,Jessie St,2009-03-18,0,Moura,
+Adobe,Bell Hill,2009-03-19,200,Devoto,both hitch and suckers
+Adobe,Bell Hill,2009-03-19,15,Devoto,"weir above Bell Hill causes fast current and hinders       hitch from moving up to spawning ground above"
+Adobe,Finley East,2009-03-19,100,Holden,"spawning group of 1 female, 6 males"
+Adobe,Merritt Rd,2009-03-19,150,Moorhead,
+Adobe,Merritt Rd,2009-03-19,800,Moorhead,really pushing upstream
+Adobe,SBR,2009-03-19,50,Moura,fisher people in the water going for them!!!
+Clover,diversiion structure,2009-03-19,0,Smythe,"clear, warm; no fish in diversion channel or historic channel"
+Clover,Elk Mt Rd,2009-03-19,0,Smythe,"clear, warm"
+Clover,Elk Mt Rd,2009-03-19,0,Windrem,
+Clover,Second St,2009-03-19,0,Smythe,"clear, warm"
+Cole,Clark Dr,2009-03-19,0,Devoto,low water
+Cooper,"Bridge on Witter Springs Rd. approx. 0.7 miles south of Witter       Springs/East Rd. intersection",2009-03-19,0,Lundquist,
+Cooper,First bridge south of Bachelor Valley Rd. Witter Springs intersection,2009-03-19,0,Lundquist,
+Cooper,First bridge west of Witter Springs/East Rd. intersection,2009-03-19,12,Lundquist,Headed upstream
+Cooper,First bridge west of Witter Springs/East Rd. intersection,2009-03-19,0,Lundquist,
+Hendricks,Scotts Valley Rd.,2009-03-19,0,Dills,Sunny
+Kelsey,detention,2009-03-19,5000,Murphy,the water was black with them
+Kelsey,Merritt,2009-03-19,15,Devoto,heading upstream about 50 ft above bridge
+Kelsey,Merritt,2009-03-19,0,Brandon,
+Kelsey,SBR,2009-03-19,25,Moura,
+Middle,btn weirs 2&3,2009-03-19,0,Smythe,"clear, warm"
+Middle,Hwy 20,2009-03-19,20,Windrem,good visibility
+Middle,Rancheria Rd,2009-03-19,0,Smythe,"clear, warm"
+Adobe,Argonaut,2009-03-20,15,Moura,
+Adobe,Argonaut,2009-03-20,15,Moura,
+Adobe,Bell Hill,2009-03-20,10,Vidich,
+Adobe,Big Valley Rd,2009-03-20,130,Moura,
+Adobe,Finley East,2009-03-20,200,Smythe,"clear, warm; took video"
+Adobe,Finley East,2009-03-20,100,Moura,
+Adobe,Merritt Rd,2009-03-20,500,Windrem,"all up and down stream actively spawning in margins       -- 1 bald eagle mobbed by 25 ravens -- 4 vultures tussling with ravens for       a dead hitch on the creekbank -- 1 redshouldered hawk in tree-- 1 blue heron       flying upstream -- an incredible wildlife scene!"
+Adobe,Merritt Rd,2009-03-20,250,Moorhead,
+Adobe,Merritt Rd,2009-03-20,750,Moorhead,some moving upstream; some spawning
+Cole,Clark Dr,2009-03-20,0,Moura,
+Cole,CLSP,2009-03-20,0,Moura,
+Cole,SBR,2009-03-20,70,Moura,
+Hendricks,Scotts Valley Rd.,2009-03-20,0,Dills,Sunny
+Hill,Merritt Rd,2009-03-20,0,Windrem,creek is dry
+Kelsey,CLSP,2009-03-20,1000,Moura,from the mouth to the visitor Center
+Kelsey,detention,2009-03-20,1000,Smythe,"fish actively moving through fish ladder, 25-30 during 15       minutes. Took video and measured flow velocities"
+kelsey,Gaddy,2009-03-20,18,Moura,
+Kelsey,Main St,2009-03-20,0,Windrem,
+Kelsey,Main St,2009-03-20,100,Smythe,warm; 50 yds downstream
+Kelsey,Merritt Rd,2009-03-20,100,Windrem,upstream from bridge
+Kelsey,Merritt Rd,2009-03-20,30,Voegtly,"small schools of 1-5, lazily moving"
+Kelsey,SBR,2009-03-20,50,Moura,going both ways
+Scotts,SVR,2009-03-20,0,Holden,used a flashlight in the shallows; beginning to rain
+Adobe,Bell Hill ,2009-03-21,25,Vidich,"they appeared to be spawning. They were in tight groups       of several fish, which appeared to be ""stuck"" to the gravel, but       every minute or so a couple of them would break loose, get swept downstream       a couple of feet, and swim back. This was in fast-moving water that was       less than a foot deep and perhaps only a couple of feet from the shore."""
+Adobe,Merritt Rd,2009-03-21,250,Moorhead,
+Clover,Elk Mt Rd,2009-03-21,20,Windrem,4 egrets upstream
+Forbes,Main St,2009-03-21,0,Holden,
+Hendricks,Scotts Valley Rd.,2009-03-21,2,John Hatala,Partly cloudy
+Kelsey,detention,2009-03-21,500,Murphy,below dam
+Kelsey,Main St,2009-03-21,0,Murphy,
+Kelsey,Merritt,2009-03-21,25,Murphy,dam is obviously a big obstacle
+Kelsey,Merritt,2009-03-21,40,Holden,
+Kelsey,Merritt Rd,2009-03-21,60,Windrem,5 mergansers upstream
+Middle,1000 below Hwy 20,2009-03-21,1,Windrem,"one dead hitch, no live hitch seen"
+Middle,Hwy 20,2009-03-21,0,Windrem,
+Schindler,4th St,2009-03-21,0,Barnes/Rett,"water now seems to be too low for hitch even if they       were so inclined"""
+Schindler,Hwy 20,2009-03-21,0,Barnes/Rett,"water now seems to be too low for hitch even if they       were so inclined"""
+Seigler,Jessie St,2009-03-21,0,Barnes/Rett,"water flowing well, overcast and cool"
+Seigler,Lake St,2009-03-21,0,Barnes/Rett,"water flowing well, average about one foot depth"
+Adobe,Big Valley Rd,2009-03-22,75,Moura,
+Adobe,Finley East,2009-03-22,40,Moura,
+Adobe,Merritt Rd,2009-03-22,250,Moorhead,
+Cole,SBR,2009-03-22,15,Moura,a mixture of fish I believe
+Cooper,First bridge south of Bachelor Valley Rd. Witter Springs intersection,2009-03-22,0,Lundquist,
+Cooper,First bridge west of Witter Springs/East Rd. intersection,2009-03-22,0,Lundquist,
+Hendricks,Scotts Valley Rd.,2009-03-22,0,Dills,Partly cloudy
+Kelsey,detention,2009-03-22,5,Murphy,"a couple of teenage boys trying to stab hitch by the       dam with homemade spears! it didn't help that they had off-roaded their       4x4 across my property, I told them to go and don't come back."
+Kelsey,Dorn crossing,2009-03-22,0,Murphy,
+Kelsey,Hellsbend,2009-03-22,200,Murphy,
+Kelsey,Main St,2009-03-22,0,Murphy,
+Kelsey,Merritt,2009-03-22,25,Murphy,
+Kelsey,Merritt Rd,2009-03-22,60,Windrem,no birds
+Kelsey,Renfro,2009-03-22,0,Murphy,
+Kelsey,SBR,2009-03-22,650,Moura,
+Kelsey,SBR,2009-03-22,2000,Murphy,appeared to be headed back to the lake
+Adobe,Bell Hill,2009-03-23,0,Windrem,
+Adobe,Finley East,2009-03-23,100,Smythe,"clear, cold"
+Adobe,Merritt Rd,2009-03-23,75,Moorhead,
+Adobe,Merritt Rd,2009-03-23,150,Moorhead,
+Cooper,"Bridge on Witter Springs Rd. approx. 0.7 miles south of Witter       Springs/East Rd. intersection",2009-03-23,0,Lundquist,
+Cooper,"Bridge on Witter Springs Rd. approx. 0.7 miles south of Witter       Springs/East Rd. intersection",2009-03-23,0,Lundquist,
+Cooper,First bridge west of Witter Springs/East Rd. intersection,2009-03-23,0,Lundquist,
+Cooper,First bridge west of Witter Springs/East Rd. intersection,2009-03-23,0,Lundquist,
+Hendricks,Scotts Valley Rd.,2009-03-23,0,Dills,Sunny
+Kelsey,detention,2009-03-23,100,Smythe,"clear, cold"
+Kelsey,Hellsbend,2009-03-23,2000,Murphy,"not as dense as the ""black"" school I saw a       few days ago, but it was still pretty impressive"""
+Kelsey,Merritt Rd,2009-03-23,0,Smythe,"clear, cold"
+Kelsey,Quercus,2009-03-23,200,Smythe,"clear, cold"
+Seigler,Lake St,2009-03-23,0,Barnes/Rett,"water looked good, still flowing well"
+Adobe,Bell Hill,2009-03-24,15,Devoto,school of males waiting for a female above Bell Hill
+Adobe,Bell Hill,2009-03-24,0,Devoto,below Bell Hill crossing
+Adobe,Merritt Rd,2009-03-24,125,Moorhead,
+Adobe,Merritt Rd,2009-03-24,90,Moorhead,
+Cooper,"Bridge on Witter Springs Rd. approx. 0.7 miles south of Witter       Springs/East Rd. intersection",2009-03-24,0,Lundquist,
+Cooper,First bridge west of Witter Springs/East Rd. intersection,2009-03-24,0,Lundquist,
+Hendricks,Scotts Valley Rd.,2009-03-24,0,Dills,Sunny
+Kelsey,CLSP,2009-03-24,0,Brandon,
+Kelsey,Hellsbend,2009-03-24,10,Murphy,"total from Mostins to dam, 2 dead; no visible egg masses"
+Seigler,Lake St,2009-03-24,0,Brandon,
+Seigler,Perini,2009-03-24,0,Voegtly,
+Adobe,Merritt Rd,2009-03-25,75,Moorhead,
+Adobe,Merritt Rd,2009-03-25,75,Moorhead,
+Adobe,SBR,2009-03-25,800,Windrem,"1 merganser, 1 osprey"
+Cole,Clark Dr,2009-03-25,0,K. Windrem,water quite low
+Kelsey,detention,2009-03-25,200,Smythe,"clear, cool; 6 mergansers, 1 GB heron, 2 turkey vultures"
+Kelsey,Merritt Rd,2009-03-25,0,Windrem,no birds
+Kelsey,Quercus,2009-03-25,300,Smythe,"clear, cool"
+Kelsey,SBR,2009-03-25,125,Windrem,in two schools
+Adobe,Merritt Rd,2009-03-26,50,Moorhead,
+Adobe,SBR,2009-03-26,50,Moura,
+Clover,Elk Mt Rd,2009-03-26,0,Windrem,
+Clover,Upper Lake,2009-03-26,0,Windrem,
+Kelsey,detention,2009-03-26,500,Murphy,"two school going in both directions, other groups of individuals;       several large egg masses"
+Kelsey,SBR,2009-03-26,25,Moura,
+Middle,Rancheria Rd,2009-03-26,0,Windrem,
+Adobe,Finley East,2009-03-27,100,Smythe,"clear, cool"
+Adobe,Merritt Rd,2009-03-27,0,Moorhead,
+Kelsey,detention,2009-03-27,500,Smythe,"clear, cool; 4 mallards, confirmed osprey nest on east bank       downstream"
+Kelsey,Quercus,2009-03-27,300,Smythe,"clear, cool, 2 ospreys circling overhead"
+Adobe,Bell Hill,2009-03-28,0,Windrem,
+Clover,Elk Mt Rd,2009-03-28,0,Smythe,
+Clover,Elk Mt Rd,2009-03-28,0,Smythe,"warm, clear"
+Cole,Konocti Rd,2009-03-28,0,Windrem,
+Kelsey,Main St,2009-03-28,0,Windrem,
+Middle,Hwy 20,2009-03-28,0,Smythe,
+Middle,Hwy 20,2009-03-28,0,Smythe,"warm, clear"
+Middle,Rancheria Rd,2009-03-28,0,Smythe,
+Middle,Rancheria Rd,2009-03-28,0,Smythe,"warm, clear"
+Forbes,Main St,2009-03-29,0,Holden,
+Kelsey,detention (above),2009-03-29,50,Brandon,"small groups going downstream, moving through west slot in       dam individually, with apparent reluctance, and backwards"
+Kelsey,detention (below),2009-03-29,500,Brandon,"many hitch spread out in still water below dam, not moving       up or down, a few spawning"
+kelsey,SBR,2009-03-29,600,Holden,so many swirling to a black circle of spawn
+Middle,1/2 mi S of Hwy 20,2009-03-29,25,Smythe (Alicia),not confirmed as hitch
+Seigler,Lake St,2009-03-29,0,Barnes/Rett,"water very swift over concrete obstruction, but no fish lower       in creek either"
+Schindler,4th St,2009-03-30,0,Barnes/Rett,water too low for any fish
+Adobe,Finley East,2009-03-31,50,Smythe,"clear, cool; someone has added to rock dam across low flow       channel, appears to still be passable for hitch"
+Kelsey,detention,2009-03-31,150,Smythe,"clear, cool; dozen ducks upstream"
+Kelsey,Quercus,2009-03-31,100,Smythe,"clear, cool. osprey circling overhead"
+Schindler,Hwy 20,2009-03-31,0,Barnes/Rett,water too low for any fish
+Adobe,Finley East,2009-04-01,6,Smythe,"clear, cool"
+Forbes,Main St,2009-04-01,0,Holden,
+Kelsey,detention,2009-04-01,0,Smythe,"clear, cool; 10 mallards, 2 mergansers"
+Kelsey,Quercus,2009-04-01,20,Smythe,"clear, cool, 5 GB herons, 1 osprey, 2 schools of 10 each"
+Adobe,Finley East,2009-04-03,2,Smythe,"clear, cool"
+Forbes,Main St,2009-04-03,0,Holden,
+Kelsey,detentiion,2009-04-03,0,Murphy,"some dead hitch, a million fry"
+Kelsey,detention,2009-04-03,0,Smythe,"clear, cool; 2 dozen mallards"
+Kelsey,Quercus,2009-04-03,5,Smythe,"clear, cool"
+Seigler,Lake St,2009-04-04,0,Brandon,
+Forbes,Main St,2009-04-05,0,Holden,
+Seigler,Lake St,2009-04-05,0,Barnes/Rett,"water is clear and running, no real deterrents"
+Adobe,Finley East,2009-04-06,0,Smythe,"clear, cool"
+Kelsey,detention,2009-04-06,0,Smythe,"clear, cool; dozen mallards"
+Kelsey,Quercus,2009-04-06,0,Smythe,"clear, cool; 6 mallards, 1 osprey"
+Forbes,Main St,2009-04-07,0,Holden,
+Seigler,Lake St,2009-04-07,0,Barnes/Rett,"water still flowing, overcast"
+Seigler,Lake St,2009-04-10,0,Barnes/Rett,"lower water level even after rain, cold & cloudy"
+Seigler,Perini,2009-04-10,0,Voegtly,no minnows either
+Seigler,Lake St,2009-04-12,0,Barnes/Rett,water getting low
+Seigler,Lake St,2009-04-15,0,Barnes/Rett,water lower and not flowing much
+Adobe,Manning bridge,2009-04-22,50,Manning,"water very low, many birds, may not be hitch"
+Seigler,Perini,2009-04-22,0,Voegtly,"at least 4 unidentified 3-4 fish and 30-40 1-1.5       minnows"
+Seigler,Lake St,2009-04-28,0,Barnes/Rett,clear & cold; couple of mallards and a school of minnows
+Clover,Elk Mt Rd,2009-05-07,0,Windrem,swallows under bridge
+Middle,Hwy 20,2009-05-07,0,Windrem,"1 heron, 2 mergansers"
+Middle,Rancheria Rd,2009-05-07,0,Windrem,
+Adobe,Manning bridge,2009-05-08,100,Manning,
+Adobe,Finley East,2009-05-09,0,Windrem,
+Adobe,Manning bridge,2009-05-09,200,Windrem,
+Adobe,SBR,2009-05-09,20,Windrem,skittish in spotlight
+Kelsey,SBR,2009-05-09,0,Windrem,
+Middle,Hwy 20,2009-05-09,0,Windrem,
+Adobe,SBR,2009-05-11,8,Windrem,milling about in small school

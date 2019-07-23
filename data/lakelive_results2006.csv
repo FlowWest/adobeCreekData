@@ -1,0 +1,527 @@
+creek,location,date,time,no_fish_raw,no_fish
+Forbes,Martin,2006-01-28,11:05AM,0,0
+Forbes,Parallel,2006-01-28,11:30AM,0,0
+Cole,Clark Dr,2006-01-31,5:30PM,0,0
+Adobe,Stone Dr,2006-02-02,8:00PM,100 (?),100
+Adobe,Stone Dr,2006-02-02,9PM,200+,200
+Adobe,Soda Bay,2006-02-02,9:20PM,0,0
+Adobe,Finley East,2006-02-02,9:35PM,1,1
+Adobe,Manning,2006-02-03,11:10AM,0,0
+Cole,Soda Bay,2006-02-04,2:30PM,0,0
+Cole,Clark dr,2006-02-04,2:45PM,0,0
+Cole,Soda Bay,2006-02-04,7:50PM,0,0
+Cole,Clark Dr,2006-02-04,7:50PM,0,0
+Kelsey,Soda Bay,2006-02-04,2:45PM,0,0
+Schindler,Hwy 20,2006-02-04,4:45PM,0,0
+Adobe,Soda Bay,2006-02-05,10:15AM,500,500
+Adobe,Finley East,2006-02-05,10:20AM,0,0
+Cole,Clark Dr,2006-02-05,2:30PM,0,0
+Kelsey,Soda Bay,2006-02-05,10:10AM,0,0
+Kelsey,CLSP,2006-02-05,3:15PM,0,0
+Manning,Soda Bay,2006-02-05,2:30PM,0,0
+Schindler,Hwy 20,2006-02-05,9:10AM,0,0
+Schindler,Konocti Br,2006-02-05,9:30AM,0,0
+Adobe,Finley East,2006-02-06,7:30AM,0,0
+Cole,Clark Dr,2006-02-06,,0,0
+Forbes,Martin,2006-02-06,3PM,0,0
+Forbes,Main,2006-02-06,3:15PM,0,0
+Forbes,Willow Point,2006-02-06,3:30PM,0,0
+Kelsey,Quercus Bridge,2006-02-06,7:20AM,0,0
+Manning,Soda Bay,2006-02-06,12PM,0,0
+Schindler,Hwy 20,2006-02-06,10AM,0,0
+Schindler,Konocti Br,2006-02-06,10:20AM,0,0
+Thompson (trib),S. Main/Hwy 175,2006-02-06,12:30PM,0,0
+Adobe,Soda Bay,2006-02-07,8AM,500,500
+Adobe,Argonaut,2006-02-07,3:45PM,0,0
+Clover,2nd St,2006-02-07,1:45PM,0,0
+Clover,Elk Mt Rd,2006-02-07,2:20PM,0,0
+Cole,Clark Dr,2006-02-07,5:30PM,0,0
+Forbes,Martin,2006-02-07,4PM,0,0
+Forbes,Willow Point,2006-02-07,4:15PM,0,0
+Kelsey,Soda Bay,2006-02-07,7:54AM,0,0
+Kelsey,Main St,2006-02-07,4:02PM,0,0
+Manning,Soda Bay,2006-02-07,1PM,0,0
+Manning,Ackley,2006-02-07,1PM,0,0
+Middle,Rancheria Rd,2006-02-07,2:10PM,0,0
+Middle,hwy 20,2006-02-07,2:30PM,0,0
+Robinson,Robinson Cr Br,2006-02-07,2:55PM,0,0
+Schindler,Hwy 20,2006-02-07,9:30AM,0,0
+Schindler,Konocti Br,2006-02-07,9:50AM,0,0
+Schindler,Konocti Br,2006-02-07,11AM,0,0
+Seigler  Cyn,Perini Rd,2006-02-07,4:30PM,0,0
+Adobe,Finley East,2006-02-08,8:25AM,0,0
+Adobe,Soda Bay,2006-02-08,8:40AM,100,100
+Adobe,Finley East,2006-02-08,7:30AM,0,0
+Clover,First St,2006-02-08,2PM,0,0
+Clover,Elk Mt Rd,2006-02-08,2:35PM,0,0
+Cole,Clark Dr,2006-02-08,5:30PM,0,0
+Cole,Clark Dr,2006-02-08,,0,0
+Forbes,Martin,2006-02-08,2:30PM,0,0
+Forbes,Willow Point,2006-02-08,3PM,0,0
+Kelsey,Soda Bay,2006-02-08,8:30AM,0,0
+Kelsey,Quercus Bridge,2006-02-08,7:20AM,0,0
+Manning,Ackley,2006-02-08,2PM,0,0
+Middle,Rancheria Rd,2006-02-08,2:21PM,0,0
+Robinson,Old Robinson Cr Br,2006-02-08,3PM,0,0
+Schindler,Hwy 20,2006-02-08,9:40AM,0,0
+Schindler,Konocti Br,2006-02-08,10AM,0,0
+Clover,Elk Mt Rd,2006-02-09,10:20AM,0,0
+Cole,Clark Dr,2006-02-09,5:30PM,0,0
+Cole,Maes bridge,2006-02-09,5:30PM,0,0
+Kelsey,Soda Bay,2006-02-09,8:15AM,0,0
+Kelsey,Soda Bay,2006-02-09,2:50PM,0,0
+Manning,Soda Bay,2006-02-09,1PM,0,0
+Manning,Soda Bay,2006-02-09,3PM,0,0
+Middle,Hwy 20,2006-02-09,10AM,0,0
+Robinson,Old Robinson Cr Br,2006-02-09,10:35AM,0,0
+Schindler,Hwy 20,2006-02-09,10:10AM,0,0
+Adobe,Finley East,2006-02-10,8:15AM,0,0
+Adobe,Finley East,2006-02-10,7:30AM,0,0
+Clover,2nd St,2006-02-10,11AM,0,0
+Cole,Clark Dr,2006-02-10,,0,0
+Forbes,Martin,2006-02-10,4:30PM,0,0
+Forbes,Main,2006-02-10,4:35PM,0,0
+Kelsey,Quercus Bridge,2006-02-10,7:20AM,0,0
+Middle,Rancheria Rd,2006-02-10,11:23AM,0,0
+Robinson,Old Robinson Cr Br,2006-02-10,11:40AM,0,0
+Adobe,Soda Bay,2006-02-11,4:30PM,0,0
+Adobe,Finley East,2006-02-11,1:30PM,20,20
+Adobe,Soda Bay,2006-02-11,4:15PM,80-100,80
+Adobe,14C-2,2006-02-11,5:02PM,0,0
+Burns Valley,Burns Valley Rd,2006-02-11,11:30AM,0,0
+Clover,"Rd 301, mm0.94",2006-02-11,1:15PM,0,0
+Clover,Upper Lake Bridge 14C-15,2006-02-11,3:12PM,0,0
+Clover,Highway 20,2006-02-11,3:21PM,0,0
+Cole,Soda Bay,2006-02-11,4:30PM,0,0
+Cole,Soda Bay,2006-02-11,5PM,0,0
+Kelsey,Soda Bay,2006-02-11,4:30PM,0,0
+kelsey,Soda Bay,2006-02-11,12PM,0,0
+Kelsey,Main Street,2006-02-11,12:45PM,0,0
+Kelsey,Soda Bay,2006-02-11,4:35PM,0,0
+Kelsey,14C-3B,2006-02-11,5:20PM,0,0
+Middle,Bridge 14C-25,2006-02-11,1:50PM,0,0
+Middle,Rancheria Rd,2006-02-11,2:05PM,0,0
+Middle,Highway 20,2006-02-11,3:35PM,0,0
+Scotts,9000 Scotts Cr Rd; private bridge,2006-02-11,3:46PM,0,0
+Scotts,Eickhoff Rd,2006-02-11,4:16PM,0,0
+Scotts,Hendricks,2006-02-11,4:30PM,0,0
+Seigler Canyon,Jessie St,2006-02-11,12PM,0,0
+Adobe,,2006-02-12,12PM,0,0
+Forbes,Martin,2006-02-12,4PM,0,0
+Forbes,Willow Point,2006-02-12,4:15PM,0,0
+Adobe,Thomas Dr,2006-02-13,11:30AM,100+,100
+Adobe,Soda Bay,2006-02-13,12:30PM,500+,500
+Adobe,Finley East,2006-02-13,12:50PM,200,200
+Adobe,Hwy 29,2006-02-13,12:55PM,50,50
+Adobe,Argonaut,2006-02-13,4:35PM,25,25
+Adobe,Finley East,2006-02-13,7:30AM,0,0
+Clover,Elk Mt Rd,2006-02-13,2:20PM,0,0
+Cole,Clark Dr,2006-02-13,,0,0
+Kelsey,Soda Bay,2006-02-13,1PM,0,0
+Kelsey,Quercus Bridge,2006-02-13,7:20AM,0,0
+Manning,Soda Bay,2006-02-13,11:45AM,0,0
+Manning,Soda Bay,2006-02-13,12:40PM,0,0
+Middle,Rancheria,2006-02-13,1:45PM,0,0
+Middle,Rancheria Rd,2006-02-13,2PM,0,0
+Robinson,Old Robinson Cr Br,2006-02-13,2:50PM,0,0
+Seigler  Cyn,Jessie St,2006-02-13,9:30AM,0,0
+Adobe,Argonaut,2006-02-14,,300,300
+Adobe,Thomas Dr,2006-02-14,,1000,1000
+Adobe,Soda Bay,2006-02-14,,750,750
+Adobe,Merritt,2006-02-14,,0,0
+Adobe,Argonaut,2006-02-14,10:45AM,20,20
+Adobe,Soda Bay,2006-02-14,3:35PM,1000,1000
+Burns Valley,Lakeshore Dr,2006-02-14,12PM,0,0
+Clover,2nd St,2006-02-14,2:45PM,0,0
+Clover,Elk Mt Rd,2006-02-14,3PM,0,0
+Copsey,Main St,2006-02-14,11:20AM,0,0
+Kelsey,Quercus Bridge,2006-02-14,3:30PM,0,0
+Manning,Soda Bay,2006-02-14,,0,0
+Manning,Ackley,2006-02-14,,0,0
+Middle,Hwy 20,2006-02-14,10:05AM,0,0
+Robinson,Old Robinson Cr Br,2006-02-14,10:20AM,0,0
+Schindler,Konocti Br,2006-02-14,11:15AM,0,0
+Schindler,Hwy 20,2006-02-14,12:25PM,0,0
+Seigler,Lake St,2006-02-14,11:40AM,0,0
+Adobe,Stone Dr,2006-02-15,12PM,500,500
+Adobe,Thomas Dr,2006-02-15,12PM,250,250
+Adobe,Argonaut,2006-02-15,12PM,150,150
+Adobe,Soda Bay,2006-02-15,,80-100,80
+Cole,Clark Dr,2006-02-15,,0,0
+Forbes,Martin,2006-02-15,4PM,0,0
+Forbes,Willow Point,2006-02-15,4:14PM,0,0
+Kelsey,Soda Bay,2006-02-15,8:30AM,0,0
+Middle,Hwy 20,2006-02-15,3PM,0,0
+Robinson,Old Robinson Bridge,2006-02-15,3:25PM,0,0
+Schindler,Schindler St & 4th St,2006-02-15,2:25PM,0,0
+Adobe,Argonaut,2006-02-16,,0,0
+Adobe,Thomas Dr,2006-02-16,,100-200,100
+Adobe,Argonaut,2006-02-16,4:50PM,0,0
+Adobe,Finley East,2006-02-16,7:30AM,0,0
+Clover,Bridge Arbor Rd,2006-02-16,10:47AM,0,0
+Cole,Konocti Rd,2006-02-16,3:50PM,0,0
+Cole,Clark Dr,2006-02-16,4:10PM,0,0
+Cole,Soda Bay,2006-02-16,4:40PM,0,0
+Kelsey,Soda Bay,2006-02-16,8:25AM,0,0
+Kelsey,Quercus Bridge,2006-02-16,7:20AM,0,0
+Manning,Soda Bay,2006-02-16,8:30AM,0,0
+Middle,Hwy 20,2006-02-16,11AM,0,0
+Robinson,Old Rancheria Bridge,2006-02-16,11:35AM,0,0
+Adobe,Soda Bay,2006-02-17,8:45AM,500,500
+Cole,Clark Dr,2006-02-17,,0,0
+Forbes,Main,2006-02-17,4PM,0,0
+Forbes,Martin,2006-02-17,4:15PM,0,0
+Kelsey,Soda Bay,2006-02-17,8:40AM,0,0
+Adobe,Thomas Dr,2006-02-18,,50,50
+Adobe,Argonaut,2006-02-18,,0,0
+Adobe,Argonaut,2006-02-18,2:45PM,0,0
+Copsey,up to rapids,2006-02-18,4PM,0,0
+Forbes,Main,2006-02-18,4PM,0,0
+Forbes,Martin,2006-02-18,4:15PM,0,0
+Kelsey,Soda Bay,2006-02-18,8:40AM,0,0
+Manning,Soda Bay,2006-02-18,,0,0
+Middle,Hwy 20,2006-02-18,2PM,0,0
+Seigler Canyon,up to rapids,2006-02-18,4PM,0,0
+Seigler Canyon,Jessie St,2006-02-18,10AM,0,0
+Adobe,Soda Bay,2006-02-19,1:05PM,200,200
+Adobe,Finley East,2006-02-19,1:15PM,200,200
+Kelsey,Soda Bay,2006-02-19,1:30PM,0,0
+Adobe,Thomas Dr,2006-02-20,,50,50
+Adobe,Argonaut,2006-02-20,,0,0
+Adobe,Bell Hill ,2006-02-20,2PM,0,0
+Cole,Clark Dr,2006-02-20,,0,0
+Kelsey,Merritt,2006-02-20,2PM,0,0
+Kelsey,Detention,2006-02-20,2:45PM,0,0
+Kelsey,Soda Bay,2006-02-20,3:15PM,0,0
+Kelsey,State Park,2006-02-20,4PM,0,0
+Kelsey,,2006-02-20,,0,0
+Manning,,2006-02-20,,0,0
+Schindler,Hwy 20,2006-02-20,9:30AM,0,0
+Schindler,Konocti Br,2006-02-20,10AM,0,0
+Schindler,Hwy 20,2006-02-20,12:50PM,0,0
+Adobe,Thomas Dr,2006-02-21,10:30AM,100,100
+Adobe,Argonaut,2006-02-21,,0,0
+Adobe,Argonaut,2006-02-21,1:21PM,0,0
+Adobe,Argonaut,2006-02-21,1PM,0,0
+Clover,2nd St,2006-02-21,11:45AM,0,0
+Cole,Konocti Rd,2006-02-21,5PM,0,0
+Cole,Clark Dr,2006-02-21,5:30PM,0,0
+Cole,Soda Bay,2006-02-21,6PM,0,0
+Copsey,Main St,2006-02-21,1:45PM,0,0
+Middle,Hwy 20,2006-02-21,12PM,0,0
+Robinson,Old Rancheria Br,2006-02-21,12:20PM,0,0
+Schindler,Hwy 20,2006-02-21,9:30AM,0,0
+Schindler,Konocti Br,2006-02-21,9:50AM,0,0
+Schindler,Konocti Br,2006-02-21,11AM,0,0
+Seigler,Lake St,2006-02-21,2:05PM,0,0
+Adobe,Finley East,2006-02-22,7:30AM,0,0
+Clover,2nd St,2006-02-22,1:50PM,0,0
+Cole,Clark Dr,2006-02-22,,0,0
+Kelsey,Quercus Bridge,2006-02-22,7:20AM,0,0
+Middle,Hwy 20,2006-02-22,1:30PM,0,0
+Robinson,Old Rancheria Br,2006-02-22,1:10PM,0,0
+Schindler,Hwy 20,2006-02-22,10:30AM,0,0
+Schindler,Konocti Br,2006-02-22,11AM,0,0
+Adobe,Thomas Dr,2006-02-23,,75,75
+Adobe,Argonaut,2006-02-23,,0,0
+Clover,2nd St,2006-02-23,3PM,0,0
+Clover,Bridge Arbor Rd,2006-02-23,3:20PM,0,0
+Middle,Hwy 20,2006-02-23,3:40PM,0,0
+Robinson,Old Rancheria Br,2006-02-23,4PM,0,0
+Schindler,Hwy 20,2006-02-23,9:10AM,0,0
+Schindler,Konocti Br,2006-02-23,9:30AM,0,0
+Schindler,Schindler St & 4th St,2006-02-23,1PM,0,0
+Adobe,Soda Bay,2006-02-24,7:45AM,50,50
+Clover,Bridge Arbor Rd,2006-02-24,12:30PM,0,0
+Cole,Clark Dr,2006-02-24,,0,0
+Kelsey,Soda Bay,2006-02-24,7:35AM,0,0
+Middle,Hwy 20,2006-02-24,12:50PM,0,0
+Robinson,Old Rancheria Br,2006-02-24,1:20PM,0,0
+Adobe,Thomas Dr,2006-02-25,2PM,75-100,75
+Adobe,Argonaut,2006-02-25,,0,0
+Adobe,Bell Hill,2006-02-25,3:50PM,0,0
+Adobe,Merritt,2006-02-25,5:20PM,0,0
+Hill,Holdenreid,2006-02-25,4:06PM,0,0
+Hill,Merritt,2006-02-25,5:30PM,0,0
+Kelsey,,2006-02-25,,0,0
+Manning,Soda Bay,2006-02-25,,0,0
+Manning,Ackley,2006-02-25,3:40PM,0,0
+Adobe,Bell Hill,2006-02-26,11AM,0,0
+Adobe,Merritt Rd,2006-02-26,12:50PM,0,0
+Cole,Green Acres,2006-02-26,9:30AM,0,0
+Hill,Merritt,2006-02-26,12:55PM,0,0
+Adobe,Finley East,2006-02-27,7:30AM,0,0
+Clover,2nd St,2006-02-27,2PM,0,0
+Cole,Green Acres,2006-02-27,10:30AM,0,0
+Forbes,Willow Point,2006-02-27,3:30PM,0,0
+Kelsey,Quercus Bridge,2006-02-27,7:20AM,0,0
+Middle,Hwy 20,2006-02-27,2:20PM,0,0
+Middle,Rancheria Rd,2006-02-27,3PM,0,0
+Robinson,Old Rancheria Br,2006-02-27,2:40PM,0,0
+Adobe,,2006-02-28,,0,0
+Clover,Elk Mt Rd,2006-02-28,11AM,0,0
+Middle,Hwy 20,2006-02-28,11:15AM,0,0
+Robinson,Old Rancheria Br,2006-02-28,11:40AM,0,0
+Cole,Green Acres,2006-03-01,10:45AM,0,0
+Forbes,Martin,2006-03-01,3:30PM,0,0
+Schindler,Hwy 20,2006-03-01,9:50AM,0,0
+Forbes,Martin,2006-03-02,3:30PM,0,0
+Clover,2nd St,2006-03-04,2:20PM,0,0
+Middle,Rancheria Rd,2006-03-04,2:40PM,0,0
+Robinson,Old Rancheria Br,2006-03-04,3PM,0,0
+Schindler,Hwy 20,2006-03-06,12:45PM,0,0
+Middle,Rancheria Rd,2006-03-07,3PM,0,0
+Hill,Merritt,2006-03-08,10:57AM,0,0
+McGaugh Slough,Merritt,2006-03-08,10:55AM,0,0
+Schindler,Hwy 20,2006-03-08,11AM,0,0
+Seigler  Cyn,,2006-03-08,4:10PM, 0,0
+Forbes,Martin,2006-03-09,3:30PM,0,0
+Hill,Merritt,2006-03-11,10:05AM,0,0
+Schindler,Hwy 20,2006-03-11,2:30PM,0,0
+Adobe,Thomas Dr,2006-03-12,,0,0
+Cole,Green Acres,2006-03-12,1:15PM,0,0
+Manning,Soda Bay,2006-03-12,,0,0
+Adobe,,2006-03-13,2:12PM,0,0
+Cole,Green Acres,2006-03-13,1PM,0,0
+Hill,Merritt,2006-03-13,1:58PM,0,0
+McGaugh Slough,Holdenreid,2006-03-13,1:56PM,0,0
+Forbes,Martin,2006-03-16,3:30PM,0,0
+Forbes,Main,2006-03-16,3:35PM,0,0
+Hill,Merritt,2006-03-18,3:40PM,12,12
+McGaugh,Holdenreid,2006-03-18,3:30PM,10-15,10
+Adobe,Soda Bay,2006-03-19,12:30PM,0,0
+Manning,Soda Bay,2006-03-19,12PM,0,0
+Schindler,Hwy 20,2006-03-20,2:30PM,0,0
+Schindler,4th St,2006-03-20,2:40PM,0,0
+Schindler,Lake St,2006-03-20,2:45PM,0,0
+Hill,Holdenreid,2006-03-21,4:15PM,0,0
+McGaugh Slough,Holdenreid,2006-03-21,4PM,0,0
+Adobe,Thomas Dr,2006-03-22,,5+,5
+Adobe,Argonaut,2006-03-22,,0,0
+Adobe,Finley East,2006-03-22,7:30AM,0,0
+Cole,Clark Dr,2006-03-22,4:30PM,0,0
+Cole,Soda Bay Rd,2006-03-22,5PM,0,0
+Cole,Konocti Rd,2006-03-22,4PM,0,0
+Hill,Holdenreid,2006-03-22,4:40PM,0,0
+Kelsey,Quercus Bridge,2006-03-22,7:15AM,0,0
+Manning,Soda Bay,2006-03-22,2PM,0,0
+McGaugh,Holdenreid,2006-03-22,5:10PM,0,0
+Schindler,wy 20,2006-03-22,10AM,0,0
+Adobe,Finley East (100' upstream),2006-03-23,7:30AM,20-30,20
+Adobe,Thomas Dr,2006-03-23,2:30PM,500+,500
+Adobe,Argonaut,2006-03-23,3PM,0,0
+Adobe,Finley East,2006-03-23,7:30AM,20-30,20
+Hill,Holdenreid,2006-03-23,11:30AM,100,100
+Kelsey,Quercus Bridge,2006-03-23,7:15AM,0,0
+Manning,Soda Bay,2006-03-23,2PM,0,0
+McGaugh Slough,Holdenreid,2006-03-23,5:10PM,15-20,15
+Adobe,Finley East,2006-03-24,7:25AM,0,0
+Hill/McGaugh,Argonaut,2006-03-24,4:30PM,30,30
+Kelsey,Quercus Bridge,2006-03-24,7:15AM,0,0
+Morrison,hwy 20,2006-03-24,8:15AM,0,0
+Adobe,Finley East,2006-03-25,10:35AM,0,0
+McGaugh,Finley East,2006-03-25,10:30AM,0,0
+Schindler,Hwy 20,2006-03-26,2PM,0,0
+Schindler,4th St,2006-03-26,2:05PM,0,0
+Schindler,Lake St,2006-03-26,2:10PM,0,0
+Schindler,Konocti,2006-03-26,2:20PM,0,0
+Adobe,Bell Hill,2006-03-27,1PM,500+,500
+Adobe,Finley East,2006-03-27,7:55AM,?,NA
+Clover,2nd St,2006-03-27,1:25PM,0,0
+Cole,Clark Dr,2006-03-27,,0,0
+Cole,ditch near Clark Dr (south of Green Acres),2006-03-27,,12-24,12
+Cole,Jeannie Lane (ditch),2006-03-27,,6,6
+Kelsey,Quercus Bridge,2006-03-27,7:45AM,0,0
+Middle,Rancheria Rd,2006-03-27,1:50PM,0,0
+Robinson,Old Rancheria Br,2006-03-27,1PM,0,0
+Cole,Jeannie Lane (ditch),2006-03-28,1PM,1,1
+Adobe,Finley East,2006-03-30,7:25AM,0,0
+Cole,Jeannie Lane (field),2006-03-30,,3,3
+Kelsey,Quercus Bridge,2006-03-30,7:15AM,0,0
+Cole,Jeannie Lane (field),2006-04-01,,3,3
+Cole,where ditch empties into creek,2006-04-02,1:15PM,25,25
+Cole,where ditch empties into creek ,2006-04-02,1:20PM,4,4
+Cole,"Clark Dr, south ditch",2006-04-03,1:15PM,1,1
+Cole,"Clark Dr, north ditch",2006-04-04,,12,12
+Middle,Rancheria Rd,2006-04-04,3PM,0,0
+Adobe,Bell Hill,2006-04-05,3PM,2,2
+Adobe,Bell Hill (below crossing),2006-04-05,,1000+,1000
+Clover,Middle Creek Rd,2006-04-05,11:30AM,0,0
+Cole,"Clark Dr, north ditch",2006-04-05,,9,9
+Manning,Ackley,2006-04-05,,0,0
+Manning,Matthews,2006-04-05,,0,0
+Middle,Hwy 20,2006-04-05,11:45AM,0,0
+Robinson,Old Rancheria Rd,2006-04-05,11:55AM,0,0
+Adobe,Finley East,2006-04-06,7:25AM,0,0
+Clover,2nd St,2006-04-06,11:20AM,0,0
+Cole,where ditch empties into creek,2006-04-06,,30,30
+Cole,"ditch, upstream from outlet to creek",2006-04-06,,3,3
+Kelsey,Quercus Bridge,2006-04-06,7:15AM,0,0
+Middle,Hwy 20,2006-04-06,11AM,0,0
+Robinson,Bridge Arbor Rd,2006-04-06,11:40AM,0,0
+Adobe,Bell Hill,2006-04-07,12PM,100+,100
+Adobe,Bell Hill,2006-04-07,2:30PM,1000,1000
+Adobe,Bell Hill,2006-04-07,6PM,0,0
+Clover,2nd St,2006-04-07,1PM,0,0
+Cole,at mouth of ditch,2006-04-07,,7,7
+Cole,ditch upstream from creek,2006-04-07,,5,5
+Middle,Hwy 20,2006-04-07,1:15PM,0,0
+Middle,Rancheria Rd,2006-04-07,10AM,0,0
+Middle,Rancheria Rd,2006-04-07,3PM,0,0
+Morrison,Hwy 20,2006-04-07,8:15AM,0,0
+Robinson,Old Rancheria Br,2006-04-07,1:40PM,0,0
+McGaugh,Merritt,2006-04-08,9AM,50,50
+Adobe,Merritt,2006-04-09,5:20PM,100+,100
+Cole,ditch,2006-04-09,,1,1
+Hill,Holdenreid,2006-04-09,5PM,0,0
+Hill,Merritt,2006-04-09,5:50PM,0,0
+kelsey,Merritt,2006-04-09,6PM,0,0
+Kelsey,Soda Bay,2006-04-09,6:05PM,0,0
+McGaugh,Holdenreid,2006-04-09,5:15PM,0,0
+McGaugh,Merritt,2006-04-09,5:45PM,2,2
+Adobe,Argonaut,2006-04-10,3PM,0,0
+Adobe,Finley East,2006-04-10,3:05PM,0,0
+Clover,2nd St,2006-04-10,11:15AM,0,0
+Cole,ditch,2006-04-10,,1,1
+McGaugh,Finley East,2006-04-10,3:15PM,5,5
+Middle,Hwy 20,2006-04-10,11AM,0,0
+Robinson,Old Rancheria Br,2006-04-10,11:35AM,0,0
+Schindler,Hwy 20,2006-04-10,1PM,0,0
+Adobe,Finley East,2006-04-11,7:25AM,0,0
+Kelsey,Quercus Bridge,2006-04-11,7:15AM,0,0
+Clover,Bridge Arbor Rd,2006-04-12,1PM,0,0
+Manning,Hwy 175 & S. Main,2006-04-12,12PM,0,0
+Manning,"Tributary, Hwy 175 & S. Main",2006-04-12,12PM,0,0
+Middle,Hwy 20,2006-04-12,1:15PM,0,0
+Robinson,Old Rancheria Br,2006-04-12,1:40AM,0,0
+Adobe,Bell Hill,2006-04-13,10:30AM,6,6
+Adobe,Bell Hill,2006-04-13,6:30PM,0,0
+Cole,ditch,2006-04-13,1:10PM,10,10
+Adobe,Finley East,2006-04-14,7:25AM,0,0
+Clover,2nd St,2006-04-14,10:30AM,0,0
+Cole,ditch & swamp,2006-04-14,10:35AM,35,35
+Kelsey,Quercus Bridge,2006-04-14,7:15AM,0,0
+Middle,Rancheria Rd,2006-04-14,11AM,0,0
+Robinson,Old Rancheria Br,2006-04-14,11:20AM,0,0
+Rodman Slough overflow,Westlake,2006-04-14,11:45AM,10,10
+Scotts,Hwy 20,2006-04-14,,50,50
+Adobe,Bell Hill,2006-04-15,10:20AM,200,200
+Adobe,below dam,2006-04-15,6:15PM,200,200
+Cole,Clark Dr,2006-04-15,,0,0
+Hill,Merritt,2006-04-15,2PM,50-100,50
+Hill,Holdenreid,2006-04-15,2:15PM,50-100,50
+McGaugh Slough,Merritt,2006-04-15,2:05PM,5-10,5
+McGaugh Slough,Holdenreid,2006-04-15,2:10PM,100-200,100
+Pool,Hendricks Rd,2006-04-15,,100,100
+Robinson,1199 Mockingbird Lane,2006-04-15,,35-40,35
+Scotts,Hwy 20,2006-04-15,,50,50
+"""Stokes""","Stokes Ave, Nice",2006-04-15,,100+,100
+Adobe,Soda Bay,2006-04-16,9:10AM,0,0
+Kelsey,Soda Bay,2006-04-16,9AM,0,0
+Manning,Soda Bay,2006-04-16,9:20AM,0,0
+Clover,2nd St,2006-04-17,4PM,0,0
+Eickhoff,,2006-04-17,,?,NA
+Middle,Hwy 20,2006-04-17,4:15PM,0,0
+Robinson,Old Rancheria Br,2006-04-17,3:30PM,0,0
+"""Stokes""","Stokes Ave, Nice",2006-04-17,,1,1
+Adobe,Finley East,2006-04-18,7:25AM,0,0
+Adobe,Bell Hill,2006-04-18,11:30AM,100+,100
+Clover,Bridge Arbor Rd,2006-04-18,10AM,0,0
+Kelsey,Quercus Bridge,2006-04-18,7:15AM,0,0
+Robinson,Old Rancheria Br,2006-04-18,1:55PM,3,3
+Adobe,Finley East,2006-04-19,7:25AM,0,0
+Cole,ditch,2006-04-19,,9,9
+Kelsey,Quercus Bridge,2006-04-19,7:15AM,0,0
+Schindler,Hwy 20,2006-04-19,2PM,0,0
+Schindler,Hwy 20,2006-04-19,3:50PM,0,0
+Seigler,,2006-04-19,2:40PM,0,0
+Manning,Soda Bay,2006-04-20,,0,0
+Adobe,Finley East,2006-04-21,7:25AM,0,0
+Adobe,Soda Bay,2006-04-21,8:35AM,200+,200
+Adobe,Bell Hill,2006-04-21,5:05PM,100s,100
+Alley,Pitney Br,2006-04-21,2:30PM,0,0
+Clover (bypass),Elk Mt Rd,2006-04-21,2:20PM,0,0
+Cole,Maes Bridge,2006-04-21,8AM,0,0
+Cole,Clark Dr,2006-04-21,8:05AM,0,0
+Kelsey,Quercus Bridge,2006-04-21,7:15AM,0,0
+Kelsey,Soda Bay,2006-04-21,8:21AM,0,0
+Kelsey,Merritt,2006-04-21,,3,3
+Middle,Rancheria Rd,2006-04-21,2:25PM,0,0
+Thompson,Highland Springs,2006-04-21,5PM,0,0
+Adobe,Finley East,2006-04-22,11:30AM,5+,5
+Manning,Soda Bay,2006-04-22,,50,50
+Adobe,Thomas Dr.,2006-04-23,,500+,500
+Cole,Clark Dr,2006-04-23,9:05AM,0,0
+Kelsey,low water crossing,2006-04-23,3:30PM,34,34
+Kelsey,Soda Bay,2006-04-23,9:15AM,0,0
+Manning,Soda Bay,2006-04-23,,50,50
+Adobe,Finley East,2006-04-24,7:25AM,0,0
+Adobe,Bell Hill,2006-04-24,,0,0
+Cole,Clark Dr,2006-04-24,,0,0
+Hill,Merritt,2006-04-24,,0,0
+Kelsey,Quercus Bridge,2006-04-24,7:15AM,0,0
+Kelsey,,2006-04-24,3:30PM,100,100
+McGaugh,Holdenreid,2006-04-24,,0,0
+Hill,Merritt,2006-04-25,,0,0
+Kelsey,,2006-04-25,,5,5
+McGaugh,Holdenreid,2006-04-25,,0,0
+Pool,Hendricks Rd,2006-04-25,,24,24
+Adobe,Finley East,2006-04-26,7:35AM,0,0
+Adobe,Soda Bay,2006-04-26,8:25AM,300+,300
+Cole,Clark Dr,2006-04-26,,0,0
+Cole,Maes,2006-04-26,8:05AM,0,0
+Cole,Clark Dr,2006-04-26,8:10AM,0,0
+Hill,Merritt,2006-04-26,,0,0
+Kelsey,Quercus Bridge,2006-04-26,7:25AM,0,0
+Kelsey,Soda Bay,2006-04-26,8:20AM,0,0
+Kelsey,,2006-04-26,10AM,50,50
+Manning,Soda Bay,2006-04-26,8:30AM,0,0
+McGaugh,Holdenreid,2006-04-26,,0,0
+Pool,Hendricks Rd,2006-04-26,,36,36
+Adobe,Thomas Dr.,2006-04-27,,200,200
+Adobe,Finley East,2006-04-27,1:10PM,250,250
+Adobe,Soda Bay,2006-04-27,8:25AM,500+,500
+Forbes,Main,2006-04-27,3:30PM,75+,75
+kelsey,Quercus,2006-04-27,7:15AM,0,0
+Manning,Soda Bay,2006-04-27,,0,0
+Manning,Ackley,2006-04-27,,0,0
+McGaugh Slough,Argonaut,2006-04-27,3PM,0,0
+Cole,Clark Dr,2006-04-28,8:13AM,0,0
+Hill,Merrit,2006-04-28,,0,0
+Kelsey,Quercus,2006-04-28,7:15AM,0,0
+Kelsey,Detention structure,2006-04-28,7:25AM,0,0
+Kelsey,Merritt Rd,2006-04-28,7:40AM,0,0
+Kelsey,Soda Bay,2006-04-28,8:20AM,0,0
+Manning,Soda Bay,2006-04-28,8:32AM,10,10
+McGaugh,Holdenreid,2006-04-28,,0,0
+Forbes,Martin,2006-04-29,9:15AM,0,0
+Middle,,2006-04-29,1:30PM,0,0
+Scotts,"SV Rd, Blue Lakes outlet",2006-04-29,4PM,0,0
+Scotts,Eickhoff,2006-04-29,4:20PM,0,0
+Adobe,Soda Bay,2006-04-30,10:05AM,200,200
+Adobe,Finley East,2006-04-30,10:15AM,0,0
+Adobe,Bell Hill,2006-04-30,10:30AM,0,0
+Kelsey,Soda Bay,2006-04-30,10AM,0,0
+Manning,Soda Bay,2006-04-30,4:30PM,25,25
+Clover,Elk Mt Rd,2006-05-01,2:55PM,0,0
+Middle,Hwy 20,2006-05-01,3:15PM,0,0
+Robinson,Old Rancheria Br,2006-05-01,3:50PM,0,0
+Schindler,Hwy 20,2006-05-01,1PM,0,0
+Pool,,2006-05-02,,?,NA
+Adobe,Soda Bay,2006-05-03,9:10AM,500+,500
+Kelsey,Soda Bay,2006-05-03,9AM,0,0
+Pool,,2006-05-03,,?,NA
+Adobe,Soda Bay,2006-05-04,8:35AM,300+,300
+Kelsey,Soda Bay,2006-05-04,8:30AM,0,0
+Adobe,Thomas,2006-05-05,,0,0
+Adobe,Argonaut,2006-05-05,,0,0
+Manning,Soda Bay,2006-05-05,,0,0
+Adobe,Soda Bay,2006-05-06,10AM,100,100
+Kelsey,Main St,2006-05-06,9:15AM,5,5
+McGaugh,Holdenreid,2006-05-06,11AM,0,0
+Adobe,Thomas,2006-05-07,,0,0
+Adobe,Bell Hill,2006-05-07,,0,0
+Seigler  Cyn,,2006-05-09,11AM, 0,0
+Schindler,Hwy 20,2006-05-15,10:30AM,0,0
+Adobe,Thomas Dr,2006-05-19,11:30AM,0,0
+Manning,Soda Bay,2006-05-19,11AM,0,0
