@@ -55,6 +55,41 @@ bvr_raw_data_A <- bvr_raw_data %>%
     result_sampling_point = `Result Sampling Point`
   )
 
+# its a good idea to extract out the station data, and only combine
+# the result data to the station data when needed using some sort of join
+
+bvr_stations <- bvr_raw_data_A %>%
+  distinct(origin_id, origin_name,
+           station_id, lat = station_lat, lon = station_lon,
+           station_horizontal_datum,
+           state, county)
+
+
+bvr_stations %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers()
+
+# remove these columns from the data
+bvr_water_quality <- bvr_raw_data_A %>%
+   select(-station_lat, -station_lon,
+          -station_horizontal_datum,
+          -state, -county) %>% # lets only select some of these for now
+  select(
+    origin_id,
+    origin_name,
+    station_id,
+    activity_start_date,
+    activity_start_time,
+    characteristic_name,
+    units,
+    sample_fraction,
+    value_type,
+    statistic_type,
+    result_value_numeric
+  )
+
+
 
 # CDFA DATA --------------------------------------------------------------------
 
