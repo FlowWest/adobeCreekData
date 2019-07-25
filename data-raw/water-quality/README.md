@@ -6,13 +6,16 @@ This readme outlines all the raw data that is in this folder.
 
 This excel file has data from Big Valley Rancheria. The data has already been 
 formatted previously from a raw source. The data in this sheet range from 
-2012 to 2014.
+1999 to 2014.
 
 
 ### CDFA Data_formatted.xlsx
 
+This is data from the California Department of the Food and Agriculture, the data spans
+from 2012 to 2014.
 
-### CDEN.xlsx 
+
+### CEDEN.xlsx 
 
 
 ### Clear_Lake_20161209.xlsx
