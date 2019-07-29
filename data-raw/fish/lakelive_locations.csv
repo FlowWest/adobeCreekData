@@ -1,23 +1,23 @@
-no,creek,bridge_1,bridge_2,bridge_3,bridge_4,bridge_5
-1,Cole,Clark Dr,Maes,Konocti Rd,Single Spring,Bottle Rock
-2,Kelsey,Soda Bay,Detention,Merritt Rd,Main St,Gross
-3,McGaugh,Soda Bay,Finley East,Argonaut,Merritt,
-3a,Hill,Merritt,Holdenreid,,,
-4,Adobe,Stone Dr,Soda Bay Rd ,Finley East,Argonaut,Merritt
-5,Thompson,Highway 29,Argonaut,Highland Spring,,
-6,Manning,Soda Bay,Ackley,Matthews,Highway 175,
-7,Forbes,Main St,Martin,Parallel Dr,,
-8,Lyons,Lakeshore,Hill,,,
-9,Robinson,Robinson,Highway 29,,,
-10,Scotts,Tule Lake,Eickhoff,Scotts Valley Rd,Scotts Creek Rd,
-10a,Hendricks,Scotts Valley Rd,Hendricks Rd,,,
-10b,Pool,Hendricks Rd,,,,
-11,Middle,Highway 20,Rancheria,Elk Mt Rd,3C Camp,
-12,Clover,Elk Mt Rd,Sam Alley,Diversion Str,Second St,
-12a,Alley,Sam Alley,,,,
-13,Morrison,Highway 20,Country Club,,,
-14,Victoria,,,,,
-15, Schindler,Lake,Highway 20,,,
-16,Burns Valley,Lakeshore,Burns Valley Rd,Old Highway 53,Ogulin,
-17,Copsey,Copsey Cr Way,Morgan Valley ,Spruce Grove Rd,,
-18,Seigler Canyon,Anderson Marsh,Jessie St,Highway 29,Perini Rd, 
+number,creek,bridge_1,bridge_2,bridge_3,bridge_4,bridge_5,unnamed_col
+1,Cole,Clark Dr,Maes,Konocti Rd,Single Spring,Bottle Rock,NA
+2,Kelsey,Soda Bay,Detention,Merritt Rd,Main St,Gross,NA
+3,McGaugh,Soda Bay,Finley East,Argonaut,Merritt,NA,NA
+3a,Hill,Merritt,Holdenreid,NA,NA,NA,NA
+4,Adobe,Stone Dr,Soda Bay Rd ,Finley East,Argonaut,Merritt,Bell Hill
+5,Thompson,Highway 29,Argonaut,Highland Spring,NA,NA,NA
+6,Manning,Soda Bay,Ackley,Matthews,Highway 175,NA,NA
+7,Forbes,Main St,Martin,Parallel Dr,NA,NA,NA
+8,Lyons,Lakeshore,Hill,NA,NA,NA,NA
+9,Robinson,Robinson,Highway 29,NA,NA,NA,NA
+10,Scotts,Tule Lake,Eickhoff,Scotts Valley Rd,Scotts Creek Rd,NA,NA
+10a,Hendricks,Scotts Valley Rd,Hendricks Rd,NA,NA,NA,NA
+10b,Pool,Hendricks Rd,NA,NA,NA,NA,NA
+11,Middle,Highway 20,Rancheria,Elk Mt Rd,3C Camp,NA,NA
+12,Clover,Elk Mt Rd,Sam Alley,Diversion Str,Second St,NA,NA
+12a,Alley,Sam Alley,NA,NA,NA,NA,NA
+13,Morrison,Highway 20,Country Club,NA,NA,NA,NA
+14,Victoria,NA,NA,NA,NA,NA,NA
+15, Schindler,Lake,Highway 20,NA,NA,NA,NA
+16,Burns Valley,Lakeshore,Burns Valley Rd,Old Highway 53,Ogulin,NA,NA
+17,Copsey,Copsey Cr Way,Morgan Valley ,Spruce Grove Rd,NA,NA,NA
+18,Seigler Canyon,Anderson Marsh,Jessie St,Highway 29,Perini Rd,NA,NA

@@ -26,7 +26,7 @@ loc_table <- loc_url %>%
 write_csv(loc_table, "data-raw/fish/lakelive_locations.csv")
 
 # results ---------------------------------------------------------------------
-years <- c(2005:2018)
+years <- c(2005:2005)
 for (year in years){
   print(year)
   # construct the url
@@ -78,7 +78,7 @@ for (year in years){
       mutate(date = mdy(date))
   }
   # write extracted table to csv
-  write_csv(result_table, paste("data-raw/fish/lakelive_results", toString(year),
-                                ".csv", sep = ""))
+  # write_csv(result_table, paste("data-raw/fish/lakelive_results", toString(year),
+  #                               ".csv", sep = ""))
 }
 
