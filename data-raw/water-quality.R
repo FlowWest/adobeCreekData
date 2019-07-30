@@ -89,8 +89,30 @@ bvr_water_quality <- bvr_raw_data_A %>%
     result_value_numeric
   )
 
+bvr_water_quality %>% distinct(characteristic_name)
 
+bvr_water_quality %>%
+  filter(characteristic_name == "Picloram") %>%
+  ggplot(aes(activity_start_date, result_value_numeric)) + geom_point()
 
+# so a lot of the data is just a few samples, let us remove these for now
+# count number of observations per characteristic
+top_wq_in_bvr <- bvr_water_quality %>%
+  group_by(characteristic_name) %>%
+  summarise(
+    total = n()
+  ) %>%
+  arrange(desc(total)) %>%
+  filter(total >= 100) %>%
+  pull(characteristic_name)
+
+bvr_wq <- bvr_water_quality %>%
+  filter(characteristic_name %in% top_wq_in_bvr) %>%
+  mutate(datetime = ymd_hms(paste(activity_start_date,
+                               str_extract(activity_start_time,
+                                           "[0-9]{2}:[0-9]{2}:[0-9]{2}"))))
+
+usethis::use_data(bvr_wq, overwrite = TRUE)
 # CDFA DATA --------------------------------------------------------------------
 
 cdfa_raw_data <- read_xlsx("data-raw/water-quality/CDFA Data_formatted.xlsx")
