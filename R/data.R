@@ -42,9 +42,11 @@
 
 
 #' @title BVR Water Quality
+#' @export
 "bvr_wq"
 
 #' @title Clear Lake Water Surface Elevation
+#' @export
 "clear_lake_wse"
 
 
