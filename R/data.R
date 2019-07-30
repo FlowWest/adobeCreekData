@@ -39,3 +39,22 @@
 #'   \item{temp_c}{the temperature (in C) reported by the pressure transducer}
 #' }
 "pressure_transducer"
+
+
+#' @title BVR Water Quality
+"bvr_wq"
+
+#' @title Clear Lake Water Surface Elevation
+"clear_lake_wse"
+
+
+
+
+
+
+
+
+
+
+
+

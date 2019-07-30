@@ -55,7 +55,64 @@ bvr_raw_data_A <- bvr_raw_data %>%
     result_sampling_point = `Result Sampling Point`
   )
 
+# its a good idea to extract out the station data, and only combine
+# the result data to the station data when needed using some sort of join
 
+bvr_stations <- bvr_raw_data_A %>%
+  distinct(origin_id, origin_name,
+           station_id, lat = station_lat, lon = station_lon,
+           station_horizontal_datum,
+           state, county)
+
+
+bvr_stations %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers()
+
+# remove these columns from the data
+bvr_water_quality <- bvr_raw_data_A %>%
+   select(-station_lat, -station_lon,
+          -station_horizontal_datum,
+          -state, -county) %>% # lets only select some of these for now
+  select(
+    origin_id,
+    origin_name,
+    station_id,
+    activity_start_date,
+    activity_start_time,
+    characteristic_name,
+    units,
+    sample_fraction,
+    value_type,
+    statistic_type,
+    result_value_numeric
+  )
+
+bvr_water_quality %>% distinct(characteristic_name)
+
+bvr_water_quality %>%
+  filter(characteristic_name == "Picloram") %>%
+  ggplot(aes(activity_start_date, result_value_numeric)) + geom_point()
+
+# so a lot of the data is just a few samples, let us remove these for now
+# count number of observations per characteristic
+top_wq_in_bvr <- bvr_water_quality %>%
+  group_by(characteristic_name) %>%
+  summarise(
+    total = n()
+  ) %>%
+  arrange(desc(total)) %>%
+  filter(total >= 100) %>%
+  pull(characteristic_name)
+
+bvr_wq <- bvr_water_quality %>%
+  filter(characteristic_name %in% top_wq_in_bvr) %>%
+  mutate(datetime = ymd_hms(paste(activity_start_date,
+                               str_extract(activity_start_time,
+                                           "[0-9]{2}:[0-9]{2}:[0-9]{2}"))))
+
+usethis::use_data(bvr_wq, overwrite = TRUE)
 # CDFA DATA --------------------------------------------------------------------
 
 cdfa_raw_data <- read_xlsx("data-raw/water-quality/CDFA Data_formatted.xlsx")
