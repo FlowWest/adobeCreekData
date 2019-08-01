@@ -61,20 +61,14 @@ bvr_raw_data_A <- bvr_raw_data %>%
     result_sampling_point = `Result Sampling Point`
   )
 
-# its a good idea to extract out the station data, and only combine
-# the result data to the station data when needed using some sort of join
-
 bvr_stations <- bvr_raw_data_A %>%
   distinct(origin_id, origin_name,
            station_id, lat = station_lat, lon = station_lon,
            station_horizontal_datum,
            state, county)
 
+usethis::use_data(bvr_stations, overwrite = TRUE)
 
-bvr_stations %>%
-  leaflet() %>%
-  addTiles() %>%
-  addCircleMarkers()
 
 # remove these columns from the data
 bvr_water_quality <- bvr_raw_data_A %>%
@@ -95,23 +89,6 @@ bvr_water_quality <- bvr_raw_data_A %>%
     result_value_numeric
   )
 
-bvr_water_quality %>% distinct(characteristic_name)
-
-bvr_water_quality %>%
-  filter(characteristic_name == "Picloram") %>%
-  ggplot(aes(activity_start_date, result_value_numeric)) + geom_point()
-
-# so a lot of the data is just a few samples, let us remove these for now
-# count number of observations per characteristic
-top_wq_in_bvr <- bvr_water_quality %>%
-  group_by(characteristic_name) %>%
-  summarise(
-    total = n()
-  ) %>%
-  arrange(desc(total)) %>%
-  filter(total >= 100) %>%
-  pull(characteristic_name)
-
 bvr_wq <- bvr_water_quality %>%
   filter(characteristic_name %in% top_wq_in_bvr) %>%
   mutate(datetime = ymd_hms(paste(activity_start_date,
@@ -119,6 +96,43 @@ bvr_wq <- bvr_water_quality %>%
                                               "[0-9]{2}:[0-9]{2}:[0-9]{2}"))))
 
 usethis::use_data(bvr_wq, overwrite = TRUE)
+
+# its a good idea to extract out the station data, and only combine
+# the result data to the station data when needed using some sort of join
+
+# a lot of the stations are really near each other here I experiment clustering
+# nearby stations and create more complete datasets from there
+
+library(geosphere)
+
+station_distances <- bvr_stations %>%
+  select(lon, lat) %>%
+  distm() %>%
+  as.dist()
+
+station_hc <- hclust(station_distances)
+station_cluster <- cutree(station_hc, h = 2000)
+
+bvr_stations_clustered <-
+  bvr_stations %>%
+  mutate(
+    group = LETTERS[station_cluster]
+  )
+
+
+bvr_wq_with_clusters <-
+  bvr_wq %>%
+  left_join(select(bvr_stations_clustered, station_id, group))
+
+
+bvr_wq_with_clusters %>%
+  filter(characteristic_name == "Salinity",
+         result_value_numeric < 100) %>%
+  ggplot(aes(group, result_value_numeric)) + geom_boxplot()
+
+
+
+
 # CDFA DATA --------------------------------------------------------------------
 
 cdfa_raw_data <- read_xlsx("data-raw/water-quality/CDFA Data_formatted.xlsx")
