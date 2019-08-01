@@ -105,31 +105,43 @@ usethis::use_data(bvr_wq, overwrite = TRUE)
 
 library(geosphere)
 
+# create a distance matrix from the station lat longs
+# at the end this is casted to a dist object in order to use
+# it iwth the built in clustering methods in R
 station_distances <- bvr_stations %>%
   select(lon, lat) %>%
   distm() %>%
   as.dist()
 
+# create the cluster object from the distances
 station_hc <- hclust(station_distances)
+
+# implement the cluster based on the a 2km distance (here these are in meters)
 station_cluster <- cutree(station_hc, h = 2000)
 
+# append these cluters to the stations dataframe, note that the order of these
+# has not changed from the select() in the above therefore we can just append
+# I encode these clusters as letters to facilitate plotting
 bvr_stations_clustered <-
   bvr_stations %>%
   mutate(
     group = LETTERS[station_cluster]
   )
 
-
+# join these clusters to the data itself by just left joining
 bvr_wq_with_clusters <-
   bvr_wq %>%
   left_join(select(bvr_stations_clustered, station_id, group))
 
+bvr_stations_clustered %>%
+  ggplot(aes(lat, lon, color=group)) + geom_point()
 
 bvr_wq_with_clusters %>%
-  filter(characteristic_name == "Salinity",
-         result_value_numeric < 100) %>%
-  ggplot(aes(group, result_value_numeric)) + geom_boxplot()
-
+  filter(characteristic_name == "Turbidity") %>%
+  group_by(group) %>%
+  summarise(
+    total_obs = n()
+  )
 
 
 
@@ -186,7 +198,7 @@ cdfa_raw_data_A <- cdfa_raw_data %>%
 
 
 
-# CEDEN Data -------------------------------------------------------------
+# CEDEN Data ----------------------------------------------------------------
 
 ceden_lookups <-c(
   "Program" = "program",
