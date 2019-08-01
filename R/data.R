@@ -49,7 +49,9 @@
 #' @export
 "clear_lake_wse"
 
-
+#' @title BVR Water Quality Stations
+#' @export
+"bvr_stations"
 
 
 
