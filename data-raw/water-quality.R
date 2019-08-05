@@ -19,8 +19,8 @@ bvr_raw_data_A <- bvr_raw_data %>%
     origin_id = `Org ID`,
     origin_name = `Org Name`,
     station_id = `Station ID`,
-    activity_start_date = as_date(`Activity Start Date`),
-    characteristic_name = `Characteristic Name`,
+    sample_date = as_date(`Activity Start Date`),
+    analyte = `Characteristic Name`,
     units = Units,
     raw_result_value = `Result Value as Text`,
     station_lat = `Station Latitude`,
@@ -28,7 +28,7 @@ bvr_raw_data_A <- bvr_raw_data %>%
     activity_depth = `Activity Depth`,
     activity_depth_unit = `Activity Depth Unit`,
     activity_medium = `Activity Medium`,
-    activity_start_time = as.character(`Activity Start Time`),
+    sample_time = as.character(`Activity Start Time`),
     project_id = `Beach ID/Project ID`,
     state = tolower(State),
     county = tolower(County),
@@ -72,16 +72,13 @@ usethis::use_data(bvr_stations, overwrite = TRUE)
 
 # remove these columns from the data
 bvr_water_quality <- bvr_raw_data_A %>%
-  select(-station_lat, -station_lon,
-         -station_horizontal_datum,
-         -state, -county) %>% # lets only select some of these for now
   select(
     origin_id,
     origin_name,
     station_id,
-    activity_start_date,
-    activity_start_time,
-    characteristic_name,
+    sample_date,
+    sample_time,
+    analyte,
     units,
     sample_fraction,
     value_type,
