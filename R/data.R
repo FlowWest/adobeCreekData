@@ -62,3 +62,42 @@
 #' }
 "cache_creek_flow"
 
+#' @title BVR Water Quality Stations
+#' @description Water Quality Stations for Big Valley Rancheria
+#' \describe{
+#'   \item{origin_id}{id for the orgnization collecting/supplying data}
+#'   \item{station_id}{id for the station}
+#'   \item{lat}{latitude}
+#'   \item{lon}{longitude}
+#'   \item{station_horizontal_datum}{horizontal datum for the station}
+#'   \item{state}{state}
+#'   \item{county}{county}
+#' }
+"bvr_stations"
+
+#' @title BVR Water Quality
+#' @description Water Quality Data measured by Big Valley Rancheria (BVR). This data
+#' contains only analytes that were measured at least 10 times.
+#' \describe{
+#'   \item{origin_id}{id for the orgnization collecting/supplying data}
+#'   \item{station_id}{id for the station (assume unique only within this orgin_id)}
+#'   \item{datetime}{the date and time of observation}
+#'   \item{analyte}{name of the analyte measured}
+#'   \item{units}{units reported for the measurement}
+#'   \item{sample_fraction}{blah}
+#'   \item{value_type}{a qualifier for the type of value}
+#'   \item{statistic_type}{summary statistic used in result, if none this is NA}
+#'   \item{value_raw}{raw value reported from the measurement}
+#'   \item{value_numeric}{the numerical value obtained from value raw}
+#' }
+"bvr_water_quality"
+
+
+
+
+
+
+
+
+
+

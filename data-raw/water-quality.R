@@ -85,7 +85,6 @@ usethis::use_data(bvr_stations, overwrite = TRUE)
 bvr_water_quality <- bvr_raw_data %>%
   select(
     origin_id,
-    # origin_name,
     station_id,
     sample_date,
     sample_time,
@@ -94,13 +93,25 @@ bvr_water_quality <- bvr_raw_data %>%
     sample_fraction,
     value_type,
     statistic_type,
-    result_value_numeric
+    value_raw = raw_result_value,
+    value_numeric = result_value_numeric
   ) %>%
   filter(analyte %in% bvr_top_observed_analytes) %>%
   mutate(datetime = ymd_hms(paste(sample_date,
                                   str_extract(sample_time,
                                               "[0-9]{2}:[0-9]{2}:[0-9]{2}")))) %>%
-  select(-sample_date, -sample_time)
+  select(
+    origin_id,
+    station_id,
+    datetime,
+    analyte,
+    units,
+    sample_fraction,
+    value_type,
+    statistic_type,
+    value_raw,
+    value_numeric
+  )
 
 usethis::use_data(bvr_water_quality, overwrite = TRUE)
 
