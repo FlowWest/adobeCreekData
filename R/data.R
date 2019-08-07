@@ -75,7 +75,7 @@
 #' }
 "bvr_stations"
 
-#' @title BVR Water Quality
+#' @title BVR Water Quality Data
 #' @description Water Quality Data measured by Big Valley Rancheria (BVR). This data
 #' contains only analytes that were measured at least 10 times.
 #' \describe{
@@ -92,11 +92,28 @@
 #' }
 "bvr_water_quality"
 
+#' @title CDFA Water Quality Stations
+#' @description Water Quality Stations for the California Department of Food and Ag (CDFA)
+#' \describe{
+#'   \item{origin_id}{id for the data supplier}
+#'   \item{station_id}{id for the sttation (assume unique only within origin id)}
+#'   \item{lat}{station latitude}
+#'   \item{lon}{station longitude}
+#' }
+"cdfa_stations"
 
-
-
-
-
+#' @title CDFA Water Quality Data
+#' @description Water Quality data reported by the CDFA
+#' \describe{
+#'   \item{origin_id}{id for the data supplier}
+#'   \item{station_id}{id for observation station}
+#'   \item{datetime}{datetime of measurement}
+#'   \item{unit}{unit of measure}
+#'   \item{value_raw}{raw value obtained from the measurement}
+#'   \item{value_numeric}{numeric version of the measurement}
+#'   \item{method_name}{method used for the measurement}
+#' }
+"cdfa_water_quality"
 
 
 
