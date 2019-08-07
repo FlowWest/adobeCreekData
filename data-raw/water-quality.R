@@ -245,45 +245,39 @@ ceden_lookups <-c(
 
 
 
-ceden_raw <- read_xlsx("data-raw/water-quality/CEDEN.xlsx", skip = 2,
-                       col_names = as.character(ceden_lookups))
-
-# seperate observations data frame from locations data frame
-ceden_wq <- ceden_raw %>%
+ceden_raw <- read_xlsx("data-raw/water-quality/CEDEN.xlsx", skip = 1) %>%
   transmute(
-    program,
-    station_id,
-    date_time = ymd_hms(paste(format(date, "%Y-%m-%d"), format(time, "%H:%M:%S"))),
-    analyte,
-    unit,
-    result,
-    matrix_name,
-    result_qual_code
+    origin_id = Program,
+    station_id = StationCode,
+    datetime = paste(format(SampleDate, "%Y-%m-%d"), format(CollectionTime, "%H:%M:%S")),
+    analyte = Analyte,
+    unit = Unit,
+    value_numeric = Result,
+    lat = TargetLatitude,
+    lon = TargetLongitude,
+    matrix_name = MatrixName,
+    result_qual_code = ResultQualCode
   )
 
-ceden_wq_stations <- ceden_raw %>%
+ceden_stations <- ceden_raw %>%
   select(
+    origin_id,
     station_id,
-    station_name,
-    lat = latitude,
-    lon = longitude,
-    county,
-    county_fibs,
-    regional_board,
-    starts_with("huc"),
-    waterbody_type
-  ) %>% distinct(station_id, .keep_all = TRUE)
-
-
-# Do stations overlap?
-library(leaflet)
-
-leaflet() %>%
-  addTiles() %>%
-  addMarkers(data=bvr_stations) %>%
-  addCircleMarkers(data=ceden_wq_stations %>%
-                     filter(lat >= bounding_box[2], lat <= bounding_box[4],
-                            lon >= bounding_box[1], lon <= bounding_box[3])
+    lat,
+    lon # a bunch more can be added if needed
   )
+
+usethis::use_data(ceden_stations, overwrite = TRUE)
+
+ceden_water_quality <- ceden_raw %>%
+  select(
+    -lat, -lon
+  )
+
+usethis::use_data(ceden_water_quality, overwrite = TRUE)
+
+
+
+
 
 
