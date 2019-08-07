@@ -12,15 +12,13 @@ bvr_stations %>%
 
 # BVR DATA ---------------------------------------------------------------------
 
-bvr_raw_data <- read_xlsx("data-raw/water-quality/BVR DATA_formatted.xlsx")
-
-bvr_raw_data_A <- bvr_raw_data %>%
+bvr_raw_data <- read_xlsx("data-raw/water-quality/BVR DATA_formatted.xlsx") %>%
   transmute(
     origin_id = `Org ID`,
     origin_name = `Org Name`,
     station_id = `Station ID`,
-    activity_start_date = as_date(`Activity Start Date`),
-    characteristic_name = `Characteristic Name`,
+    sample_date = as_date(`Activity Start Date`),
+    analyte = `Characteristic Name`,
     units = Units,
     raw_result_value = `Result Value as Text`,
     station_lat = `Station Latitude`,
@@ -28,7 +26,7 @@ bvr_raw_data_A <- bvr_raw_data %>%
     activity_depth = `Activity Depth`,
     activity_depth_unit = `Activity Depth Unit`,
     activity_medium = `Activity Medium`,
-    activity_start_time = as.character(`Activity Start Time`),
+    sample_time = as.character(`Activity Start Time`),
     project_id = `Beach ID/Project ID`,
     state = tolower(State),
     county = tolower(County),
@@ -61,7 +59,20 @@ bvr_raw_data_A <- bvr_raw_data %>%
     result_sampling_point = `Result Sampling Point`
   )
 
-bvr_stations <- bvr_raw_data_A %>%
+# top pollutants in the dataset
+
+bvr_top_observed_analytes <- bvr_raw_data %>%
+  group_by(analyte) %>%
+  summarise(
+    total = n()
+  ) %>%
+  arrange(desc(total)) %>%
+  head(26) %>%
+  pull(analyte)
+
+
+
+bvr_stations <- bvr_raw_data %>%
   distinct(origin_id, origin_name,
            station_id, lat = station_lat, lon = station_lon,
            station_horizontal_datum,
@@ -71,31 +82,27 @@ usethis::use_data(bvr_stations, overwrite = TRUE)
 
 
 # remove these columns from the data
-bvr_water_quality <- bvr_raw_data_A %>%
-  select(-station_lat, -station_lon,
-         -station_horizontal_datum,
-         -state, -county) %>% # lets only select some of these for now
+bvr_water_quality <- bvr_raw_data %>%
   select(
     origin_id,
-    origin_name,
+    # origin_name,
     station_id,
-    activity_start_date,
-    activity_start_time,
-    characteristic_name,
+    sample_date,
+    sample_time,
+    analyte,
     units,
     sample_fraction,
     value_type,
     statistic_type,
     result_value_numeric
-  )
+  ) %>%
+  filter(analyte %in% bvr_top_observed_analytes) %>%
+  mutate(datetime = ymd_hms(paste(sample_date,
+                                  str_extract(sample_time,
+                                              "[0-9]{2}:[0-9]{2}:[0-9]{2}")))) %>%
+  select(-sample_date, -sample_time)
 
-bvr_wq <- bvr_water_quality %>%
-  filter(characteristic_name %in% top_wq_in_bvr) %>%
-  mutate(datetime = ymd_hms(paste(activity_start_date,
-                                  str_extract(activity_start_time,
-                                              "[0-9]{2}:[0-9]{2}:[0-9]{2}"))))
-
-usethis::use_data(bvr_wq, overwrite = TRUE)
+usethis::use_data(bvr_water_quality, overwrite = TRUE)
 
 # its a good idea to extract out the station data, and only combine
 # the result data to the station data when needed using some sort of join

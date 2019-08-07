@@ -40,25 +40,25 @@
 #' }
 "pressure_transducer"
 
+#' @title Kelsey Creek Flow
+#' @description Flow at Kelsey Creek using site no: 11449500 from USGS. Data is
+#' reported as the daily average.
+#' \describe{
+#'   \item{site_no}{site number from USGS}
+#'   \item{site_name}{name for the site}
+#'   \item{date}{date for observed flow}
+#'   \item{flow_cfs}{flow value in cfs}
+#' }
+"kelsey_creek_flow"
 
-#' @title BVR Water Quality
-#' @export
-"bvr_wq"
-
-#' @title Clear Lake Water Surface Elevation
-#' @export
-"clear_lake_wse"
-
-#' @title BVR Water Quality Stations
-#' @export
-"bvr_stations"
-
-
-
-
-
-
-
-
-
+#' @title Cache Creek near Lower Lake Flow
+#' @description Flow at Cache Creek near Lower Lake using site no: 11451000 from USGS. Data is
+#' reported as the daily average.
+#' \describe{
+#'   \item{site_no}{site number from USGS}
+#'   \item{site_name}{name for the site}
+#'   \item{date}{date for observed flow}
+#'   \item{flow_cfs}{flow value in cfs}
+#' }
+"cache_creek_flow"
 
