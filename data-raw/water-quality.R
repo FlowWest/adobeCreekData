@@ -73,7 +73,7 @@ bvr_top_observed_analytes <- bvr_raw_data %>%
 
 
 bvr_stations <- bvr_raw_data %>%
-  distinct(origin_id, origin_name,
+  distinct(origin_id,
            station_id, lat = station_lat, lon = station_lon,
            station_horizontal_datum,
            state, county)
@@ -85,7 +85,6 @@ usethis::use_data(bvr_stations, overwrite = TRUE)
 bvr_water_quality <- bvr_raw_data %>%
   select(
     origin_id,
-    # origin_name,
     station_id,
     sample_date,
     sample_time,
@@ -94,62 +93,27 @@ bvr_water_quality <- bvr_raw_data %>%
     sample_fraction,
     value_type,
     statistic_type,
-    result_value_numeric
+    value_raw = raw_result_value,
+    value_numeric = result_value_numeric
   ) %>%
   filter(analyte %in% bvr_top_observed_analytes) %>%
   mutate(datetime = ymd_hms(paste(sample_date,
                                   str_extract(sample_time,
                                               "[0-9]{2}:[0-9]{2}:[0-9]{2}")))) %>%
-  select(-sample_date, -sample_time)
+  select(
+    origin_id,
+    station_id,
+    datetime,
+    analyte,
+    units,
+    sample_fraction,
+    value_type,
+    statistic_type,
+    value_raw,
+    value_numeric
+  )
 
 usethis::use_data(bvr_water_quality, overwrite = TRUE)
-
-# its a good idea to extract out the station data, and only combine
-# the result data to the station data when needed using some sort of join
-
-# a lot of the stations are really near each other here I experiment clustering
-# nearby stations and create more complete datasets from there
-
-library(geosphere)
-
-# create a distance matrix from the station lat longs
-# at the end this is casted to a dist object in order to use
-# it iwth the built in clustering methods in R
-station_distances <- bvr_stations %>%
-  select(lon, lat) %>%
-  distm() %>%
-  as.dist()
-
-# create the cluster object from the distances
-station_hc <- hclust(station_distances)
-
-# implement the cluster based on the a 2km distance (here these are in meters)
-station_cluster <- cutree(station_hc, h = 2000)
-
-# append these cluters to the stations dataframe, note that the order of these
-# has not changed from the select() in the above therefore we can just append
-# I encode these clusters as letters to facilitate plotting
-bvr_stations_clustered <-
-  bvr_stations %>%
-  mutate(
-    group = LETTERS[station_cluster]
-  )
-
-# join these clusters to the data itself by just left joining
-bvr_wq_with_clusters <-
-  bvr_wq %>%
-  left_join(select(bvr_stations_clustered, station_id, group))
-
-bvr_stations_clustered %>%
-  ggplot(aes(lat, lon, color=group)) + geom_point()
-
-bvr_wq_with_clusters %>%
-  filter(characteristic_name == "Turbidity") %>%
-  group_by(group) %>%
-  summarise(
-    total_obs = n()
-  )
-
 
 
 # CDFA DATA --------------------------------------------------------------------
