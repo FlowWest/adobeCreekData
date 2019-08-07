@@ -115,6 +115,42 @@
 #' }
 "cdfa_water_quality"
 
+#' @title CEDEN Water Quality Stations
+#' @description fda
+#' \describe{
+#'   \item{origin_id}{id for the data supplier}
+#'   \item{station_id}{id for the station}
+#'   \item{lat}{latitude}
+#'   \item{lon}{longitude}
+#' }
+"ceden_stations"
+
+#' @title CEDEN Water Quality Data
+#' @description water quality data reported by Aquatic Pesticide Monitoring Program,
+#' Irrigated Lands Regulatory Program and Surface Water Ambient Monitoring Program
+#' obtained through CEDEN.
+#' \describe{
+#'   \item{origin_id}{program or orgnization collecting data}
+#'   \item{station_id}{id for station where data was measured}
+#'   \item{datetime}{datetime of measurement}
+#'   \item{analyte}{name of the analyte measured}
+#'   \item{unit}{unit reported in the measurement}
+#'   \item{value_numeric}{numeric value obtained from measurement}
+#'   \item{matrix_name}{blah}
+#'   \item{result_qual_code}{blah}
+#' }
+"ceden_water_quality"
+
+
+
+
+
+
+
+
+
+
+
 
 
 
