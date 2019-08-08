@@ -34,13 +34,11 @@ groundwater_metrics_by_site <- groundwater_levels %>%
     total_measures = n()
   )
 
-
 groundwater_stations <- bind_rows(
   gst1, gst2
 ) %>% left_join(groundwater_metrics_by_site, by=c("site_code", "site_code"))
 
 usethis::use_data(groundwater_stations, overwrite = TRUE)
-
 
 # PRESSURE TRANSDUCER DATA =====================================================
 

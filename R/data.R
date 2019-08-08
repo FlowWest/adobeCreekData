@@ -62,6 +62,17 @@
 #' }
 "cache_creek_flow"
 
+#' @title Flow Stations
+#' @description Flow stations around Big Valley Rancheria
+#' \describe{
+#'   \item{agency_cd}{agency code}
+#'   \item{site_no}{site number from USGS}
+#'   \item{site_name}{name for the site}
+#'   \item{lat}{latitide}
+#'   \item{lon}{longitude}
+#' }
+"flow_stations"
+
 #' @title BVR Water Quality Stations
 #' @description Water Quality Stations for Big Valley Rancheria
 #' \describe{
