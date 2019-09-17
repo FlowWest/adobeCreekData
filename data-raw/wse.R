@@ -7,7 +7,7 @@ library(dataRetrieval)
 library(tidyverse)
 
 clear_lake_wse_raw <- readNWISdv("11450000", parameterCd = "00065",
-                                 startDate = "1999-01-01")
+                                 startDate = "1960-01-01")
 
 clear_lake_wse <- clear_lake_wse_raw %>%
   transmute(
@@ -21,4 +21,4 @@ clear_lake_wse <- clear_lake_wse_raw %>%
 clear_lake_wse %>%
   ggplot(aes(date, gage_height_ft)) + geom_line()
 
-usethis::use_data(clear_lake_wse)
+usethis::use_data(clear_lake_wse, overwrite = TRUE)
