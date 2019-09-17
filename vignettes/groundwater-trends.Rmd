@@ -57,7 +57,7 @@ groundwater_stations %>%
 
 
 
-## Elevation Diferences 
+## Elevation Differences 
 
 ### 10 years 
 
