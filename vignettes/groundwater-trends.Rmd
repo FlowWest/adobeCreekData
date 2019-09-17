@@ -1,0 +1,53 @@
+---
+title: "Groundwater Trends"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Groundwater Trends}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  echo = FALSE, 
+  warning = FALSE, 
+  message = FALSE
+)
+```
+
+```{r setup}
+library(adobeCreekData)
+library(tidyverse)
+library(leaflet)
+library(lubridate)
+```
+
+
+## Introduction 
+
+In this article I explore groundwater elevation trends, we are mostly interested
+in elevation difference across 10 years, 5 years and recent year. We also only look 
+at groundwater wells where data was reported recently (2018). The comparison will
+focus on the elevation for Fall values (August-November).
+
+
+## Groundwater Well Selection 
+
+We will focus on wells where a groundwater elevation was reported for 2018. 
+
+```{r}
+groundwater_stations %>% 
+  filter(year(end_date) >= 2018)
+```
+
+
+
+
+
+
+
+
+
+
