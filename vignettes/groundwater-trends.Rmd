@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>", 
-  echo = FALSE, 
+  # echo = FALSE, 
   warning = FALSE, 
   message = FALSE
 )
@@ -35,16 +35,82 @@ focus on the elevation for Fall values (August-November).
 
 ## Groundwater Well Selection 
 
-We will focus on wells where a groundwater elevation was reported for 2018. 
+We will focus on wells where a groundwater elevation was reported for 2018. This
+results in 23 candiate wells for analysis. This number will be smaller as we seek 
+to make comparison across years.
 
 ```{r}
+stations_with_recent_data <- groundwater_stations %>% 
+  filter(year(end_date) >= 2018) %>% 
+  pull(site_code)
+
+elevation_data <- groundwater_levels %>% 
+  filter(site_code %in% stations_with_recent_data) %>% 
+  select(site_code, date = measurement_date, wse)
+
+
 groundwater_stations %>% 
-  filter(year(end_date) >= 2018)
+  filter(year(end_date) >= 2018) %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers() 
 ```
 
 
 
+## Elevation Diferences 
 
+### 10 years 
+
+For the ten year difference I look at the 2018 elevation minus the 2008 elevation.
+Not all wells are represented in this difference, of the 23 only 21 have values for 
+both 2008 and 2018.
+
+```{r}
+ten_year_difference <- elevation_data %>% 
+  filter(month(date) %in% 8:11, year(date) %in% c(2018, 2008)) %>% 
+  mutate(year = year(date)) %>% 
+  select(-date) %>% 
+  spread(year, wse) %>% 
+  mutate(difference = `2018` - `2008`) %>% 
+  filter(!is.na(difference))
+
+ten_year_difference %>% 
+  ggplot(aes(difference)) + geom_histogram(binwidth = 4, color="#949494") + 
+  labs(title = "Elevation Change 2008 to 2018", 
+       x = "Elevation Difference (feet)")
+```
+
+As is shown in the histogram most of values are close to zero, with two pontential 
+outliers on both sides. To determine if these are in fact outliers we will need to 
+explore differences across multiple decades. In the section below I do exactly this, 
+iterate through all decades in the data compute differences at these wells. 
+
+```{r}
+decade_differences <- purrr::map_df(1980:2018, function(y) {
+  year1 <- y - 10
+  year2 <- y
+  
+  elevation_data %>% 
+    filter(month(date) %in% 8:11, year(date) %in% c(year1, year2)) %>% 
+    mutate(year = ifelse(year(date) == year1, "start_year", "end_year")) %>% 
+    select(-date) %>% 
+    group_by_at(vars(-wse)) %>%  # group by everything other than the value column. 
+    mutate(row_id=1:n()) %>% ungroup() %>% 
+  spread(year, wse) %>% 
+    mutate(difference = end_year - start_year, 
+           diff_id = paste0(year1, "_", year2)) %>% 
+    filter(!is.na(difference))
+})
+
+```
+
+```{r}
+decade_differences %>% 
+  ggplot(aes(difference)) + geom_histogram() + 
+  labs(x = "Decade Differences (feet)", 
+       title = "Decade Elevation Changes (1980-2018)") 
+```
 
 
 
