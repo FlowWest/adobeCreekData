@@ -99,7 +99,8 @@ decade_differences <- purrr::map_df(1980:2018, function(y) {
     mutate(row_id=1:n()) %>% ungroup() %>% 
   spread(year, wse) %>% 
     mutate(difference = end_year - start_year, 
-           diff_id = paste0(year1, "_", year2)) %>% 
+           diff_id = paste0(year1, "_", year2), 
+           end_year = year2) %>% 
     filter(!is.na(difference))
 })
 
@@ -110,6 +111,19 @@ decade_differences %>%
   ggplot(aes(difference)) + geom_histogram() + 
   labs(x = "Decade Differences (feet)", 
        title = "Decade Elevation Changes (1980-2018)") 
+```
+
+The above is showing all decade differences for all wells that have recent data.
+The shape is very similar to what we saw in the 2008 to 2018 change, the outliers
+however are just tail ends to this larger distribution.
+
+We can explore if there is any trend in the data by plotting the these differences
+on a scatter plot. 
+
+```{r}
+decade_differences %>% 
+  ggplot(aes(end_year, difference)) + geom_point(alpha=0.5) + 
+  geom_smooth()
 ```
 
 
