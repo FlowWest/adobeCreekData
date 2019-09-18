@@ -274,22 +274,45 @@ one_year_differences <- purrr::map_df(1950:2018, function(y) {
     mutate(difference = end_year - start_year, 
            diff_id = paste0(year1, "_", year2)) %>% 
     filter(!is.na(difference)) %>% 
-    mutate(end_year = year2)
+    mutate(end_year = year2, 
+           start_year = year1)
 }) %>% 
-  left_join(wy_types, by = c("end_year" = "year"))
+  left_join(wy_types, by = c("end_year" = "year")) %>% 
+  rename(end_year_type = type) %>% 
+  left_join(wy_types, by = c("start_year" = "year")) %>% 
+  rename(start_year_type = type) %>% 
+  mutate(year_type_change = paste0(start_year_type, " to ", end_year_type))
 ```
 
 ```{r}
 one_year_differences %>% 
-  ggplot(aes(end_year, difference)) + geom_point(alpha=0.7)
+  ggplot(aes(end_year, difference, color=end_year_type)) + 
+  geom_point(alpha=0.7) + 
+  labs(title = "Water Year Type of End Year")
+```
+```{r}
+one_year_differences %>% 
+  ggplot(aes(end_year, difference, color=start_year_type)) + 
+  geom_point(alpha=0.7) + 
+  labs(title = "Water Year Type of Start Year")
+```
+
+With the water years attached we can do some statistics using these as
+categorical variables. 
+
+```{r}
+one_year_differences %>% 
+  ggplot(aes(start_year_type, difference, color=start_year_type)) + geom_boxplot()
 ```
 
 
 
-
-
-
-
+```{r}
+one_year_differences %>% 
+  filter(year_type_change %in% c("Wet to Dry", "Dry to Wet", 
+                                 "Wet to Critical")) %>% 
+  ggplot(aes(difference, fill=year_type_change, color=year_type_change)) + geom_density(alpha=0.5)
+```
 
 
 
