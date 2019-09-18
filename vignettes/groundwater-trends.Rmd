@@ -235,8 +235,54 @@ five_year_differences %>%
 
 ### 1-year change 
 
-Here I look at the change of elevation in one year. I start by looking at the most 
-recent change of elevation, and then compare it 
+Here I look at the change of elevation in one year. In this case I skip looking at 
+a recent year and instead just look at all the cases where there was a subsequent 
+years of the data. Here are the assumptions and requirements for this analysis:
+
+1. site code must have recent data to at least 2018
+2. only subsequent years of data will be taken into account 
+3. when attaching water year types we will always the previous year
+
+```{r}
+wy_types <- 
+  waterYearType::water_year_indices %>% 
+  filter(location == "Sacramento Valley") %>% select(year = WY, type = Yr_type)
+
+one_year_differences <- purrr::map_df(1950:2018, function(y) {
+  # get the start and end years for the calcuation
+  year1 <- y - 1
+  year2 <- y
+  
+  # filter the data to just these two years
+  d <- elevation_data %>% 
+    filter(month(date) %in% 8:11, year(date) %in% c(year1, year2)) 
+  
+  # if there is no data for these two years do not do anything else
+  if (nrow(d) == 0) return(NULL)
+  d2 <- d %>% 
+    mutate(year = ifelse(year(date) == year1, "start_year", "end_year")) %>% 
+    select(-date) %>% 
+    group_by_at(vars(-wse)) %>%  # group by everything other than the value column. 
+    mutate(row_id=1:n()) %>% 
+    ungroup() %>% 
+    spread(year, wse) 
+  
+  if (!("end_year" %in% colnames(d2))) return(NULL)
+  if (!("start_year" %in% colnames(d2))) return(NULL)
+  
+  d2 %>% 
+    mutate(difference = end_year - start_year, 
+           diff_id = paste0(year1, "_", year2)) %>% 
+    filter(!is.na(difference)) %>% 
+    mutate(end_year = year2)
+}) %>% 
+  left_join(wy_types, by = c("end_year" = "year"))
+```
+
+```{r}
+one_year_differences %>% 
+  ggplot(aes(end_year, difference)) + geom_point(alpha=0.7)
+```
 
 
 
