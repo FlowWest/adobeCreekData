@@ -1,0 +1,39 @@
+---
+title: "Adobe Streamflow Model"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Adobe Streamflow Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(adobeCreekData)
+library(tidyverse)
+```
+
+# Introdcuction 
+
+Give a little intro about the the purpose of the model and the overall results.
+
+# Data
+
+Give background information on the data that is used in the model
+
+# Modeling
+
+## Model Training
+
+## Model Evaluation 
+
+## Results
+
+
+# Conclusion
