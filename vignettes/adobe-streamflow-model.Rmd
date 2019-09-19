@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(adobeCreekData)
 library(tidyverse)
+library(lubridate)
 ```
 
 # Introdcuction 
@@ -25,7 +26,45 @@ Give a little intro about the the purpose of the model and the overall results.
 
 # Data
 
-Give background information on the data that is used in the model
+The data being used to develop this model is USGS streamflow data. The following 
+gages were used:
+
+* Highland Creek - 11449010 (1966-1977)
+* Kelsey Creek - 11449500 (1970-present)
+* Adobe Creek - 11448500 (1954-1978)
+
+The Highland Creek gage is below Highland dam, the Adobe Creek gage is above the 
+Adobe Creek dam. All this data is bundled within this data package, more information 
+for each is available with: 
+
+```{r}
+?adobeCreekData::kelsey_creek_flow
+```
+
+In order to calculate Adobe Creek **after** the Highland Creek junction we summed 
+up the two flows. 
+
+```{r}
+adobe_creek_downstream <- 
+  adobeCreekData::adobe_creek_flow %>% 
+  left_join(adobeCreekData::highland_creek_flow, by=c("date" = "date"), 
+            suffix = c("_adobe", "_highland")) %>% 
+  select(date, flow_cfs_highland, flow_cfs_adobe) %>% 
+  mutate(adobe_downstream_cfs = flow_cfs_highland + flow_cfs_adobe) %>% 
+  filter(!is.na(adobe_downstream_cfs))
+```
+
+This resulted in the following streamflow
+
+```{r}
+adobe_creek_downstream %>% 
+  filter(year(date) == 1975, month(date) %in% 2:8) %>% 
+  ggplot() + 
+  geom_line(aes(date, adobe_downstream_cfs, color="Adobe Downstream")) + 
+  geom_line(aes(date, flow_cfs_highland, color="Highland Creek")) + 
+  geom_line(aes(date, flow_cfs_adobe, color="Adobe Creek")) + 
+  labs(x = "Date", y = "Flow (cfs)", color="")
+```
 
 # Modeling Approach
 
