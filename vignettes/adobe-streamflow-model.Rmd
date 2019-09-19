@@ -10,7 +10,9 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>", 
+  message = FALSE, 
+  warning = FALSE
 )
 ```
 
@@ -66,15 +68,63 @@ adobe_creek_downstream %>%
   labs(x = "Date", y = "Flow (cfs)", color="")
 ```
 
+This is the streamflow data we will use to develop this model.
+
 # Modeling Approach
 
-# Modeling
+There is clear correlation between the two creeks, it appears that we can capture
+this relatioship with some form of linear regression. In this section we explore
+several alternatives of regression and select the optimal one.
 
-## Model Training
+```{r}
+flow_data <- adobe_creek_downstream %>% 
+  left_join(kelsey_creek_flow, by=c("date" = "date")) %>% 
+  select(date, flow_cfs_highland, 
+         flow_cfs_adobe, 
+         adobe_downstream_cfs, 
+         kelsey_cfs = flow_cfs) %>% 
+  filter(!is.na(kelsey_cfs))
+
+training_data <- flow_data %>% filter(year(date) != 1975)
+test_data <- flow_data %>% filter(year(date) == 1975)
+```
+
+```{r}
+training_data %>% 
+  ggplot(aes(kelsey_cfs, adobe_downstream_cfs)) + 
+  geom_point(alpha=0.4) + 
+  labs(x = "Kelsey Creek Flow (cfs", y = "Adobe Creek Flow (cfs)")
+```
+
+**Linear Regression**
+
+As we can see
+
+```{r}
+training_data %>% 
+  ggplot(aes(kelsey_cfs, adobe_downstream_cfs)) + 
+  geom_point(alpha=0.4) + 
+  geom_smooth(method = "lm", formula = y ~ x ) + 
+  labs(x = "Kelsey Creek Flow (cfs", y = "Adobe Creek Flow (cfs)") 
+```
+
+```{r}
+lin_reg_model <- lm(adobe_downstream_cfs ~ kelsey_cfs, data = training_data)
+lin_reg_evaluation <- tibble(
+  date = training_data$date, 
+  actuals = training_data$adobe_downstream_cfs, 
+  predicted = fitted(lin_reg_model), 
+  residuals = residuals(lin_reg_model)
+)
+```
+
+```{r}
+lin_reg_evaluation %>% 
+  ggplot(aes(date, residuals)) + geom_point()
+```
 
 ## Model Evaluation 
 
 ## Results
-
 
 # Conclusion
