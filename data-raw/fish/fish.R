@@ -4,13 +4,16 @@ library(lubridate)
 # Results -----------------------------------------------------------------
 
 # read in the data
-years <- c(2005:2018)
-year <- 2005
-for (years in c(2005:2018)) year <- years
-  results_&year <- read_csv("data-raw/fish/lakelive_results"&year".csv")
+lakeslive_results_all <-
+  list.files(path = "./data-raw/fish/",
+    pattern="lakelive_results*",
+    full.names = T) %>%
+  map_df(~read_csv(.))
 
-results_2005 <- read_csv("data-raw/fish/lakelive_results2005.csv")
-results_2005 %>% glimpse()
+#filter adobe creek data only
+
+
+
 
 # parse the data (make columns the corrent data type)
 results_2005 %>%
