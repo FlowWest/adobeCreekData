@@ -11,6 +11,16 @@ lakeslive_results_all <-
   map_df(~read_csv(.))
 
 #filter adobe creek data only
+lakelive_results_adobe <- filter(lakeslive_results_all, creek == "Adobe")
+
+#comments on raw data:
+
+#-"time" entries are missing from certain year entirely
+#-"time" entries are in format H or HH instead of HH:MM
+#-location names are inconsistent: i.e. "Finley East" and "Finley East Road"
+#probably refer to same location. Likewise for "Soda Bay", "Soda Bay Rd", "SBR"
+#-location names are missing
+#"fish" values include "?" and "+" symbols
 
 
 
