@@ -235,18 +235,141 @@ five_year_differences %>%
 
 ### 1-year change 
 
-Here I look at the change of elevation in one year. I start by looking at the most 
-recent change of elevation, and then compare it 
+Here I look at the change of elevation in one year. In this case I skip looking at 
+a recent year and instead just look at all the cases where there was a subsequent 
+years of the data. Here are the assumptions and requirements for this analysis:
 
+1. site code must have recent data to at least 2018
+2. only subsequent years of data will be taken into account 
+3. when attaching water year types to the fall difference we will always use the 
+water year for September. For example even though the difference is from November 1980
+to November 1981, the water year associated with this difference will be 1980.
 
+**How the difference is calcualted**
 
+The difference is calculated by subtracting the "start year" (smaller of the years) 
+from the "end year". This means that a positive value indicates elevation increase
+and a negative value indicates elevation decrease. When looking at the plot, a point
+on 1980 shows the difference between 1979 and 1980. Lastly this subtraction is done 
+on each well, so when looking the plot a single point shows the difference between 
+two years at an individual site code. We can see the spread of the difference values
+for a given year by focusing on one year on the x-axis and observing the range 
+of values on the y-axis.
 
+```{r}
+wy_types <- 
+  waterYearType::water_year_indices %>% 
+  filter(location == "Sacramento Valley") %>% select(year = WY, type = Yr_type)
 
+one_year_differences <- purrr::map_df(1948:2018, function(y) {
+  # get the start and end years for the calcuation
+  year1 <- y - 1
+  year2 <- y
+  
+  # filter the data to just these two years
+  d <- elevation_data %>% 
+    filter(month(date) %in% 8:11, year(date) %in% c(year1, year2)) 
+  
+  # if there is no data for these two years do not do anything else
+  if (nrow(d) == 0) return(NULL)
+  d2 <- d %>% 
+    mutate(year = ifelse(year(date) == year1, "start_year", "end_year")) %>% 
+    select(-date) %>% 
+    group_by_at(vars(-wse)) %>%  # group by everything other than the value column. 
+    mutate(row_id=1:n()) %>% 
+    ungroup() %>% 
+    spread(year, wse) 
+  
+  if (!("end_year" %in% colnames(d2))) return(NULL)
+  if (!("start_year" %in% colnames(d2))) return(NULL)
+  
+  d2 %>% 
+    mutate(difference = end_year - start_year, 
+           diff_id = paste0(year1, "_", year2)) %>% 
+    filter(!is.na(difference)) %>% 
+    mutate(end_year = year2, 
+           start_year = year1)
+}) %>% 
+  left_join(wy_types, by = c("end_year" = "year")) %>% 
+  rename(end_year_type = type) %>% 
+  left_join(wy_types, by = c("start_year" = "year")) %>% 
+  rename(start_year_type = type) %>% 
+  mutate(year_type_change = paste0(start_year_type, " to ", end_year_type))
+```
 
+**By Water Year Type of End Year**
 
+Here I color the code the points by the water year type of the end year. That
+is, when looking at the year 1980 the value indicates the difference between wells
+from 1979 to 1980 but the color shows the water year type for 1980.
 
+```{r}
+one_year_differences %>% 
+  ggplot(aes(end_year, difference, color=end_year_type)) + 
+  geom_point(alpha=0.7) + 
+  labs(title = "Water Year Type of End Year")
+```
 
+**By Water Year Type of Start Year**
 
+Here I color the code the points by the water year type of the start year.
+
+```{r}
+one_year_differences %>% 
+  ggplot(aes(end_year, difference, color=start_year_type)) + 
+  geom_point(alpha=0.7) + 
+  labs(title = "Water Year Type of Start Year")
+```
+
+### Distribution of Elevation Changes
+
+With the water years attached we can do some statistics using these as
+categorical variables. We are mainly interested in significant differences in 
+elevation change as a result of the water year types. (right?)
+
+```{r}
+one_year_differences %>% 
+  ggplot(aes(end_year_type, difference, color=end_year_type)) + 
+  geom_boxplot() + 
+  labs(x = "Year Type", y = "Elevation Change", 
+       title = "Elevation Change Distribution by Water Year Types")
+```
+
+### Distribution of Elevation Changes by Water Year Transitions
+
+In this section I encode the *water year transition types*, that is I just keep 
+track of the water year of the start year and the water year of the end year and
+add this as a column to the dataframe.
+
+**Dry to Wet and Wet to Dry Transitions**
+
+Here I focus on the Wet to Dry and Dry to Wet transitions. 
+
+```{r}
+one_year_differences %>% 
+  filter(year_type_change %in% c("Wet to Dry", "Dry to Wet")) %>% 
+  ggplot(aes(difference, fill=year_type_change, color=year_type_change)) + geom_density(alpha=0.5)
+```
+
+**Critical to Wet and Wet to Critical Transitions**
+
+Here I focus on the Wet to Dry and Dry to Wet transitions. 
+
+```{r}
+one_year_differences %>% 
+  filter(year_type_change %in% c("Wet to Critical", "Critical to Wet")) %>% 
+  ggplot(aes(difference, fill=year_type_change, color=year_type_change)) + geom_density(alpha=0.5)
+```
+
+### Water Year Type Trends
+
+Are there any trends in difference values by water year?
+
+```{r}
+one_year_differences %>% 
+  filter(end_year_type == "Critical") %>% 
+  ggplot(aes(end_year, difference)) + geom_point()
+```
 
 
 
