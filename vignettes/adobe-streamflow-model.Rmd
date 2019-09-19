@@ -27,6 +27,8 @@ Give a little intro about the the purpose of the model and the overall results.
 
 Give background information on the data that is used in the model
 
+# Modeling Approach
+
 # Modeling
 
 ## Model Training
