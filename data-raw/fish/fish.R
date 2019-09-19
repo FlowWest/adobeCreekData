@@ -19,8 +19,8 @@ lakelive_results_adobe <- filter(lakeslive_results_all, creek == "Adobe")
 #-"time" entries are in format H or HH instead of HH:MM
 #-location names are inconsistent: i.e. "Finley East" and "Finley East Road"
 #probably refer to same location. Likewise for "Soda Bay", "Soda Bay Rd", "SBR"
-#-location names are missing
-#"fish" values include "?" and "+" symbols
+#-location names are missing for some observations
+#"fish" values include  symbols ("?", "+", "-"), ranges of numbers ("75-100"), and text strings
 
 
 
