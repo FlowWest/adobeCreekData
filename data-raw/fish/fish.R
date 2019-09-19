@@ -4,6 +4,11 @@ library(lubridate)
 # Results -----------------------------------------------------------------
 
 # read in the data
+years <- c(2005:2018)
+year <- 2005
+for (years in c(2005:2018)) year <- years
+  results_&year <- read_csv("data-raw/fish/lakelive_results"&year".csv")
+
 results_2005 <- read_csv("data-raw/fish/lakelive_results2005.csv")
 results_2005 %>% glimpse()
 
