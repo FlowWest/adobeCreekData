@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 library(adobeCreekData)
 library(tidyverse)
 library(lubridate)
+library(mgcv)
 ```
 
 # Introdcuction 
@@ -113,14 +114,41 @@ lin_reg_model <- lm(adobe_downstream_cfs ~ kelsey_cfs, data = training_data)
 lin_reg_evaluation <- tibble(
   date = training_data$date, 
   actuals = training_data$adobe_downstream_cfs, 
-  predicted = fitted(lin_reg_model), 
+  fitted = fitted(lin_reg_model), 
   residuals = residuals(lin_reg_model)
 )
 ```
 
 ```{r}
 lin_reg_evaluation %>% 
-  ggplot(aes(date, residuals)) + geom_point()
+  ggplot(aes(fitted, residuals)) + geom_point()
+```
+
+**Generalized Additive Model**
+
+```{r}
+gam_model <- gam(adobe_downstream_cfs ~ s(kelsey_cfs, bs = "cs"), data = training_data)
+```
+
+```{r}
+training_data %>% 
+  ggplot(aes(kelsey_cfs, adobe_downstream_cfs)) +
+  geom_point() + 
+  geom_smooth(method="gam", formula = y ~ s(x, bs = "cs"))
+```
+
+```{r}
+gam_evaluation <- tibble(
+  date = training_data$date, 
+  actuals = training_data$adobe_downstream_cfs, 
+  fitted = fitted(gam_model), 
+  residuals = residuals(gam_model)
+)
+
+gam_evaluation %>% 
+  ggplot(aes(fitted, residuals)) + geom_point()
+
+summary(gam_model)
 ```
 
 ## Model Evaluation 

@@ -308,6 +308,16 @@ one_year_differences %>%
   ggplot(aes(end_year, difference, color=end_year_type)) + 
   geom_point(alpha=0.7) + 
   labs(title = "Water Year Type of End Year")
+
+# one_year_differences %>% 
+#   group_by(end_year) %>% 
+#   summarise(
+#     max = max(difference), 
+#     mean = mean(difference),
+#     min = min(difference), 
+#     end_year_type = first(end_year_type)
+#   ) %>% 
+#   ggplot(aes(end_year, mean)) + geom_point(aes(color=end_year_type), size=4) + geom_line()
 ```
 
 **By Water Year Type of Start Year**
@@ -347,7 +357,6 @@ Here I focus on the Wet to Dry and Dry to Wet transitions.
 
 ```{r}
 one_year_differences %>% 
-  filter(year_type_change %in% c("Wet to Dry", "Dry to Wet")) %>% 
   ggplot(aes(difference, fill=year_type_change, color=year_type_change)) + geom_density(alpha=0.5)
 ```
 
@@ -357,7 +366,7 @@ Here I focus on the Wet to Dry and Dry to Wet transitions.
 
 ```{r}
 one_year_differences %>% 
-  filter(year_type_change %in% c("Wet to Critical", "Critical to Wet")) %>% 
+  filter(year_type_change %in% c("Wet to Critical", "Critical to Wet")) 
   ggplot(aes(difference, fill=year_type_change, color=year_type_change)) + geom_density(alpha=0.5)
 ```
 
