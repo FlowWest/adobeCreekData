@@ -2,10 +2,12 @@ library(tidyverse)
 library(lubridate)
 
 # read in the data------------------------------------------------------
-lakelive_results_all <-
+lakelive_results_files <-
   list.files(path = "./data-raw/fish/",
     pattern="lakelive_results*",
-    full.names = T) %>%
+    full.names = T)
+
+lakelive_results_all <- lakelive_results_files %>%
   map_df(~read_csv(.))
 
 # filter adobe creek data only
@@ -46,6 +48,24 @@ lakelive_results_adobe <- lakelive_results_adobe %>%
   )
 
 # make location names uniform
+location_list = c()
+x = c("one" = 1, "two" = 2)
+
+x["one"]
+
+
+lakelive_results_adobe %>%
+  group_by(location) %>%
+  summarise( count = n()) %>%
+  view()
+
+locations_lits
+lakelive_results_adobe <- lakelive_results_adobe %>%
+  mutate(
+    location2 =
+
+
+  )
 
 # plot----------------------------------------------------------------
 
