@@ -57,25 +57,40 @@ lakelive_results_adobe <- lakelive_results_adobe %>%
     location2 = tolower(location)
   )
 
-# create function to help normalize strings
-
-# this function searches for search_criteria in search_column. if TRUE
-# it enters output_string in location3, if FALSE it copies the search_column
-# entry to location3.
-location_fix <- function(search_column, search_criteria, output_string) {
-  mutate(
-    location3 = if_else(grepl(search_criteria, search_column), output_string, search_column)
-  )
-}
-
-# normalize locations beginning with argonaut
-
 # initialize location3 column
 lakelive_results_adobe <- lakelive_results_adobe %>%
   mutate(location3 = NA)
 
+# create function to help normalize strings
+
+# this function searches for search_criteria string in location2 column. if TRUE
+# it enters output_string in location3, if FALSE it leaves location3 as NA.
+location_fix <-
+  function(data_frame, search_criteria, output_string) {
+    if(is.na(location3)) {
+      mutate(
+        location3 = if(
+          grepl(search_criteria, location2)) {output_string}
+      )
+    }
+}
+
+# normalize locations beginning with argonaut
+
+
 lakelive_results_adobe <- lakelive_results_adobe %>%
-  if_else(is.na(location3), location_fix(location2, "^argonaut", "argonaut_rd"), NULL)
+  location_fix("^argonaut", "argonaut_rd")
+
+lakelive_results_adobe <- lakelive_results_adobe %>%
+  if(is.na(location3)) {
+    mutate(
+      location3 = if(
+        grepl(search_criteria, location2)) {output_string}
+   )
+  }
+
+lakelive_results_adobe %>%
+  is.na(location2)
 
 #normalize locations beginning with finley
   mutate(
