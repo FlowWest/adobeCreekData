@@ -24,8 +24,10 @@ lakelive_results_adobe <- filter(lakelive_results_all, creek == "Adobe")
 # and text strings
 
 
-# parse the data (make columns the corrent data type)--------------------
+# parse the data (make columns the correct data type)--------------------
 
+
+# fixing time column -------------------------------
 # paste in :00 to times that only have hours
 
 # is there a function in R that eliminates the need for nested if_else?
@@ -47,7 +49,42 @@ lakelive_results_adobe <- lakelive_results_adobe %>%
     datetime = ymd_hm(paste0(date, " ", time2))
   )
 
-# make location names uniform
+# fixing location column IN PROGRESS ------------------------------------------
+
+# make locations all lowercase
+lakelive_results_adobe <- lakelive_results_adobe %>%
+  mutate(
+    location2 = tolower(location)
+  )
+
+# create function to help normalize strings
+
+# this function searches for search_criteria in search_column. if TRUE
+# it enters output_string in location3, if FALSE it copies the search_column
+# entry to location3.
+location_fix <- function(search_column, search_criteria, output_string) {
+  mutate(
+    location3 = if_else(grepl(search_criteria, search_colum), output_string, search_column)
+  )
+}
+
+# normalize locations beginning with argonaut
+
+# initialize location3 column
+lakelive_results_adobe <- lakelive_results_adobe %>%
+  mutate(location3 = NA)
+
+lakelive_results_adobe <- lakelive_results_adobe %>%
+  if_else(in.na(location3), location_fix(location2, "^argonaut", argonaut_rd), NULL)
+
+#normalize locations beginning with finley
+  mutate(
+    location3 = if_else(grepl("^finley", location2), "finley_east_rd", location2)
+  )
+
+lakelive_results_adobe %>%
+  location3 != location2
+
 location_list = c()
 x = c("one" = 1, "two" = 2)
 
@@ -59,7 +96,6 @@ lakelive_results_adobe %>%
   summarise( count = n()) %>%
   view()
 
-locations_lits
 lakelive_results_adobe <- lakelive_results_adobe %>%
   mutate(
     location2 =
