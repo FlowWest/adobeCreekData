@@ -64,7 +64,7 @@ lakelive_results_adobe <- lakelive_results_adobe %>%
 # entry to location3.
 location_fix <- function(search_column, search_criteria, output_string) {
   mutate(
-    location3 = if_else(grepl(search_criteria, search_colum), output_string, search_column)
+    location3 = if_else(grepl(search_criteria, search_column), output_string, search_column)
   )
 }
 
@@ -75,7 +75,7 @@ lakelive_results_adobe <- lakelive_results_adobe %>%
   mutate(location3 = NA)
 
 lakelive_results_adobe <- lakelive_results_adobe %>%
-  if_else(in.na(location3), location_fix(location2, "^argonaut", argonaut_rd), NULL)
+  if_else(is.na(location3), location_fix(location2, "^argonaut", "argonaut_rd"), NULL)
 
 #normalize locations beginning with finley
   mutate(
