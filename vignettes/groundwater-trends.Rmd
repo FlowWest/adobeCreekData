@@ -265,7 +265,8 @@ one_year_differences %>%
   ggplot(aes(end_year_type, difference, fill = end_year_type)) + 
   geom_boxplot() + 
   coord_flip() + 
-  scale_fill_manual(values = c("#fdae61", "#2b83ba"))
+  scale_fill_manual(values = c("#fdae61", "#2b83ba")) + 
+  labs(fill="Year Type")
 ```
 
 ```{r}
@@ -279,7 +280,51 @@ wet_vs_dry_t_test <- t.test(wet_vals, dry_vals)
 
 *Wet Year vs Critical Year*
 
+```{r}
+one_year_differences %>%
+  filter(end_year_type %in% c("Wet", "Critical"), !is_outlier) %>% 
+  ggplot(aes(end_year_type, difference, fill = end_year_type)) + 
+  geom_boxplot() + 
+  coord_flip() + 
+  scale_fill_manual(values = c("#d7191c", "#2b83ba")) + 
+  labs(fill="Year Type")
+```
+
+```{r}
+crit_vals <- one_year_differences %>% filter(!is_outlier, end_year_type == "Critical") %>%
+  pull(difference)
+
+wet_vs_crit_t_test <- t.test(wet_vals, crit_vals)
+```
+
 *Wet or Above Normal vs Critical, Dry or Below Normal*
+
+#### Question 2: Previous Year Type effect on Elevation Changes
+
+```{r}
+dry_types_to_wet <- one_year_differences %>% 
+  filter(str_detect(year_type_change, "(Dry|Critical) to Wet")) %>% 
+  mutate(is_outlier_for_dry_to_wet = ifelse(difference %in% boxplot(difference, plot=F)$out, T, F))
+
+dry_types_to_wet %>%
+  filter(!is_outlier_for_dry_to_wet) %>% 
+  nrow() # 69
+
+dry_types_to_wet %>% 
+  filter(!is_outlier_for_dry_to_wet) %>% 
+  ggplot(aes(end_year_type, difference)) + geom_boxplot() + 
+  coord_flip()
+
+shapiro.test(dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference)
+
+t.test(dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference)
+t.test(wet_vals)
+```
+
+
+
+
+
 
 ### Distribution of Elevation Changes by Water Year Transitions
 
