@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>", 
-  # echo = FALSE, 
+  echo = FALSE,
   warning = FALSE, 
   message = FALSE
 )
@@ -115,14 +115,19 @@ one_year_differences <- purrr::map_df(1948:2018, function(y) {
   left_join(wy_types, by = c("start_year" = "year")) %>% 
   rename(start_year_type = type) %>% 
   mutate(year_type_change = paste0(start_year_type, " to ", end_year_type)) %>% 
-  filter(!is.na(end_year_type))
+  filter(!is.na(end_year_type)) %>% 
+  group_by(end_year_type) %>% 
+  mutate(is_outlier = ifelse(difference %in% boxplot(difference, plot=FALSE)$out, TRUE, FALSE)) %>% 
+  ungroup()
 ```
 
-**By Water Year Type (of End Year)**
+### Elevation Change Time Series By Water Year Type
 
-Here I color the code the points by the water year type of the end year. That
+Here I color code the points by the water year type of the end year. That
 is, when looking at the year 1980 the value indicates the difference between wells
-from 1979 to 1980 but the color shows the water year type for 1980.
+from 1979 to 1980 but the color shows the water year type for 1980. No obvious patterns
+appear in the data. I instead switch to looking at the distribution of elvetaion changes 
+for each of the water year types.
 
 ```{r}
 one_year_differences %>% 
@@ -138,23 +143,25 @@ one_year_differences %>%
 
 With the water years attached we can do some statistics using these as
 categorical variables. We are mainly interested in significant differences in 
-elevation change as a result of the water year types. Below is a boxplot that shows
-the distribution of elevation change by water year type.
+elevation change as a result of the water year types. In order to do so we need to 
+have enough samples from the each of the water year types.
+
+**Year Type Representation**
 
 ```{r}
 one_year_differences %>% 
-  ggplot(aes(end_year_type, difference, fill=end_year_type)) + 
-  geom_boxplot() + 
-  labs(x = "", y = "Elevation Change", 
-       title = "Elevation Change Distribution by Water Year Types", 
-       fill="") + 
-  scale_fill_brewer(palette = "Spectral")  + 
-  theme(legend.position="bottom")
+  group_by(end_year_type) %>% 
+  summarise(
+    total = n(), 
+    `Percent of data (%)` = round(total/nrow(one_year_differences), 2) * 100
+  ) %>% 
+  rename(`Year Type` = end_year_type, 
+         Total = total) %>% 
+  knitr::kable()
 ```
 
-Clearly there are differences between elevation changes when categorized by 
-year types. In the next section I check whether these differences are statistically 
-significant. 
+Most of the data is from either a Wet or Dry year, but we do have enough samples each of
+the other water years.
 
 #### Significant Differences between year types
 
@@ -172,37 +179,107 @@ Several assumptions must be met before we develop statistical test
 
 #### Question 1: Significant Differences between Year Types
 
-The plan here is to use two sample test to check for significant differences in average elevation 
-change between the water year types.
+In this section I explore the differences between the elevation changes across the different
+water year types. We want to be able to state whether the distributions shown in the boxplots
+below are significantly different from one another. 
 
 ```{r}
 one_year_differences %>% 
-  filter(end_year_type == "Above Normal") %>% 
-  ggplot(aes(sample = difference)) + 
-  stat_qq() + stat_qq_line()
+  ggplot(aes(end_year_type, difference, fill=end_year_type)) + 
+  geom_boxplot() + 
+  labs(x = "", y = "Elevation Change", 
+       title = "Elevation Change Distribution by Water Year Types", 
+       fill="") + 
+  scale_fill_brewer(palette = "Spectral")  + 
+  theme(legend.position="bottom") + 
+  coord_flip()
 
-wet_year_vals <- one_year_differences %>% 
-  filter(end_year_type == "Wet") 
-an_year_vals <- one_year_differences %>% 
-  filter(end_year_type == "Above Normal") %>% pull(difference) 
-bn_year_vals <- one_year_differences %>% 
-  filter(end_year_type == "Below Normal") %>% pull(difference) 
-dry_year_vals <- one_year_differences %>% 
-  filter(end_year_type == "Dry") %>% pull(difference)
-crit_year_vals <- one_year_differences %>% 
-  filter(end_year_type == "Critical") %>% pull(difference)
-
-wet_year_outliers <- boxplot(wet_year_vals$difference, plot = FALSE)
-wet_years_no_outliers <- 
-  wet_year_vals[!(wet_year_vals$difference %in% wet_year_outliers$out), ]
-
-shapiro.test(wet_years_no_outliers$difference)
-
-wet_year_after_dry_vals <- one_year_differences %>% 
-  filter(str_detect(year_type_change, "(Dry|Critical) to (Wet|Above Normal)")) %>% pull(difference)
+one_year_differences %>%
+  filter(!is_outlier) %>% 
+  ggplot(aes(end_year_type, difference, fill=end_year_type)) + 
+  geom_boxplot() + 
+  labs(x = "", y = "Elevation Change", 
+       title = "Elevation Change Distribution by Water Year Types (outliers removed)", 
+       fill="") + 
+  scale_fill_brewer(palette = "Spectral")  + 
+  theme(legend.position="bottom") + 
+  coord_flip()
 ```
 
+The plan here is to use two sample test to check for significant differences. There are several
+assumtpions that need to be satisfied in order for this analysis to be valid, we check these below.
 
+
+**Assumption checks**
+
+_Normality_
+
+From the boxplot we can see that the elevation change across all of the water year
+types are at least symmetrical. There might be some issues from the detected outliers.
+I apply the **Shapiro** test to check for normality before and after removing outliers.
+
+```{r}
+shapiro_results <- one_year_differences %>% 
+  group_by(end_year_type) %>% 
+  summarise(
+    shapiro_pvalue = shapiro.test(difference)$p.value, 
+    total_in_sample = n()
+  ) 
+
+shapiro_no_outliers_results <- one_year_differences %>%
+  filter(!is_outlier) %>% 
+  group_by(end_year_type) %>% 
+  summarise(
+    shapiro_no_outliers_pvalue = shapiro.test(difference)$p.value, 
+    total_in_sample = n()
+  ) 
+
+shapiro_results %>% 
+  left_join(shapiro_no_outliers_results, by = c("end_year_type" = "end_year_type"), 
+            suffix = c("", "_no_outliers")) %>% 
+  gather(type, p_value, shapiro_pvalue, shapiro_no_outliers_pvalue) %>% 
+  mutate(test_pass = p_value > .05, 
+         total_outliers = total_in_sample - total_in_sample_no_outliers) %>% 
+  select(
+    `Water Year Type` = end_year_type, 
+    `Total Sample` = total_in_sample, 
+    `Total Outliers Detected` = total_outliers, 
+    type, test_pass
+  ) %>% 
+  spread(type, test_pass) %>% 
+  rename("Test on Full Sample" = shapiro_pvalue, 
+         "Test with Removed Outliers" = shapiro_no_outliers_pvalue) %>% 
+  knitr::kable()
+```
+
+From the above results we can see that none of the elevation change distrubtions (that include
+the outliers) can be assumed to be normally distributed. When we remove the outliers, counted 
+under the _Total Outliers Detected_ column, then most of the Water Year types can be considered
+normally distribute, with the exception of the Above Normal elevation changes.
+
+*Wet Year vs Dry Year*
+
+```{r}
+one_year_differences %>%
+  filter(end_year_type %in% c("Wet", "Dry"), !is_outlier) %>% 
+  ggplot(aes(end_year_type, difference, fill = end_year_type)) + 
+  geom_boxplot() + 
+  coord_flip() + 
+  scale_fill_manual(values = c("#fdae61", "#2b83ba"))
+```
+
+```{r}
+wet_vals <- one_year_differences %>% filter(!is_outlier, end_year_type == "Wet") %>%
+  pull(difference)
+dry_vals <- one_year_differences %>% filter(!is_outlier, end_year_type == "Dry") %>%
+  pull(difference)
+
+wet_vs_dry_t_test <- t.test(wet_vals, dry_vals)
+```
+
+*Wet Year vs Critical Year*
+
+*Wet or Above Normal vs Critical, Dry or Below Normal*
 
 ### Distribution of Elevation Changes by Water Year Transitions
 
