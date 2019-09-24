@@ -97,8 +97,8 @@
 <h2 class="hasAnchor">
 <a href="#groundwater-well-selection" class="anchor"></a>Groundwater Well Selection</h2>
 <p>We will focus on wells where a groundwater elevation was reported for 2018. This results in 23 candiate wells for analysis. This number will be smaller as we seek to make comparison across years.</p>
-<div id="htmlwidget-fc9d8be379f72da184a8" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fc9d8be379f72da184a8">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[38.96222,38.971933,38.987505,38.9884,38.993,38.994647,38.994679,38.997183,38.997506,39.00357,39.00404,39.0044,39.007004,39.005291,39.007381,39.009652,39.01281,38.94378,38.958677,38.96434,38.9766,39.018588,39.020175],[-122.867223,-122.895905,-122.866551,-122.8936,-122.8687,-122.894686,-122.82226,-122.841335,-122.877074,-122.84271,-122.848964,-122.8434,-122.839639,-122.838267,-122.822292,-122.838395,-122.861743,-122.861025,-122.854461,-122.851532,-122.82878,-122.881273,-122.850014],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[38.94378,39.020175],"lng":[-122.895905,-122.82226]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7c377735893f4ee87460" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7c377735893f4ee87460">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[38.96222,38.971933,38.987505,38.9884,38.993,38.994647,38.994679,38.997183,38.997506,39.00357,39.00404,39.0044,39.007004,39.005291,39.007381,39.009652,39.01281,38.94378,38.958677,38.96434,38.9766,39.018588,39.020175],[-122.867223,-122.895905,-122.866551,-122.8936,-122.8687,-122.894686,-122.82226,-122.841335,-122.877074,-122.84271,-122.848964,-122.8434,-122.839639,-122.838267,-122.822292,-122.838395,-122.861743,-122.861025,-122.854461,-122.851532,-122.82878,-122.881273,-122.850014],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[38.94378,39.020175],"lng":[-122.895905,-122.82226]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="elevation-change" class="section level2">
 <h2 class="hasAnchor">
@@ -242,13 +242,18 @@
 #&gt; data:  dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet,     ]$difference
 #&gt; W = 0.96811, p-value = 0.6206
 #&gt; 
+#&gt;  Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  wet_vals
+#&gt; W = 0.98715, p-value = 0.06844
+#&gt; 
 #&gt;  One Sample t-test
 #&gt; 
 #&gt; data:  dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet,     ]$difference
-#&gt; t = 10.263, df = 23, p-value = 4.671e-10
-#&gt; alternative hypothesis: true mean is not equal to 0
+#&gt; t = 10.263, df = 23, p-value = 2.336e-10
+#&gt; alternative hypothesis: true mean is greater than 0
 #&gt; 95 percent confidence interval:
-#&gt;  3.493179 5.256821
+#&gt;  3.644416      Inf
 #&gt; sample estimates:
 #&gt; mean of x 
 #&gt;     4.375
@@ -256,23 +261,25 @@
 #&gt;  One Sample t-test
 #&gt; 
 #&gt; data:  wet_vals
-#&gt; t = 3.8537, df = 198, p-value = 0.0001572
-#&gt; alternative hypothesis: true mean is not equal to 0
+#&gt; t = 3.8537, df = 198, p-value = 7.858e-05
+#&gt; alternative hypothesis: true mean is greater than 0
 #&gt; 95 percent confidence interval:
-#&gt;  0.6134891 1.8993753
+#&gt;  0.7176344       Inf
 #&gt; sample estimates:
 #&gt; mean of x 
-#&gt;  1.256432</code></pre>
+#&gt;  1.256432
+#&gt; 
+#&gt;  Welch Two Sample t-test
+#&gt; 
+#&gt; data:  wet_vals and dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, wet_vals and     ]$difference
+#&gt; t = -5.811, df = 55.571, p-value = 3.148e-07
+#&gt; alternative hypothesis: true difference in means is not equal to 0
+#&gt; 95 percent confidence interval:
+#&gt;  -4.193821 -2.043315
+#&gt; sample estimates:
+#&gt; mean of x mean of y 
+#&gt;  1.256432  4.375000</code></pre>
 </div>
-</div>
-<div id="distribution-of-elevation-changes-by-water-year-transitions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#distribution-of-elevation-changes-by-water-year-transitions" class="anchor"></a>Distribution of Elevation Changes by Water Year Transitions</h3>
-<p>In this section I encode the <em>water year transition types</em>, that is I just keep track of the water year of the start year and the water year of the end year and add this as a column to the dataframe.</p>
-<p><strong>Dry to Wet and Wet to Dry Transitions</strong></p>
-<p>Here I focus on the Wet to Dry and Dry to Wet transitions.</p>
-<p><img src="groundwater-trends_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
-<p><strong>Critical to Wet and Wet to Critical Transitions</strong></p>
 </div>
 </div>
   </div>

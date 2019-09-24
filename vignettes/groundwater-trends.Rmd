@@ -22,6 +22,7 @@ library(adobeCreekData)
 library(tidyverse)
 library(leaflet)
 library(lubridate)
+library(gridExtra)
 ```
 
 
@@ -250,6 +251,13 @@ shapiro_results %>%
   rename("Test on Full Sample" = shapiro_pvalue, 
          "Test with Removed Outliers" = shapiro_no_outliers_pvalue) %>% 
   knitr::kable()
+# 
+# one_year_differences %>% 
+#   filter(!is_outlier) %>% 
+#   ggplot(aes(difference, fill = end_year_type)) + geom_density() + 
+#   scale_fill_brewer(palette = "Spectral")  + 
+#   facet_grid(end_year_type ~ .) + 
+#   theme(legend.position="bottom")  
 ```
 
 From the above results we can see that none of the elevation change distrubtions (that include
@@ -260,13 +268,21 @@ normally distribute, with the exception of the Above Normal elevation changes.
 *Wet Year vs Dry Year*
 
 ```{r}
-one_year_differences %>%
+p1 <- one_year_differences %>%
   filter(end_year_type %in% c("Wet", "Dry"), !is_outlier) %>% 
   ggplot(aes(end_year_type, difference, fill = end_year_type)) + 
   geom_boxplot() + 
   coord_flip() + 
   scale_fill_manual(values = c("#fdae61", "#2b83ba")) + 
+  labs(fill="Year Type", y = "", x = "")
+
+p2 <- one_year_differences %>%
+  filter(end_year_type %in% c("Wet", "Dry"), !is_outlier) %>% 
+  ggplot(aes(difference, fill = end_year_type)) + geom_density(alpha=0.6) + 
+    scale_fill_manual(values = c("#fdae61", "#2b83ba")) + 
   labs(fill="Year Type")
+
+grid.arrange(p1, p2, nrow = 2)
 ```
 
 ```{r}
@@ -281,13 +297,22 @@ wet_vs_dry_t_test <- t.test(wet_vals, dry_vals)
 *Wet Year vs Critical Year*
 
 ```{r}
-one_year_differences %>%
+p1 <- one_year_differences %>%
   filter(end_year_type %in% c("Wet", "Critical"), !is_outlier) %>% 
   ggplot(aes(end_year_type, difference, fill = end_year_type)) + 
   geom_boxplot() + 
   coord_flip() + 
   scale_fill_manual(values = c("#d7191c", "#2b83ba")) + 
+  labs(fill="Year Type", x = "", y = "")
+
+p2 <- one_year_differences %>%
+  filter(end_year_type %in% c("Wet", "Critical"), !is_outlier) %>% 
+  ggplot(aes(difference, fill = end_year_type)) + geom_density(alpha=0.6) + 
+  scale_fill_manual(values = c("#d7191c", "#2b83ba")) + 
   labs(fill="Year Type")
+
+
+grid.arrange(p1, p2, nrow = 2)
 ```
 
 ```{r}
@@ -306,6 +331,10 @@ dry_types_to_wet <- one_year_differences %>%
   filter(str_detect(year_type_change, "(Dry|Critical) to Wet")) %>% 
   mutate(is_outlier_for_dry_to_wet = ifelse(difference %in% boxplot(difference, plot=F)$out, T, F))
 
+wet_types_to_wet <- one_year_differences %>% 
+  filter(str_detect(year_type_change, "(Wet) to Wet")) %>% 
+  mutate(is_outlier_for_dry_to_wet = ifelse(difference %in% boxplot(difference, plot=F)$out, T, F))
+
 dry_types_to_wet %>%
   filter(!is_outlier_for_dry_to_wet) %>% 
   nrow() # 69
@@ -316,33 +345,12 @@ dry_types_to_wet %>%
   coord_flip()
 
 shapiro.test(dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference)
+shapiro.test(wet_vals)
 
-t.test(dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference)
-t.test(wet_vals)
+t.test(dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference, alternative = "greater")
+t.test(wet_vals, alternative = "greater")
+t.test(wet_vals, dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference)
 ```
-
-
-
-
-
-
-### Distribution of Elevation Changes by Water Year Transitions
-
-In this section I encode the *water year transition types*, that is I just keep 
-track of the water year of the start year and the water year of the end year and
-add this as a column to the dataframe.
-
-**Dry to Wet and Wet to Dry Transitions**
-
-Here I focus on the Wet to Dry and Dry to Wet transitions. 
-
-```{r}
-one_year_differences %>% 
-  ggplot(aes(difference, fill=year_type_change, color=year_type_change)) + geom_density(alpha=0.5)
-```
-
-**Critical to Wet and Wet to Critical Transitions**
-
 
 
 
