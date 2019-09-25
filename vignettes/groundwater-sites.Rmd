@@ -1,0 +1,97 @@
+---
+title: "Adobe Creek Groundwater Sites"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Adobe Creek Groundwater Sites}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  echo = FALSE, 
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+```{r setup}
+library(adobeCreekData)
+library(leaflet)
+library(tidyverse)
+library(lubridate)
+```
+
+# Introduction 
+
+This short article describes the groundwater site codes for the Adobe Creek Groundwater Project. 
+
+## All Sites within the Big Valley Subasin
+
+The data used is a result from making a query for all groundwater sites within the 
+the Big Valley Subasin on the CASGEM data portal.
+
+```{r}
+groundwater_stations %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$OpenTopoMap) %>% 
+  addCircleMarkers(
+    color = "black", weight = 2,
+    fillColor = "#2b83ba", fillOpacity = .8
+  ) 
+```
+
+```{r}
+total_stations <- groundwater_stations %>% nrow()
+earliest_recording <- groundwater_stations$start_date %>% min()
+latest_recording <- groundwater_stations$end_date %>% max()
+most_abundant_years <- groundwater_levels %>% 
+  group_by(year = year(measurement_date)) %>%
+  summarise(total = n())
+
+most_abundant_months <- groundwater_levels %>% 
+  group_by(month = factor(month.abb[month(measurement_date)], levels = month.abb)) %>% 
+  summarise(
+    prop = n()/nrow(groundwater_levels), 
+    avg_value = mean(wse), 
+    med_value = median(wse)
+  )
+  
+```
+
+In total there are `r total_stations` sites in the Big Valley basin. The earlier recorded data
+is from `r format(earliest_recording, "%B %d, %Y")`, and the most recent recording is from 
+`r format(latest_recording, "%B %d, %Y")`. The most abundant years of data are:
+
+<br>
+
+```{r}
+most_abundant_years %>% 
+  ggplot(aes(year, total)) + 
+  geom_col(color="white") + 
+  scale_x_continuous(breaks = seq(1950, 2019, by = 5)) + 
+  labs(title = "Total Observations per year", x = "", y = "Total")
+```
+
+Measurements of groundwater elevations is done twice a year, once in the Spring and 
+once in the Fall. However Spring and Fall are not a consitent month. The plot below shows
+how the data observations are distributed across the months. I present the data as
+proportions (for example October accounts for over 30% of all the data we have).
+
+
+```{r}
+most_abundant_months %>% 
+  ggplot(aes(month, prop)) + geom_col() + 
+  labs(title = "Abundance of Data by Month (proportions)", 
+       x = "", y = "Proportion")
+```
+
+## Sites Along Adobe Creek 
+
+The sites we are interested in exploring are shown below.
+
+![sites-along-adobe](adobe-creek-sites.png)
+
+
