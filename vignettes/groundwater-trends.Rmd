@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>", 
-  # echo = FALSE, 
+  echo = FALSE,
   warning = FALSE, 
   message = FALSE
 )
@@ -22,15 +22,16 @@ library(adobeCreekData)
 library(tidyverse)
 library(leaflet)
 library(lubridate)
+library(gridExtra)
 ```
 
 
 ## Introduction 
 
-In this article I explore groundwater elevation trends, we are mostly interested
-in elevation difference across 10 years, 5 years and recent year. We also only look 
-at groundwater wells where data was reported recently (2018). The comparison will
-focus on the elevation for Fall values (August-November).
+In this article I explore groundwater elevation trends, we are interested in exploring 
+elevation differences by water year. We will focus only on wells that have had recent
+measurements. Ultimately we would like to develop confidence intervals for elevation change
+based on the characteristics of a water year. 
 
 
 ## Groundwater Well Selection 
@@ -55,189 +56,10 @@ groundwater_stations %>%
   addCircleMarkers() 
 ```
 
+## Elevation Change
 
-
-## Elevation Differences 
-
-### 10 years 
-
-For the ten year difference I look at the 2018 elevation minus the 2008 elevation.
-Not all wells are represented in this difference, of the 23 only 21 have values for 
-both 2008 and 2018.
-
-```{r}
-ten_year_difference <- elevation_data %>% 
-  filter(month(date) %in% 8:11, year(date) %in% c(2018, 2008)) %>% 
-  mutate(year = year(date)) %>% 
-  select(-date) %>% 
-  spread(year, wse) %>% 
-  mutate(difference = `2018` - `2008`) %>% 
-  filter(!is.na(difference))
-
-ten_year_difference %>% 
-  ggplot(aes(difference)) + geom_histogram(binwidth = 4, color="#949494") + 
-  labs(title = "Elevation Change 2008 to 2018", 
-       x = "Elevation Difference (feet)")
-```
-
-```{r}
-ten_year_difference_with_lat_long <- 
-  ten_year_difference %>% 
-  left_join(stations_with_recent_data, by=c("site_code"="site_code"))
-
-difference_2008_2018_pal <- colorNumeric("Spectral", 
-                                         ten_year_difference_with_lat_long$difference)
-
-ten_year_difference_with_lat_long %>% 
-  leaflet() %>% 
-  addTiles() %>% 
-  addCircleMarkers(fillColor = ~difference_2008_2018_pal(difference), 
-                   color="#666666", weight = 2, fillOpacity = 1, 
-                   popup = ~paste0("Elevation Change: ", round(difference, 1))) %>% 
-  addLegend(values = ~difference, pal=difference_2008_2018_pal)
-```
-
-
-As is shown in the histogram most of values are close to zero, with two pontential 
-outliers on both sides. To determine if these are in fact outliers we will need to 
-explore differences across multiple decades. In the section below I do exactly this, 
-iterate through all decades in the data compute differences at these wells. 
-
-```{r}
-decade_differences <- purrr::map_df(1980:2018, function(y) {
-  year1 <- y - 10
-  year2 <- y
-  
-  elevation_data %>% 
-    filter(month(date) %in% 8:11, year(date) %in% c(year1, year2)) %>% 
-    mutate(year = ifelse(year(date) == year1, "start_year", "end_year")) %>% 
-    select(-date) %>% 
-    group_by_at(vars(-wse)) %>%  # group by everything other than the value column. 
-    mutate(row_id=1:n()) %>% ungroup() %>% 
-  spread(year, wse) %>% 
-    mutate(difference = end_year - start_year, 
-           diff_id = paste0(year1, "_", year2), 
-           end_year = year2) %>% 
-    filter(!is.na(difference))
-}) %>% left_join(stations_with_recent_data, by=c("site_code"="site_code"))
-
-```
-
-```{r}
-decade_differences %>% 
-  ggplot(aes(difference)) + geom_histogram() + 
-  labs(x = "Decade Differences (feet)", 
-       title = "Decade Elevation Changes (1980-2018)") 
-```
-
-The above is showing all decade differences for all wells that have recent data.
-The shape is very similar to what we saw in the 2008 to 2018 change, the outliers
-however are just tail ends to this larger distribution.
-
-```{r}
-decade_differences_avg <- 
-  decade_differences %>% 
-  group_by(site_code) %>% 
-  summarise(
-    avg_diff = mean(difference, na.rm = TRUE), 
-    lat = first(lat), 
-    lng = first(lng)
-  )
-
-decade_differences_pal <- colorNumeric("Spectral", 
-                                       domain = decade_differences_avg$avg_diff)
-
-decade_differences_avg %>% 
-  leaflet() %>% 
-  addTiles() %>% 
-  addCircleMarkers(fillColor = ~decade_differences_pal(avg_diff), 
-                   fillOpacity = 1, 
-                   color = "#666666", weight = 2, 
-                   popup = ~paste0("Avg Difference: ", round(avg_diff))) %>% 
-  addLegend(pal = decade_differences_pal, values = ~avg_diff)
-```
-
-We can explore if there is any trend in the data by plotting the these differences
-on a scatter plot. 
-
-```{r}
-decade_differences %>% 
-  ggplot(aes(end_year, difference)) + geom_point(alpha=0.5) + 
-  geom_smooth()
-```
-
-### 5 years
-
-For the 5 year difference I look at the elevation change between 2012 and 2017.
-The distrubution is once again clustered around 0. We can get a better picture of 
-what a 5 year change looks like by iterating through all possible 5 year changes.
-
-
-```{r}
-five_year_difference <- elevation_data %>% 
-  filter(month(date) %in% 8:11, year(date) %in% c(2017, 2012)) %>% 
-  mutate(year = year(date)) %>% 
-  select(-date) %>% 
-  spread(year, wse) %>% 
-  mutate(difference = `2017` - `2012`) %>% 
-  filter(!is.na(difference))
-
-five_year_difference %>% 
-  ggplot(aes(difference)) + geom_histogram(binwidth = 4, color="#949494") + 
-  labs(title = "Elevation Change 2013 to 2018", 
-       x = "Elevation Difference (feet)")
-```
-
-
-```{r}
-five_year_differences <- purrr::map_df(1980:2018, function(y) {
-  year1 <- y - 5
-  year2 <- y
-  
-  elevation_data %>% 
-    filter(month(date) %in% 8:11, year(date) %in% c(year1, year2)) %>% 
-    mutate(year = ifelse(year(date) == year1, "start_year", "end_year")) %>% 
-    select(-date) %>% 
-    group_by_at(vars(-wse)) %>%  # group by everything other than the value column. 
-    mutate(row_id=1:n()) %>% ungroup() %>% 
-  spread(year, wse) %>% 
-    mutate(difference = end_year - start_year, 
-           diff_id = paste0(year1, "_", year2), 
-           end_year = year2) %>% 
-    filter(!is.na(difference))
-})
-
-```
-
-```{r}
-five_year_differences %>% 
-  ggplot(aes(difference)) + geom_histogram() + 
-  labs(x = "5-year Differences (feet)", 
-       title = "5-year Elevation Changes (1980-2018)") 
-```
-
-The above is showing all decade differences for all wells that have recent data.
-The shape is very similar to what we saw in the 10 year difference, fairly
-symmetrical around 0. At first glance its pretty obvious that we would not have
-sufficient evidence to disprove a null hypothesis stating no change in elevation 
-has happened.
-
-We can explore if there is any trend in the data by plotting the these differences
-on a scatter plot. 
-
-```{r}
-five_year_differences %>% 
-  ggplot(aes(end_year, difference)) + geom_point(alpha=0.5) + 
-  geom_smooth() + 
-  scale_x_continuous(breaks = seq(1980, 2018, by = 5))
-```
-
-
-### 1-year change 
-
-Here I look at the change of elevation in one year. In this case I skip looking at 
-a recent year and instead just look at all the cases where there was a subsequent 
-years of the data. Here are the assumptions and requirements for this analysis:
+Here I look at the change of elevation in one year. Here are the assumptions and requirements for
+this analysis:
 
 1. site code must have recent data to at least 2018
 2. only subsequent years of data will be taken into account 
@@ -284,8 +106,7 @@ one_year_differences <- purrr::map_df(1948:2018, function(y) {
   if (!("start_year" %in% colnames(d2))) return(NULL)
   
   d2 %>% 
-    mutate(difference = end_year - start_year, 
-           diff_id = paste0(year1, "_", year2)) %>% 
+    mutate(difference = end_year - start_year) %>% 
     filter(!is.na(difference)) %>% 
     mutate(end_year = year2, 
            start_year = year1)
@@ -294,87 +115,242 @@ one_year_differences <- purrr::map_df(1948:2018, function(y) {
   rename(end_year_type = type) %>% 
   left_join(wy_types, by = c("start_year" = "year")) %>% 
   rename(start_year_type = type) %>% 
-  mutate(year_type_change = paste0(start_year_type, " to ", end_year_type))
+  mutate(year_type_change = paste0(start_year_type, " to ", end_year_type)) %>% 
+  filter(!is.na(end_year_type)) %>% 
+  group_by(end_year_type) %>% 
+  mutate(is_outlier = ifelse(difference %in% boxplot(difference, plot=FALSE)$out, TRUE, FALSE)) %>% 
+  ungroup()
 ```
 
-**By Water Year Type of End Year**
+### Elevation Change Time Series By Water Year Type
 
-Here I color the code the points by the water year type of the end year. That
+Here I color code the points by the water year type of the end year. That
 is, when looking at the year 1980 the value indicates the difference between wells
-from 1979 to 1980 but the color shows the water year type for 1980.
+from 1979 to 1980 but the color shows the water year type for 1980. No obvious patterns
+appear in the data. I instead switch to looking at the distribution of elvetaion changes 
+for each of the water year types.
 
 ```{r}
 one_year_differences %>% 
   ggplot(aes(end_year, difference, color=end_year_type)) + 
   geom_point(alpha=0.7) + 
-  labs(title = "Water Year Type of End Year")
-```
-
-**By Water Year Type of Start Year**
-
-Here I color the code the points by the water year type of the start year.
-
-```{r}
-one_year_differences %>% 
-  ggplot(aes(end_year, difference, color=start_year_type)) + 
-  geom_point(alpha=0.7) + 
-  labs(title = "Water Year Type of Start Year")
+  labs(title = "Water Year Type of End Year", color="", x = "", 
+       y = "Elevation Change") + 
+  scale_color_brewer(palette = "Spectral") + 
+  theme(legend.position="bottom")
 ```
 
 ### Distribution of Elevation Changes
 
 With the water years attached we can do some statistics using these as
 categorical variables. We are mainly interested in significant differences in 
-elevation change as a result of the water year types. (right?)
+elevation change as a result of the water year types. In order to do so we need to 
+have enough samples from the each of the water year types.
+
+**Year Type Representation**
 
 ```{r}
 one_year_differences %>% 
-  ggplot(aes(end_year_type, difference, color=end_year_type)) + 
+  group_by(end_year_type) %>% 
+  summarise(
+    total = n(), 
+    `Percent of data (%)` = round(total/nrow(one_year_differences), 2) * 100
+  ) %>% 
+  rename(`Year Type` = end_year_type, 
+         Total = total) %>% 
+  knitr::kable()
+```
+
+Most of the data is from either a Wet or Dry year, but we do have enough samples each of
+the other water years.
+
+#### Significant Differences between year types
+
+In this section I analyze the distribution of elevation change between the water year
+types. In particular we are interested in answering the following questions: 
+
+1. Is there a significant difference between dry years (dry, critical) and wet years
+(Abobe Normal, Wet).
+2. Does the water year type of the previous affect the elevation change? If so how much?
+3. Given a water year type is there a range of expected elevation change we can anticipate?
+4. For all of the above, if we can't answer then question now, what additional data would 
+we need to do so?
+
+Several assumptions must be met before we develop statistical test
+
+#### Question 1: Significant Differences between Year Types
+
+In this section I explore the differences between the elevation changes across the different
+water year types. We want to be able to state whether the distributions shown in the boxplots
+below are significantly different from one another. 
+
+```{r}
+one_year_differences %>% 
+  ggplot(aes(end_year_type, difference, fill=end_year_type)) + 
   geom_boxplot() + 
-  labs(x = "Year Type", y = "Elevation Change", 
-       title = "Elevation Change Distribution by Water Year Types")
+  labs(x = "", y = "Elevation Change", 
+       title = "Elevation Change Distribution by Water Year Types", 
+       fill="") + 
+  scale_fill_brewer(palette = "Spectral")  + 
+  theme(legend.position="bottom") + 
+  coord_flip()
+
+one_year_differences %>%
+  filter(!is_outlier) %>% 
+  ggplot(aes(end_year_type, difference, fill=end_year_type)) + 
+  geom_boxplot() + 
+  labs(x = "", y = "Elevation Change", 
+       title = "Elevation Change Distribution by Water Year Types (outliers removed)", 
+       fill="") + 
+  scale_fill_brewer(palette = "Spectral")  + 
+  theme(legend.position="bottom") + 
+  coord_flip()
 ```
 
-### Distribution of Elevation Changes by Water Year Transitions
+The plan here is to use two sample test to check for significant differences. There are several
+assumtpions that need to be satisfied in order for this analysis to be valid, we check these below.
 
-In this section I encode the *water year transition types*, that is I just keep 
-track of the water year of the start year and the water year of the end year and
-add this as a column to the dataframe.
 
-**Dry to Wet and Wet to Dry Transitions**
+**Assumption checks**
 
-Here I focus on the Wet to Dry and Dry to Wet transitions. 
+_Normality_
+
+From the boxplot we can see that the elevation change across all of the water year
+types are at least symmetrical. There might be some issues from the detected outliers.
+I apply the **Shapiro** test to check for normality before and after removing outliers.
 
 ```{r}
-one_year_differences %>% 
-  filter(year_type_change %in% c("Wet to Dry", "Dry to Wet")) %>% 
-  ggplot(aes(difference, fill=year_type_change, color=year_type_change)) + geom_density(alpha=0.5)
+shapiro_results <- one_year_differences %>% 
+  group_by(end_year_type) %>% 
+  summarise(
+    shapiro_pvalue = shapiro.test(difference)$p.value, 
+    total_in_sample = n()
+  ) 
+
+shapiro_no_outliers_results <- one_year_differences %>%
+  filter(!is_outlier) %>% 
+  group_by(end_year_type) %>% 
+  summarise(
+    shapiro_no_outliers_pvalue = shapiro.test(difference)$p.value, 
+    total_in_sample = n()
+  ) 
+
+shapiro_results %>% 
+  left_join(shapiro_no_outliers_results, by = c("end_year_type" = "end_year_type"), 
+            suffix = c("", "_no_outliers")) %>% 
+  gather(type, p_value, shapiro_pvalue, shapiro_no_outliers_pvalue) %>% 
+  mutate(test_pass = p_value > .05, 
+         total_outliers = total_in_sample - total_in_sample_no_outliers) %>% 
+  select(
+    `Water Year Type` = end_year_type, 
+    `Total Sample` = total_in_sample, 
+    `Total Outliers Detected` = total_outliers, 
+    type, test_pass
+  ) %>% 
+  spread(type, test_pass) %>% 
+  rename("Test on Full Sample" = shapiro_pvalue, 
+         "Test with Removed Outliers" = shapiro_no_outliers_pvalue) %>% 
+  knitr::kable()
+# 
+# one_year_differences %>% 
+#   filter(!is_outlier) %>% 
+#   ggplot(aes(difference, fill = end_year_type)) + geom_density() + 
+#   scale_fill_brewer(palette = "Spectral")  + 
+#   facet_grid(end_year_type ~ .) + 
+#   theme(legend.position="bottom")  
 ```
 
-**Critical to Wet and Wet to Critical Transitions**
+From the above results we can see that none of the elevation change distrubtions (that include
+the outliers) can be assumed to be normally distributed. When we remove the outliers, counted 
+under the _Total Outliers Detected_ column, then most of the Water Year types can be considered
+normally distribute, with the exception of the Above Normal elevation changes.
 
-Here I focus on the Wet to Dry and Dry to Wet transitions. 
+*Wet Year vs Dry Year*
 
 ```{r}
-one_year_differences %>% 
-  filter(year_type_change %in% c("Wet to Critical", "Critical to Wet")) %>% 
-  ggplot(aes(difference, fill=year_type_change, color=year_type_change)) + geom_density(alpha=0.5)
+p1 <- one_year_differences %>%
+  filter(end_year_type %in% c("Wet", "Dry"), !is_outlier) %>% 
+  ggplot(aes(end_year_type, difference, fill = end_year_type)) + 
+  geom_boxplot() + 
+  coord_flip() + 
+  scale_fill_manual(values = c("#fdae61", "#2b83ba")) + 
+  labs(fill="Year Type", y = "", x = "")
+
+p2 <- one_year_differences %>%
+  filter(end_year_type %in% c("Wet", "Dry"), !is_outlier) %>% 
+  ggplot(aes(difference, fill = end_year_type)) + geom_density(alpha=0.6) + 
+    scale_fill_manual(values = c("#fdae61", "#2b83ba")) + 
+  labs(fill="Year Type")
+
+grid.arrange(p1, p2, nrow = 2)
 ```
-
-### Water Year Type Trends
-
-Are there any trends in difference values by water year?
 
 ```{r}
-one_year_differences %>% 
-  filter(end_year_type == "Critical") %>% 
-  ggplot(aes(end_year, difference)) + geom_point()
+wet_vals <- one_year_differences %>% filter(!is_outlier, end_year_type == "Wet") %>%
+  pull(difference)
+dry_vals <- one_year_differences %>% filter(!is_outlier, end_year_type == "Dry") %>%
+  pull(difference)
+
+wet_vs_dry_t_test <- t.test(wet_vals, dry_vals)
 ```
 
+*Wet Year vs Critical Year*
+
+```{r}
+p1 <- one_year_differences %>%
+  filter(end_year_type %in% c("Wet", "Critical"), !is_outlier) %>% 
+  ggplot(aes(end_year_type, difference, fill = end_year_type)) + 
+  geom_boxplot() + 
+  coord_flip() + 
+  scale_fill_manual(values = c("#d7191c", "#2b83ba")) + 
+  labs(fill="Year Type", x = "", y = "")
+
+p2 <- one_year_differences %>%
+  filter(end_year_type %in% c("Wet", "Critical"), !is_outlier) %>% 
+  ggplot(aes(difference, fill = end_year_type)) + geom_density(alpha=0.6) + 
+  scale_fill_manual(values = c("#d7191c", "#2b83ba")) + 
+  labs(fill="Year Type")
 
 
+grid.arrange(p1, p2, nrow = 2)
+```
 
+```{r}
+crit_vals <- one_year_differences %>% filter(!is_outlier, end_year_type == "Critical") %>%
+  pull(difference)
 
+wet_vs_crit_t_test <- t.test(wet_vals, crit_vals)
+```
+
+*Wet or Above Normal vs Critical, Dry or Below Normal*
+
+#### Question 2: Previous Year Type effect on Elevation Changes
+
+```{r}
+dry_types_to_wet <- one_year_differences %>% 
+  filter(str_detect(year_type_change, "(Dry|Critical) to Wet")) %>% 
+  mutate(is_outlier_for_dry_to_wet = ifelse(difference %in% boxplot(difference, plot=F)$out, T, F))
+
+wet_types_to_wet <- one_year_differences %>% 
+  filter(str_detect(year_type_change, "(Wet) to Wet")) %>% 
+  mutate(is_outlier_for_dry_to_wet = ifelse(difference %in% boxplot(difference, plot=F)$out, T, F))
+
+dry_types_to_wet %>%
+  filter(!is_outlier_for_dry_to_wet) %>% 
+  nrow() # 69
+
+dry_types_to_wet %>% 
+  filter(!is_outlier_for_dry_to_wet) %>% 
+  ggplot(aes(end_year_type, difference)) + geom_boxplot() + 
+  coord_flip()
+
+shapiro.test(dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference)
+shapiro.test(wet_vals)
+
+t.test(dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference, alternative = "greater")
+t.test(wet_vals, alternative = "greater")
+t.test(wet_vals, dry_types_to_wet[!dry_types_to_wet$is_outlier_for_dry_to_wet, ]$difference)
+```
 
 
 
