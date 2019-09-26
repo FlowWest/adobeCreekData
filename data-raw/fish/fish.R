@@ -66,35 +66,61 @@ lakelive_results_adobe2 <- lakelive_results_adobe %>%
 
 # fixing "fish" column IN PROGRESS--------------------------------------
 
+# get rid of extraneous characters and notes typed in fish column
+# and extract lower range of fish numbers when range is given
 lakelive_results_adobe3 <- lakelive_results_adobe2 %>%
   mutate(fish2 = case_when(
-    str_detect(fish, "([\\+ \\- \\( \\) \\?]{3})") & (str_length(fish) > 3)
+    str_detect(fish, "([a-z]{4})") & (str_length(fish) > 4)
+    ~ NA_character_,
+    str_detect(fish, "([/ \\+ \\- \\( \\) \\? s]{3})") & (str_length(fish) > 3)
     ~ str_sub(fish, 1, -4),
-    str_detect(fish, "([\\+ \\- \\( \\) \\?]{2})") & (str_length(fish) > 2)
+    str_detect(fish, "([/ \\+ \\- \\( \\) \\? s]{2})") & (str_length(fish) > 2)
     ~ str_sub(fish, 1, -3),
-    str_detect(fish, "[\\+ \\- \\( \\) \\?]$") & (str_length(fish) > 1)
+    str_detect(fish, "[/ \\+ \\- \\( \\) \\? s]$") & (str_length(fish) > 1)
     ~ str_sub(fish, 1, -2),
     str_detect(fish, "\\d\\-\\d")
-    ~ str_sub(fish, 1, str_locate(fish, "-")[[1]][1]-1)
+    ~ sapply(strsplit(fish, "-"), '[', 1),
+    str_detect(fish, "\\d")
+    ~ fish
   ))
 
-str_sub("100-200", 1, str_locate("100-200", "-")[[1]][1]-1)
-
-#regular expression syntax seems to mess with function arguments
-
-lakelive_results_adobe3 <- lakelive_results_adobe2 %>%
-  mutate(fish2 = case_when(
-    str_detect(fish, "^\?") ~ NA,
-    str_detect(fish, "[+-]$") ~ "test"
+# create another column for cases where range of fish numbers are given
+# to hold upper range of fish
+lakelive_results_adobe4 <- lakelive_results_adobe3 %>%
+  mutate(fish3 = case_when(
+    str_detect(fish, "([a-z]{4})") & (str_length(fish) > 4)
+    ~ NA_character_,
+    str_detect(fish, "\\d\\-\\d")
+    ~ sapply(strsplit(fish, "-"), '[', 2)
   ))
-substr(fish, 1, str_length(fish)-1)
-lakelive_results_adobe2 %>%
-  mutate(
-    fish2 = substr(fish, 1, str_length(fish)-1))
 
-str_detect(lakelive_results_adobe2$fish, "[+-]$")
+#create numeric columns and calculate average in cases where range of fish was given
+lakelive_results_adobe5 <- lakelive_results_adobe4 %>%
+  mutate(fish2n = as.numeric(fish2)) %>%
+  mutate(fish3n = as.numeric(fish3))
 
+lakelive_results_adobe6 <- lakelive_results_adobe5 %>%
+  mutate(fish4 =
+          case_when(
+             !is.na(fish3n) ~ (fish3n + fish2n) / 2,
+             is.na(fish3n) ~ fish2n
+          )
+  )
+
+# compile results into simplified table. time is ignored.
+
+lakelive_results_adobe_final <- lakelive_results_adobe6 %>%
+  select(creek, date2, location3, fish4, observer, comments) %>%
+  mutate(date=date2) %>%
+  mutate(location = location3) %>%
+  mutate(fish = fish4) %>%
+  select(creek, date, location, fish, observer, comments)
 
 # plot----------------------------------------------------------------
 
+ggplot(lakelive_results_adobe_final, aes(date, fish)) +
+  geom_point()
+
 # write data------------------------------------------------------------
+
+
