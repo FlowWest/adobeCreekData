@@ -68,10 +68,26 @@ lakelive_results_adobe2 <- lakelive_results_adobe %>%
 
 lakelive_results_adobe3 <- lakelive_results_adobe2 %>%
   mutate(fish2 = case_when(
-    str_detect(fish, "^\?") ~ NA,
-    str_detect(fish, "[+-]$") ~ substr(fish, 1, str_length(fish)-1)
+    str_detect(fish, "([\\+ \\- \\( \\) \\?]{3})") & (str_length(fish) > 3)
+    ~ str_sub(fish, 1, -4),
+    str_detect(fish, "([\\+ \\- \\( \\) \\?]{2})") & (str_length(fish) > 2)
+    ~ str_sub(fish, 1, -3),
+    str_detect(fish, "[\\+ \\- \\( \\) \\?]$") & (str_length(fish) > 1)
+    ~ str_sub(fish, 1, -2),
+    str_detect(fish, "\\d\\-\\d")
+    ~ str_sub(fish, 1, str_locate(fish, "-")[[1]][1]-1)
   ))
 
+str_sub("100-200", 1, str_locate("100-200", "-")[[1]][1]-1)
+
+#regular expression syntax seems to mess with function arguments
+
+lakelive_results_adobe3 <- lakelive_results_adobe2 %>%
+  mutate(fish2 = case_when(
+    str_detect(fish, "^\?") ~ NA,
+    str_detect(fish, "[+-]$") ~ "test"
+  ))
+substr(fish, 1, str_length(fish)-1)
 lakelive_results_adobe2 %>%
   mutate(
     fish2 = substr(fish, 1, str_length(fish)-1))
