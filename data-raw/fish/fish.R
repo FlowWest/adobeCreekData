@@ -1,3 +1,4 @@
+library(adobeCreekData)
 library(tidyverse)
 library(lubridate)
 
@@ -110,11 +111,7 @@ lakelive_results_adobe6 <- lakelive_results_adobe5 %>%
 # compile results into simplified table. time is ignored.
 
 lakelive_results_adobe_final <- lakelive_results_adobe6 %>%
-  select(creek, date2, location3, fish4, observer, comments) %>%
-  mutate(date=date2) %>%
-  mutate(location = location3) %>%
-  mutate(fish = fish4) %>%
-  select(creek, date, location, fish, observer, comments)
+  transmute( creek, location = location3, date = date2, fish = fish4, observer, comments)
 
 # plot----------------------------------------------------------------
 
