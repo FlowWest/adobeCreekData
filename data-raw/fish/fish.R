@@ -93,7 +93,8 @@ lakelive_results_adobe3 <- lakelive_results_adobe2 %>%
     ~ fish
   ))
 
-# @NICK try this regex out str_match("19-78", "([0-9]+$)|(([0-9]+)-([0-9]+))")
+# @NICK try this regex outstr_match("700+", "([0-9]+$)|(([0-9]+)-([0-9]+))")
+readr::parse_number("700s")
 
 # create another column for cases where range of fish numbers are given
 # to hold upper range of fish
@@ -133,6 +134,13 @@ ggplot(lakelive_results_adobe_final, aes(date, fish)) +
 # @NICK for now just use write_csv(lakelive_results_adobe_final,"data-raw/hitch-counts-2005-2019.csv")
 # @NICK overall this look great! I really appreciate all of the regex work it's a great
 # skill to have when wrangling data.
+
+write_csv(lakelive_results_adobe_final, "data-raw/fish/adobe-hitch-counts-2005-2018.csv")
+hitch_counts <- lakelive_results_adobe_final
+usethis::use_data(hitch_counts, overwrite = TRUE)
+
+
+
 
 
 

@@ -153,6 +153,14 @@
 "ceden_water_quality"
 
 
+#' @title Hitch Counts
+#' @description longer
+#' \describe{
+#'   \item{origin_id}{program or orgnization collecting data}
+#' }
+#' @details
+#' details abpout the data
+"hitch_counts"
 
 
 
