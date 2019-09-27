@@ -41,8 +41,16 @@ results in 23 candiate wells for analysis. This number will be smaller as we see
 to make comparison across years.
 
 ```{r}
+sites_near_adobe <- c("389535N1228968W001", "389569N1228885W001", "389592N1228971W001", 
+                      "389726N1228847W001", "389797N1228831W001", "389796N1228819W002", 
+                      "389778N1228732W001", "389868N1228802W001", "389930N1228687W001", 
+                      "389940N1228706W001", "389937N1228718W001", "389937N1228751W001", 
+                      "389975N1228770W001", "390041N1228801W001", "390149N1228719W001", 
+                      "390175N1228682W001")
+
 stations_with_recent_data <- groundwater_stations %>% 
-  filter(year(end_date) >= 2018) 
+  filter(site_code %in% sites_near_adobe)
+  # filter(year(end_date) >= 2018) 
 
 elevation_data <- groundwater_levels %>% 
   filter(site_code %in% stations_with_recent_data$site_code) %>% 
@@ -50,7 +58,7 @@ elevation_data <- groundwater_levels %>%
 
 
 groundwater_stations %>% 
-  filter(year(end_date) >= 2018) %>% 
+  filter(site_code %in% sites_near_adobe) %>% 
   leaflet() %>% 
   addTiles() %>% 
   addCircleMarkers() 

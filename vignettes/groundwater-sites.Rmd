@@ -141,6 +141,7 @@ most_abundant_years_near_abobe <- groundwater_levels_near_adobe %>%
 most_abundant_months_near_abobe <- groundwater_levels_near_adobe %>% 
   group_by(month = factor(month.abb[month(measurement_date)], levels = month.abb)) %>% 
   summarise(
+    total = n(),
     prop = n()/nrow(groundwater_levels_near_adobe), 
     avg_value = mean(wse), 
     med_value = median(wse)
@@ -170,9 +171,10 @@ proportions (for example October accounts for over 30% of all the data we have).
 
 ```{r}
 most_abundant_months_near_abobe %>% 
-  ggplot(aes(month, prop)) + geom_col() + 
-  labs(title = "Abundance of Data by Month (proportions)", 
-       x = "", y = "Proportion")
+  ggplot(aes(month, total)) + geom_col() + 
+  labs( 
+       x = "", y = "Total") + 
+  theme(text = element_text(size=20))
 ```
 
 
