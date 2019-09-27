@@ -22,7 +22,11 @@ lakelive_results_adobe <- filter(lakelive_results_all, creek == "Adobe")
 # probably refer to same location. Likewise for "Soda Bay", "Soda Bay Rd", "SBR"
 # -location names are missing for some observations
 # -"fish" values include  symbols ("?", "+", "-"), ranges of numbers ("75-100"),
-# and text strings
+# and text strings. once "+" and "s" are removed the numbers can be plotted, but
+# it may change the meaning of the data-- "1000" is different than "1000s"--
+# replacing "1000s" with "10,000" (for example) introduces additional uncertainty
+# so I have just removed the additional characters.
+# use this data knowing fish numbers are fuzzy.
 
 
 # parse the data (make columns the correct data type)--------------------
@@ -33,9 +37,12 @@ lakelive_results_adobe <- filter(lakelive_results_all, creek == "Adobe")
 # @NICK its not a good idea to reassign a data frame back to itself
 # even if it means that variable names get long
 # for example here I would call the new df "lakelive_results_adobe_dates_parsed"
-lakelive_results_adobe <- lakelive_results_adobe %>%
+lakelive_results_adobe_dates_parsed <- lakelive_results_adobe %>%
   mutate(
     date2= ymd(date)
+  ) %>%
+  mutate(
+    location2 = tolower(location)
   )
 
 
@@ -46,13 +53,10 @@ lakelive_results_adobe <- lakelive_results_adobe %>%
 # into a single mutate, try that out
 
 # make locations all lowercase
-lakelive_results_adobe <- lakelive_results_adobe %>%
-  mutate(
-    location2 = tolower(location)
-  )
+
 
 # normalize string names
-lakelive_results_adobe2 <- lakelive_results_adobe %>%
+lakelive_results_adobe2 <- lakelive_results_adobe_dates_parsed %>%
   mutate(location3 = case_when(
     str_detect(location2, "argonaut") ~ "argonaut_rd",
     str_detect(location2, "bell") ~ "bell_hill_rd",
@@ -94,7 +98,7 @@ lakelive_results_adobe3 <- lakelive_results_adobe2 %>%
   ))
 
 # @NICK try this regex outstr_match("700+", "([0-9]+$)|(([0-9]+)-([0-9]+))")
-readr::parse_number("700s")
+#readr::parse_number("700s")
 
 # create another column for cases where range of fish numbers are given
 # to hold upper range of fish

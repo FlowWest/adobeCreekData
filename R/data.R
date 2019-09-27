@@ -154,12 +154,26 @@
 
 
 #' @title Hitch Counts
-#' @description longer
+#' @description hitch count data at various locations along Adobe Creek
+#'  scraped from lakelive.info/chicouncil for 2005-2018
 #' \describe{
-#'   \item{origin_id}{program or orgnization collecting data}
+#'   \item{creek}{the name of the creek where observation occurred}
+#'   \item{location}{road crossing or major landmark closest to observation}
+#'   \item{date}{date of observation}
+#'   \item{fish}{estimated number of fish observed}
+#'   \item{observer}{last name of volunteer who performed observation}
+#'   \item{comments}{observer's comments}
 #' }
 #' @details
-#' details abpout the data
+#' The original data scraped from lakelive.info/chicouncil was of very poor quality.
+#' The raw time column has been ignored since most observations had no time value.
+#' Normalizing location names and fish counts introducted additional uncertainty in
+#' the already poor lakelive data. Location names have been grouped to the nearest known
+#' road crossing or major landmark, but the original measurement may be slightly
+#' up or downstream. Fish numbers originally included strings like "1000+" or "1000s"
+#' which have been reduced to 1000 since no other reasonable assumption could be made.
+#' Use fish numbers knowing that they represent orders of magnitude more than quantitative
+#' values.
 "hitch_counts"
 
 
