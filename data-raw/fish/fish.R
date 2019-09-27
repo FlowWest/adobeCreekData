@@ -30,6 +30,9 @@ lakelive_results_adobe <- filter(lakelive_results_all, creek == "Adobe")
 
 # fixing date column to date format-------------------------------
 
+# @NICK its not a good idea to reassign a data frame back to itself
+# even if it means that variable names get long
+# for example here I would call the new df "lakelive_results_adobe_dates_parsed"
 lakelive_results_adobe <- lakelive_results_adobe %>%
   mutate(
     date2= ymd(date)
@@ -37,6 +40,10 @@ lakelive_results_adobe <- lakelive_results_adobe %>%
 
 
 # fixing location column ------------------------------------------
+
+# @NICK same as above regarding the naming.....
+# @NICK notice that you can combine these two operations the date2 and location2
+# into a single mutate, try that out
 
 # make locations all lowercase
 lakelive_results_adobe <- lakelive_results_adobe %>%
@@ -69,6 +76,7 @@ lakelive_results_adobe2 <- lakelive_results_adobe %>%
 
 # get rid of extraneous characters and notes typed in fish column
 # and extract lower range of fish numbers when range is given
+
 lakelive_results_adobe3 <- lakelive_results_adobe2 %>%
   mutate(fish2 = case_when(
     str_detect(fish, "([a-z]{4})") & (str_length(fish) > 4)
@@ -84,6 +92,8 @@ lakelive_results_adobe3 <- lakelive_results_adobe2 %>%
     str_detect(fish, "\\d")
     ~ fish
   ))
+
+# @NICK try this regex out str_match("19-78", "([0-9]+$)|(([0-9]+)-([0-9]+))")
 
 # create another column for cases where range of fish numbers are given
 # to hold upper range of fish
@@ -119,5 +129,10 @@ ggplot(lakelive_results_adobe_final, aes(date, fish)) +
   geom_point()
 
 # write data------------------------------------------------------------
+
+# @NICK for now just use write_csv(lakelive_results_adobe_final,"data-raw/hitch-counts-2005-2019.csv")
+# @NICK overall this look great! I really appreciate all of the regex work it's a great
+# skill to have when wrangling data.
+
 
 
