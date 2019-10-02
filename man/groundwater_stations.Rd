@@ -4,7 +4,7 @@
 \name{groundwater_stations}
 \alias{groundwater_stations}
 \title{Groundwater Stations}
-\format{An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 85 rows and 8 columns.}
+\format{An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 85 rows and 9 columns.}
 \usage{
 groundwater_stations
 }
