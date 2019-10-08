@@ -149,5 +149,5 @@ usethis::use_data(hitch_counts, overwrite = TRUE)
 # simply used intersection between the roads and the creek for lat longs
 
 hitch_locations <- read_csv("data-raw/fish/hitch-locations.csv")
-
+usethis::use_data(hitch_locations, overwrite = TRUE)
 
