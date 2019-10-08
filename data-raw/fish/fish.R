@@ -144,7 +144,10 @@ hitch_counts <- lakelive_results_adobe_final
 usethis::use_data(hitch_counts, overwrite = TRUE)
 
 
+# Hitch locations ----------------------------------------------------------------------
+# these locations were mapped with google maps
+# simply used intersection between the roads and the creek for lat longs
 
-
+hitch_locations <- read_csv("data-raw/fish/hitch-locations.csv")
 
 
