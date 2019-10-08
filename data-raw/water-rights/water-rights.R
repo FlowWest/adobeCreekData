@@ -1,5 +1,9 @@
 library(readxl)
 
+wy_types <- waterYearType::water_year_indices %>%
+  filter(location == "Sacramento Valley") %>%
+  select(water_year = WY, type = Yr_type)
+
 water_rights_raw <- read_xlsx("data-raw/water-rights/Water_Rights_Kelsey_Adobe_Creeks__2_.xlsx",
                               sheet = "Adobe Creek Water Rights",
                               skip = 1)
@@ -34,6 +38,16 @@ adobe_water_rights <- water_rights_data %>%
 
 adobe_water_rights %>%
   filter(metric == "Total Annual Draw (Gallons)") %>%
-  ggplot(aes(year, value, fill=holder_name)) + geom_col(position = "stack") +
+  left_join(wy_types, by = c("year" = "water_year")) %>%
+  ggplot(aes(year, value, fill=type)) + geom_col(position = "stack") +
   scale_x_continuous(breaks = seq(1965, 2015, by = 5)) +
-  scale_fill_brewer(palette = "Set2")
+  scale_fill_brewer(palette = "Spectral") +
+  labs(x = "year", y = "gallons diverted")
+
+adobe_water_rights %>%
+  filter(metric == "Total Annual Draw (Gallons)") %>%
+  left_join(wy_types, by = c("year" = "water_year")) %>%
+  ggplot(aes(year, value)) + geom_col(position = "stack") +
+  scale_x_continuous(breaks = seq(1965, 2015, by = 5)) +
+  scale_fill_brewer(palette = "Spectral") +
+  labs(x = "year", y = "gallons diverted")
