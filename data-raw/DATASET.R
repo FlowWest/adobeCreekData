@@ -52,8 +52,8 @@ usethis::use_data(groundwater_stations, overwrite = TRUE)
 
 # PRESSURE TRANSDUCER DATA =====================================================
 
-bell_hill <- read_csv("data-raw/Bell Hill_Append_2019-03-24_10-53-07-322-BaroMerge.csv",
-                      skip = 75,
+bell_hill <- read_csv("data-raw/transducer/2020-04/Bell Hill_Append_2020-04-18_18-14-46-011-BaroMerge.csv",
+                      skip = 83,
                       col_types = "ccccccc",
                       col_names = c("dateTime","seconds", "pressure_psi", "temp_c", "depth_ft",
                                     "baro_pressure_psi", "dummy")) %>%
@@ -64,7 +64,7 @@ bell_hill <- read_csv("data-raw/Bell Hill_Append_2019-03-24_10-53-07-322-BaroMer
     temp_c = as.numeric(temp_c))
 
 argonaut <- read_csv("data-raw/Argonaut_Append_2019-03-24_10-34-19-544-BaroMerge.csv",
-                     skip = 75,
+                     skip = 83,
                      col_types = "ccccccc",
                      col_names = c("dateTime","seconds", "pressure_psi", "temp_c", "depth_ft",
                                    "baro_pressure_psi", "dummy")) %>%
